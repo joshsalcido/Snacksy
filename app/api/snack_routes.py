@@ -6,4 +6,5 @@ snack_routes = Blueprint('snacks', __name__)
 @snack_routes.route('/')
 def snacks():
     snacks = Snack.query.all()
-    return 
+    data = [snack.to_dict() for snack in snacks]
+    return {'snacks': data}

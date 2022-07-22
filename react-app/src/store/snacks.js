@@ -14,11 +14,9 @@ export const thunkGetAllSnacks = () => async (dispatch) => {
     const response = await fetch('/api/snacks');
 
     if (response.ok) {
-        const snacks = await response.json();
-        dispatch(actionGetAllSnacks(snacks));
-        return snacks;
-    } else {
-        return await response.json();
+        const data = await response.json();
+        dispatch(actionGetAllSnacks(data.snacks));
+        return data.snacks;
     }
 }
 
@@ -28,12 +26,11 @@ const initialState = {};
 const snacksReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_SNACKS:
-            const allSnackState = { ...state };
+            let newState = {};
             action.snacks.forEach(snack => {
-                allSnackState[snack.id] = snack
+                newState[snack.id] = snack
             });
-            return allSnackState;
-
+            return newState;
         default:
             return state;
     }
