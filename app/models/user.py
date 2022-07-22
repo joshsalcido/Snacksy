@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     snack = db.relationship("Snack", back_populates="users")
+    shopping_cart = db.relationship("ShoppingCart", uselist=False, back_populates="user")
 
     @property
     def password(self):
