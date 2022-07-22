@@ -13,3 +13,4 @@ class Snack(db.Model):
 
     users = db.relationship("User", back_populates="snack")
     cart_item = db.relationship("CartItem", uselist=False, back_populates="snack")
+    reviews = db.relationship("Review", back_populates="snack")
