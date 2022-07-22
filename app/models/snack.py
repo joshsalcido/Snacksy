@@ -12,3 +12,6 @@ class Snack(db.Model):
     category = db.Column(db.String(20), nullable=False)
 
     users = db.relationship("User", back_populates="snack")
+    cart_item = db.relationship("CartItem", uselist=False, back_populates="snack")
+    reviews = db.relationship("Review", back_populates="snack")
+

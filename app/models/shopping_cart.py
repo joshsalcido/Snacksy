@@ -8,3 +8,5 @@ class ShoppingCart(db.Model):
     total = db.Column(db.Integer, nullable=False)
 
     user = db.relationship("User", back_populates="shopping_cart")
+    cart_items= db.relationship("CartItem", back_populates="shopping_cart")
+
