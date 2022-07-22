@@ -8,7 +8,7 @@ class Snack(db.Model):
     cover_pic = db.Column(db.String(255), nullable=False)
     title = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(20), nullable=False)
 
     users = db.relationship("User", back_populates="snack")
