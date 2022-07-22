@@ -8,13 +8,28 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import Modal from 'react-modal';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false)
   const dispatch = useDispatch();
 
+  const formStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  Modal.setAppElement('body');
+
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -24,18 +39,30 @@ function App() {
     return null;
   }
 
+  function openModal() {
+    setShowLoginForm(true)
+  }
+
+  function closeModal() {
+    setShowLoginForm(false)
+  }
+
   return (
     <BrowserRouter>
       <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
-          <LoginForm />
+          <button onClick={openModal}>Open</button>
+          <Modal isOpen={showLoginForm} style={formStyles}>
+            <LoginForm />
+            <button onClick={closeModal}>Cancel</button>
+          </Modal>
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
