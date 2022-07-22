@@ -15,6 +15,8 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(255), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    snack = db.relationship("Snack", back_populates="users")
+
     @property
     def password(self):
         return self.hashed_password
