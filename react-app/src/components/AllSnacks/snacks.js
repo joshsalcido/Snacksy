@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllSnacks } from "../../store/snacks";
 
 
 const AllSnacks = () => {
-    const snacks = useSelector(state => state.allSnacks.snacks);
+    const snacks = useSelector(state => Object.values(state.allSnacks));
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllSnacks());
     }, [dispatch]);
+
+    if (!snacks) return null
 
     return (
         <div>
@@ -19,7 +21,6 @@ const AllSnacks = () => {
                     <img src={snack.cover_pic}></img>
                     <p>{snack.title}</p>
                     <p>{snack.description}</p>
-                    <p>{snack.price}</p>
                     <p>{snack.price}</p>
                 </div>
             ))}
