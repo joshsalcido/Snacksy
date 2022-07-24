@@ -48,6 +48,11 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <button className='create-snack-bttn'>
+            <i className="fa-solid fa-store"></i>
+          </button>
+        </li>
+        <li>
           <button onClick={openLoginModal}>Log In</button>
           <Modal isOpen={showLoginForm} style={formStyles}>
             <LoginForm />
