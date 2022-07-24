@@ -33,14 +33,13 @@ export const thunkPostSnack = (snack) => async (dispatch) => {
     const response = await fetch('/api/snacks/new', {
         method: "POST",
         headers: {'Content-Type': "application/json"},
-        body: JSON.stringify(snack)
+        body: JSON.stringify(snack),
     });
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data)
-        dispatch(actionPostSnack(data.snack));
-        return data.snack;
+        dispatch(actionPostSnack(data));
+        return data;
     }
 }
 
@@ -48,16 +47,16 @@ export const thunkPostSnack = (snack) => async (dispatch) => {
 const initialState = {};
 
 const snacksReducer = (state = initialState, action) => {
+    let newState = {...state}
     switch (action.type) {
         case GET_ALL_SNACKS:
-            let newState = {};
+            newState = {};
             action.snacks.forEach(snack => {
                 newState[snack.id] = snack
             });
             return newState;
 
         case POST_SNACK:
-            newState = {...state}
             newState[action.snack.id] = action.snack
             return newState
 

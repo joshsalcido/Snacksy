@@ -7,6 +7,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import AllSnacks from './components/AllSnacks/snacks';
 import { authenticate } from './store/session';
+import SnackForm from './components/CreateSnackForm';
 
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
           <AllSnacks/>
+        </Route>
+        <Route>
+          <SnackForm />
         </Route>
       </Switch>
     </BrowserRouter>

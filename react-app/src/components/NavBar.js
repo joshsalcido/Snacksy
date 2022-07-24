@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginForm from './auth/LoginForm';
@@ -7,6 +8,7 @@ import SignUpForm from './auth/SignUpForm';
 import Modal from 'react-modal';
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session.user);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
 
@@ -47,11 +49,15 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
+        {sessionUser &&
         <li>
-          <button className='create-snack-bttn'>
-            <i className="fa-solid fa-store"></i>
-          </button>
+          <NavLink to="/new-snack">
+            <button className='create-snack-bttn'>
+              <i className="fa-solid fa-store"></i>
+            </button>
+          </NavLink>
         </li>
+        }
         <li>
           <button onClick={openLoginModal}>Log In</button>
           <Modal isOpen={showLoginForm} style={formStyles}>

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from app.models import db, Snack
 
 snack_routes = Blueprint('snacks', __name__)
@@ -14,14 +14,8 @@ def snacks():
 def create_snack():
     data = request.json
 
-    new_snack = Snack(
-        user_id = data['user_id'],
-        cover_pic = data['cover_pic'],
-        title= data['title'],
-        description= data['description'],
-        price= data['price'],
-        category= data['category']
-    )
+    new_snack = Snack(**data)
+
     db.session.add(new_snack)
     db.session.commit()
     return new_snack.to_dict()
