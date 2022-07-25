@@ -24,11 +24,11 @@ class ShoppingCart(db.Model):
         total = 0
         for item in self.shoppingList:
             name, price = item
-            total += price
+            total = total + price
         return total
 
     def getShoppingList(self):
         items = None
-        for item in self.getShoppingList:
-            items += item
+        for item in self.shoppingList:
+            items = items + item
         return items
