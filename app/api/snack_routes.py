@@ -57,3 +57,20 @@ def get_reviews(id):
     reviews = snack.reviews
     data = [review.to_dict() for review in reviews]
     return {'reviews': data}
+
+
+@snack_routes.route('/<id>/reviews/new', methods=['POST', "GET"])
+def post_review(id):
+    data = request.json
+    new_review = Review (
+        user_id=data['user_id'],
+        snack_id= id,
+        rating= data['rating'],
+        comment= data['comment']
+    )
+
+    db.session.add(new_review)
+    db.session.commit()
+
+
+    return new_review.to_dict()
