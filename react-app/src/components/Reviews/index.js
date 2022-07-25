@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { thunkGetAllReviews } from '../../store/reviews';
+import { thunkGetAllReviews, thunkDeleteReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import ReviewForm from '../ReviewFormModal/ReviewForm';
@@ -54,6 +54,15 @@ export default function Reviews() {
                         {/* <div>{review.User.first_name} {review.User.last_name}</div> */}
                         <div>{review.rating}</div>
                         <div>{review.comment}</div>
+                        <div>
+                        {sessionUser?.id === review.user_id && (
+                            <button className='delete-review-button'
+                                onClick={() => dispatch(thunkDeleteReview(review.id))}
+                            >
+                                Delete your review
+                            </button>
+                        )}
+                        </div>
                     </div>
                 )
             })}
