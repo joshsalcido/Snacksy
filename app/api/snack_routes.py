@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import db, Snack
+from app.models import db, Snack, Review
 
 snack_routes = Blueprint('snacks', __name__)
 
@@ -48,3 +48,12 @@ def delete_snack(id):
      db.session.delete(snack)
      db.session.commit()
      return snack.to_dict()
+
+# ------- Reviews --------
+
+@snack_routes.route('/<id>/reviews')
+def get_reviews(id):
+    snack = Snack.query.get(id)
+    reviews = snack.reviews
+    data = [review.to_dict() for review in reviews]
+    return {'reviews': data}

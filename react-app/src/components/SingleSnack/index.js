@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { thunkDeleteSnack, thunkGetSingleSnack } from '../../store/snacks';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import Reviews from '../Reviews';
 
 export default function SingleSnack() {
     const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export default function SingleSnack() {
                    </>
                 }
             </div>
+            <Reviews />
         </>
     )
 }
