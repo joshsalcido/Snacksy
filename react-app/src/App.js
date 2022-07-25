@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import AllSnacks from './components/AllSnacks/snacks';
 import { authenticate } from './store/session';
 
 
@@ -38,7 +39,7 @@ function App() {
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
-
+          <AllSnacks/>
         </Route>
       </Switch>
     </BrowserRouter>

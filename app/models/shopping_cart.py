@@ -32,3 +32,11 @@ class ShoppingCart(db.Model):
         for item in self.shoppingList:
             items = items + item
         return items
+        
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'total': self.total
+        }
+
