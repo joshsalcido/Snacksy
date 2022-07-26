@@ -1,7 +1,15 @@
 from flask import Blueprint, request, jsonify
 from app.models import db, Snack, Review, User
+from app.forms import SnackForm
 
 snack_routes = Blueprint('snacks', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @snack_routes.route('/')
 def snacks():
@@ -10,15 +18,33 @@ def snacks():
     return {'snacks': data}
 
 
+# @snack_routes.route('/new', methods=['POST', 'GET'])
+# def create_snack():
+#     data = request.json
+
+#     new_snack = Snack(**data)
+
+#     db.session.add(new_snack)
+#     db.session.commit()
+#     return new_snack.to_dict()
+
 @snack_routes.route('/new', methods=['POST', 'GET'])
 def create_snack():
-    data = request.json
-
-    new_snack = Snack(**data)
-
-    db.session.add(new_snack)
-    db.session.commit()
-    return new_snack.to_dict()
+    form = SnackForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_snack = Snack(
+            user_id=form.data['user_id'],
+            cover_pic=form.data['cover_pic'],
+            title=form.data['title'],
+            description=form.data['description'],
+            price=form.data['price'],
+            category=form.data['category']
+        )
+        db.session.add(new_snack)
+        db.session.commit()
+        return new_snack.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @snack_routes.route('/<id>')

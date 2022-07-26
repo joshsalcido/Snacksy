@@ -56,7 +56,7 @@ export default function SnackForm() {
 
     const newSnack = await dispatch(thunkPostSnack(snack))
 
-    if(newSnack){
+    if (newSnack) {
       reset();
       history.push("/")
     }
