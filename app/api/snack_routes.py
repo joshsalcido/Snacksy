@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import db, Snack, Review
+from app.models import db, Snack, Review, User
 
 snack_routes = Blueprint('snacks', __name__)
 
@@ -44,7 +44,7 @@ def edit_snack(id):
 
 @snack_routes.route('/<id>/delete', methods=['DELETE'])
 def delete_snack(id):
-     snack = Snack.query.get(id)
+     snack = Snack.query(User).get(id)
      db.session.delete(snack)
      db.session.commit()
      return snack.to_dict()
@@ -53,8 +53,11 @@ def delete_snack(id):
 
 @snack_routes.route('/<id>/reviews')
 def get_reviews(id):
-    snack = Snack.query.get(id)
-    reviews = snack.reviews
+    # snack = Snack.query.get(id)
+    # reviews = snack.reviews
+    # reviews = db.session.query(Review).join(User, User.id == Review.user_id).filter(Review.snack_id == id)
+    # reviews = Review.query.join(User).filter(Review.snack_id == id).filter(User.id == Review.user_id)
+    reviews = Review.query.join(User).filter(Review.snack_id == id)
     data = [review.to_dict() for review in reviews]
     return {'reviews': data}
 
