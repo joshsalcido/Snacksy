@@ -22,12 +22,9 @@ const NavBar = () => {
     setShowLoginForm(false)
   }
 
-  function openSignupModal() {
+  function openClose() {
     setShowSignupForm(true)
-  }
-
-  function closeSignupModal() {
-    setShowSignupForm(false)
+    closeLoginModal(true)
   }
 
   const formStyles = {
@@ -58,18 +55,19 @@ const NavBar = () => {
           </NavLink>
         </li>
         }
+        {!sessionUser && (
         <li>
           <button onClick={openLoginModal}>Log In</button>
           <Modal isOpen={showLoginForm} style={formStyles}>
             <LoginForm />
             <button onClick={closeLoginModal}>Cancel</button>
-            <button onClick={openSignupModal}>Sign up</button>
+            <button onClick={openClose}> Sign up</button>
           </Modal>
           <Modal isOpen={showSignupForm} style={formStyles}>
-            <SignUpForm />
-            <button onClick={closeSignupModal}>Cancel</button>
+            <SignUpForm setTrigger={setShowSignupForm}/>
           </Modal>
         </li>
+        )}
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
@@ -85,9 +83,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
-        <li>
-          <LogoutButton />
-        </li>
+        {sessionUser && (
+          <li>
+            <LogoutButton />
+          </li>
+        )}
       </ul>
     </nav>
   );

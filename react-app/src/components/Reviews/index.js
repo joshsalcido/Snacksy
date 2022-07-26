@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { thunkGetAllReviews, thunkDeleteReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
 import Modal from 'react-modal';
 import ReviewForm from '../ReviewFormModal/ReviewForm';
 
@@ -43,16 +44,54 @@ export default function Reviews() {
     return (
         <div className='reviews-container'>
             <h2 className='review-title'>Reviews</h2>
-            <button onClick={openReviewForm}> Write a review</button>
-            <Modal isOpen={showReviewForm} style={formStyles}>
-                <ReviewForm setTrigger={setShowReviewForm}/>
-                <button onClick={closeReviewForm}>Cancel</button>
-            </Modal>
+            {sessionUser && (
+            <>
+                <button onClick={openReviewForm}> Write a review</button>
+                <Modal isOpen={showReviewForm} style={formStyles}>
+                    <ReviewForm setTrigger={setShowReviewForm}/>
+                    <button onClick={closeReviewForm}>Cancel</button>
+                </Modal>
+            </>
+            )}
             {reviews.map(review => {
                 return (
                     <div key={review.id}>
-                        <div>{review.User.first_name} {review.User.last_name}</div>
-                        <div>{review.rating}</div>
+                        {/* <div>{review.User.first_name} {review.User.last_name}</div> */}
+                        {review.rating === 1 && (
+                            <>
+                                <FaStar color="#ffc107"/>
+                            </>
+                            )}
+                        {review.rating === 2 && (
+                            <>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                            </>
+                            )}
+                        {review.rating === 3 && (
+                            <>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                            </>
+                            )}
+                        {review.rating === 4 && (
+                            <>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                            </>
+                            )}
+                        {review.rating === 5 && (
+                            <>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                                <FaStar color="#ffc107"/>
+                            </>
+                            )}
                         <div>{review.comment}</div>
                         <div>
                         {sessionUser?.id === review.user_id && (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams} from 'react-router-dom';
+import { NavLink, useHistory, useParams} from 'react-router-dom';
 import { thunkEditSnack } from '../../store/snacks'
 
 export default function EditSnackForm() {
@@ -141,6 +141,9 @@ export default function EditSnackForm() {
               <option>Beverages</option>
             </select>
             <button id="snackFormSubmit" type="submit">Edit your Snack</button>
+            <NavLink  to={`/snacks/${snackId}`}>
+              <button>Cancel</button>
+            </NavLink>
           </form>
         </section>
 

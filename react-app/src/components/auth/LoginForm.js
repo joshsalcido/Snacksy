@@ -45,6 +45,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
           placeholder='Email'
           value={email}
           onChange={updateEmail}
+          required
         />
       </div>
       <div>
@@ -55,6 +56,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          required
         />
         <button type='submit'>Login</button>
       </div>
