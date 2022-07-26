@@ -46,5 +46,5 @@ class ShoppingCart(db.Model):
             'user_id': self.user_id,
             'total': self.total,
             'user': self.user,
-            'snacks': self.snacks.to_dict()
+            'snacks': self.snacks
         }
