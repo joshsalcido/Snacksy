@@ -5,8 +5,9 @@ import { thunkGetCart } from "../../store/cart";
 
 const Cart = () => {
     const cart = useSelector(state => Object.values(state.shoppingCart));
-    const userId = useSelector(state => state.session.user.id);
 
+    const userId = useSelector(state => state.session.user.id);
+    console.log(userId, "%%%USERID")
     const dispatch = useDispatch();
 
     useEffect(() => {

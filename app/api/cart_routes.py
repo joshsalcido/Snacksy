@@ -8,7 +8,7 @@ cart_routes = Blueprint('cart', __name__)
 @cart_routes.route('/<id>', methods=['GET'])
 def cart(id):
     cart = ShoppingCart.query.get(id)
-    snacks = cart.snacks
-    data = [snack.to_dict() for snack in snacks]
-    print("****", snacks)
-    return {'cart': [cart.to_dict()], 'snacks': data}
+    # snacks = cart.snacks
+    # data = [snack.to_dict() for snack in snacks]
+    print("**********HERE", cart.to_dict())
+    return cart.to_dict()

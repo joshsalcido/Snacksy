@@ -23,6 +23,10 @@ class Snack(db.Model):
         back_populates="cart_items",
     )
 
+    def getshopped(self):
+        data = [shopping_cart.to_dict() for shopping_cart in self.shopping_carts]
+        return data
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -32,5 +36,5 @@ class Snack(db.Model):
             'description': self.description,
             'price': self.price,
             'category': self.category,
-            'shopping_carts': self.shopping_carts
+            # 'shopping_carts': self.getshopped()
         }

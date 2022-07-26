@@ -40,11 +40,15 @@ class ShoppingCart(db.Model):
             items = items + item
         return items
 
+    def getsnacked(self):
+        data = [snack.to_dict() for snack in self.snacks]
+        return data
+
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'total': self.total,
-            'user': self.user,
-            'snacks': self.snacks
+            'user': self.user.to_dict(),
+            'snacks': self.getsnacked()
         }
