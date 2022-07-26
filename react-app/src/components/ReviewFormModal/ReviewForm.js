@@ -21,7 +21,7 @@ export default function ReviewForm({setTrigger}){
   useEffect(() => {
     const errors = [];
     if(rating === null) errors.push("Must provide a rating between 1-5!")
-    // if (comment.length < 5) errors.push("Review must be at least 5 characters!");
+    if (comment.length < 5) errors.push("Review must be at least 5 characters!");
     setValidationErrors(errors);
   }, [comment, rating]);
 

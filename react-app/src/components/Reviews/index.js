@@ -51,7 +51,7 @@ export default function Reviews() {
             {reviews.map(review => {
                 return (
                     <div key={review.id}>
-                        {/* <div>{review.User.first_name} {review.User.last_name}</div> */}
+                        <div>{review.User.first_name} {review.User.last_name}</div>
                         <div>{review.rating}</div>
                         <div>{review.comment}</div>
                         <div>
