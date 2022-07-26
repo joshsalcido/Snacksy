@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey
+# from sqlalchemy import ForeignKey
 from .db import db, items
 
 
@@ -9,11 +9,12 @@ class ShoppingCart(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     total = db.Column(db.Float, nullable=False)
 
-    user = db.relationship("User", back_populates="shopping_carts")
-    snacks = db.relationship("Snack", back_populates="shopping_carts")
+    user = db.relationship("User", back_populates="shopping_cart")
+    # snacks = db.relationship("Snack", back_populates="shopping_cart")
     cart_items = db.relationship("Snack",
                                  secondary=items,
-                                 back_populates="snack_items"
+                                 back_populates="snack_items",
+                                 cascade="all, delete"
                                  )
 
     def __init__(self):

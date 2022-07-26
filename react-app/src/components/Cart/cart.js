@@ -16,22 +16,23 @@ const Cart = () => {
     }, [dispatch]);
 
     return (
-        <div>
-            {cart && (
-                <div>
-                    {console.log('hi', cart)}
-                    {/* <img>{item.CartItem.id}</img> */}
-                    {/* <p>{item.title}</p>
-                    <p>{item.price}</p> */}
-                </div>
-            )}
-            {/* {cart && (
-                <div>
-                    <p>{cart.getTotal()}</p>
-                    <button>Place Order</button>
-                </div>
-            )} */}
-        </div>
+        // <div>
+        //     {cart && (
+        //         <div>
+        //             {console.log('hi', cart)}
+        //             {/* <img>{item.CartItem.id}</img> */}
+        //             {/* <p>{item.title}</p>
+        //             <p>{item.price}</p> */}
+        //         </div>
+        //     )}
+        //     {/* {cart && (
+        //         <div>
+        //             <p>{cart.getTotal()}</p>
+        //             <button>Place Order</button>
+        //         </div>
+        //     )} */}
+        // </div>
+        <p>hi</p>
     )
 }
 
