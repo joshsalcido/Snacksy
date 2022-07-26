@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, NavLink } from 'react-router-dom';
 import { thunkPostSnack } from '../../store/snacks'
+import './createSnack.css'
 
 export default function SnackForm() {
   const history = useHistory()
@@ -95,6 +96,7 @@ export default function SnackForm() {
             <label>Image:</label>
             <input
               type="text"
+              className='form-input'
               value={coverPic}
               onChange={(e) => setCoverPic(e.target.value)}
               required
@@ -102,13 +104,14 @@ export default function SnackForm() {
             <label>Title:</label>
             <input
               type="text"
+              className='form-input'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
             <label>Description:</label>
-            <input
-              type="text"
+            <textarea
+              className='form-input'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -117,6 +120,7 @@ export default function SnackForm() {
             <span className='currency-code'>$</span>
             <input
               type="text"
+              className='price-input'
               value={price}
               placeholder="22.22"
               onChange={(e) => setPrice(e.target.value)}

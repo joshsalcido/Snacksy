@@ -53,12 +53,13 @@ def delete_snack(id):
 
 @snack_routes.route('/<id>/reviews')
 def get_reviews(id):
-    # snack = Snack.query(Review)
-    # reviews = snack.reviews
+    snack = Snack.query.get(id)
+    reviews = snack.reviews
     # reviews = db.session.query(Review, User).join(User).filter(Review.snack_id == id)
     # reviews = Review.query.join(User).filter(Review.snack_id == id).filter(User.id == Review.user_id)
-    reviews = Review.query.join(User).filter(Review.snack_id == id)
+    # reviews = Review.query.join(User).filter(Review.snack_id == id)
     data = [review.to_dict() for review in reviews]
+    print(data)
     return {'reviews': data}
 
 

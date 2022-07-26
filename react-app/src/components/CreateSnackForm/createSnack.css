@@ -1,0 +1,29 @@
+.currency-code {
+  padding: 1px 5px 1px 5px;
+  color:#999;
+  border: 1px solid rgb(167, 165, 165);
+  border-right: 0;
+  line-height: 1.5;
+  background-color: rgb(216, 215, 215);
+
+}
+
+.form-input {
+  border: 1px solid rgb(167, 165, 165);
+  font-size: 15px;
+  font-family: 'Pt Sans', sans-serif;
+}
+
+.form-input:focus{
+  outline: 0;
+}
+
+.price-input {
+  border: 1px solid rgb(167, 165, 165);
+  font-size: 15px;
+  border-left: 0;
+}
+
+.price-input:focus{
+  outline: 0;
+}

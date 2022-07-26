@@ -44,6 +44,11 @@ export default function Reviews() {
     return (
         <div className='reviews-container'>
             <h2 className='review-title'>Reviews</h2>
+            {!reviews.length && (
+                 <>
+                    <h3>Be the first to leave a review</h3>
+                 </>
+                )}
             {sessionUser && (
             <>
                 <button onClick={openReviewForm}> Write a review</button>
@@ -56,49 +61,60 @@ export default function Reviews() {
             {reviews.map(review => {
                 return (
                     <div key={review.id}>
-                        {/* <div>{review.User.first_name} {review.User.last_name}</div> */}
                         {review.rating === 1 && (
                             <>
-                                <FaStar color="#ffc107"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#e4e5e9"/>
+                                <FaStar color="#e4e5e9"/>
+                                <FaStar color="#e4e5e9"/>
+                                <FaStar color="#e4e5e9"/>
                             </>
                             )}
                         {review.rating === 2 && (
                             <>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#e4e5e9"/>
+                                <FaStar color="#e4e5e9"/>
+                                <FaStar color="#e4e5e9"/>
                             </>
                             )}
                         {review.rating === 3 && (
                             <>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#e4e5e9"/>
+                                <FaStar color="#e4e5e9"/>
                             </>
                             )}
                         {review.rating === 4 && (
                             <>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#e4e5e9"/>
+
                             </>
                             )}
                         {review.rating === 5 && (
                             <>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
-                                <FaStar color="#ffc107"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
+                                <FaStar color="#222"/>
                             </>
                             )}
                         <div>{review.comment}</div>
+                        {/* <img src={`${review.user.profile_pic}`}></img> */}
+                        <div>{review.user.first_name} {review.user.last_name}</div>
                         <div>
                         {sessionUser?.id === review.user_id && (
                             <button className='delete-review-button'
-                                onClick={() => dispatch(thunkDeleteReview(review.id))}
-                            >
-                                Delete your review
+                                onClick={() => dispatch(thunkDeleteReview(review.id))}>
+                                Delete review  <i className="fa-solid fa-delete-left"></i>
                             </button>
                         )}
                         </div>
