@@ -48,7 +48,7 @@ class ShoppingCart(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'total': self.total,
+            'total': self.getTotal(),
             'user': self.user.to_dict(),
             'snacks': self.getsnacked()
         }

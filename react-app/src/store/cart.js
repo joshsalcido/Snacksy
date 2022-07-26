@@ -52,10 +52,10 @@ const cartReducer = (state = initialState, action) => {
             return cartState
 
         case ADD_TO_CART:
-            console.log(action.snack)
+            // console.log(action.snack)
             newState[action.cart.id] = action.snack
             return newState
-            
+
         default:
             return state;
     }
