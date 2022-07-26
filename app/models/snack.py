@@ -12,15 +12,15 @@ class Snack(db.Model):
     price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(20), nullable=False)
 
-    user = db.relationship("User", back_populates="snacks")
+    users = db.relationship("User", back_populates="snacks")
     reviews = db.relationship("Review", back_populates="snack")
-    # shopping_carts = db.relationship("ShoppingCart", back_populates="snacks")
+    shopping_carts = db.relationship(
+        "ShoppingCart", secondary=items, back_populates="snacks")
     snack_items = db.relationship(
         "ShoppingCart",
         secondary=items,
         # uselist=False,
         back_populates="cart_items",
-        cascade="all, delete"
     )
 
     def to_dict(self):
@@ -31,5 +31,6 @@ class Snack(db.Model):
             'title': self.title,
             'description': self.description,
             'price': self.price,
-            'category': self.category
+            'category': self.category,
+            'shopping_carts': self.shopping_carts
         }

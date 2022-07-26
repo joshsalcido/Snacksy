@@ -9,13 +9,14 @@ class ShoppingCart(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     total = db.Column(db.Float, nullable=False)
 
-    user = db.relationship("User", back_populates="shopping_cart")
-    # snacks = db.relationship("Snack", back_populates="shopping_cart")
+    snacks = db.relationship("Snack", secondary=items,
+                             back_populates="shopping_carts")
     cart_items = db.relationship("Snack",
                                  secondary=items,
-                                 back_populates="snack_items",
-                                 cascade="all, delete"
+                                 back_populates="snack_items"
                                  )
+
+    user = db.relationship("User", back_populates="shopping_cart")
 
     def __init__(self):
         self.shoppingList = []
@@ -43,5 +44,7 @@ class ShoppingCart(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'total': self.total
+            'total': self.total,
+            'user': self.user,
+            'snacks': self.snacks.to_dict()
         }

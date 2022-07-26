@@ -59,12 +59,13 @@ def upgrade():
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table('items',
-                    sa.Column('shopping_carts', sa.Integer(), nullable=False),
-                    sa.Column('snacks', sa.Integer(), nullable=False),
-                    sa.ForeignKeyConstraint(['shopping_carts'], [
+                    sa.Column('shopping_cart_id',
+                              sa.Integer(), nullable=False),
+                    sa.Column('snack_id', sa.Integer(), nullable=False),
+                    sa.ForeignKeyConstraint(['shopping_cart_id'], [
                                             'shopping_carts.id'], ),
-                    sa.ForeignKeyConstraint(['snacks'], ['snacks.id'], ),
-                    sa.PrimaryKeyConstraint('shopping_carts', 'snacks')
+                    sa.ForeignKeyConstraint(['snack_id'], ['snacks.id'], ),
+                    sa.PrimaryKeyConstraint('shopping_cart_id', 'snack_id')
                     )
     op.create_table('reviews',
                     sa.Column('id', sa.Integer(), nullable=False),
