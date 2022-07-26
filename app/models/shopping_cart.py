@@ -1,4 +1,5 @@
-from .db import db
+from sqlalchemy import ForeignKey
+from .db import db, items
 
 
 class ShoppingCart(db.Model):
@@ -8,8 +9,12 @@ class ShoppingCart(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     total = db.Column(db.Float, nullable=False)
 
-    user = db.relationship("User", back_populates="shopping_cart")
-    cart_items = db.relationship("CartItem", back_populates="shopping_cart")
+    user = db.relationship("User", back_populates="shopping_carts")
+    snacks = db.relationship("Snack", back_populates="shopping_carts")
+    cart_items = db.relationship("Snack",
+                                 secondary=items,
+                                 back_populates="snack_items"
+                                 )
 
     def __init__(self):
         self.shoppingList = []
@@ -32,11 +37,10 @@ class ShoppingCart(db.Model):
         for item in self.shoppingList:
             items = items + item
         return items
-        
+
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'total': self.total
         }
-

@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import SnackForm from './components/CreateSnackForm';
 import SingleSnack from './components/SingleSnack';
 import EditSnackForm from './components/EditSnackForm';
+import Cart from './components/Cart/cart';
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
           <User />
         </Route>
         <Route path='/' exact={true} >
-          <AllSnacks/>
+          <AllSnacks />
         </Route>
         <Route path='/new-snack' exact={true}>
           <SnackForm />
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path="/snacks/:snackId/edit" exact={true}>
           <EditSnackForm />
+        </Route>
+        <Route path='/cart/:userId'>
+          <Cart />
         </Route>
       </Switch>
     </BrowserRouter>
