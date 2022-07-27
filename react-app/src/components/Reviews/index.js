@@ -149,12 +149,11 @@ export default function Reviews() {
                         <div>
                         {sessionUser?.id === review.user_id && (
                             <>
-                                <button onClick={openReviewEditForm}> Edit
+                                <button onClick={openReviewEditForm}>Edit</button>
                                     <Modal isOpen={showReviewEditForm} style={formStyles}>
                                         <EditReviewForm setTrigger={setShowReviewEditForm}/>
                                         <button onClick={closeReviewEditForm}>Cancel</button>
                                     </Modal>
-                                </button>
                                 <button className='delete-review-button'
                                     onClick={() => dispatch(thunkDeleteReview(review.id))}>
                                     Delete review  <i className="fa-solid fa-delete-left"></i>
