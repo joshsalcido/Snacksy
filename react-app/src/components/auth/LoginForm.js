@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = ({ showLoginForm, closeModal }) => {
   const [errors, setErrors] = useState([]);
@@ -17,6 +18,11 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
       setErrors(data);
     }
   };
+
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(login('demo@aa.io','password'))
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -61,6 +67,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
             required
           />
           <button type='submit'>Sign in</button>
+          <Link className='demo-link'onClick={demoSubmit}>Demo Snacksy</Link>
         </div>
       </form>
     </>

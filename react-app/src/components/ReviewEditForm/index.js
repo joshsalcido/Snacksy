@@ -78,7 +78,6 @@ export default function EditReviewForm({setTrigger}){
               return (
                 <label key={index}>
                   <input
-                    required
                     type="radio"
                     id="radioBttn"
                     name="rating"

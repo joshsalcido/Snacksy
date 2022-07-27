@@ -85,7 +85,7 @@ const NavBar = () => {
         </li> */}
         {sessionUser && (
           <li>
-            <LogoutButton />
+            <LogoutButton setTrigger={setShowLoginForm}/>
           </li>
         )}
       </ul>
