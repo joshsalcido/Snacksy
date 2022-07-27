@@ -12,32 +12,32 @@ export default function SnackForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Chips");
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
-  useEffect(() => {
-    const errors = []
-    let testRegex = /^https?:\/\/(?:[a-z0-9-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpe?g|gif|png|bmp)$/;
-    let imageUrlReg = coverPic;
-    if (!testRegex.test(imageUrlReg)) {
-      errors.push('Please provide a proper imageUrl (e.g., .jpg, .gif, .png, .bmp)')}
-    if (title.length < 3)
-      errors.push("Title must be at least 3 characters");
-    if (title.length > 100)
-      errors.push("Title length cannot exceed 100 characters")
-    if (description.length > 500)
-      errors.push("Description length cannot exceed 500 characters")
-    if (description.length < 5)
-      errors.push("Decription length must be at least 5 characters")
-    let priceRegex = /^[0-9]+(\.[0-9][0-9])?$/;
-    let priceReg = price;
-    if(!priceRegex.test(priceReg)) {
-      errors.push("Must provide a valid US dollar amount")
-    }
-    setValidationErrors(errors)
-  }, [coverPic, title, description, price])
+  // useEffect(() => {
+  //   const errors = []
+  //   let testRegex = /^https?:\/\/(?:[a-z0-9-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpe?g|gif|png|bmp)$/;
+  //   let imageUrlReg = coverPic;
+  //   if (!testRegex.test(imageUrlReg)) {
+  //     errors.push('Please provide a proper imageUrl (e.g., .jpg, .gif, .png, .bmp)')}
+  //   if (title.length < 3)
+  //     errors.push("Title must be at least 3 characters");
+  //   if (title.length > 100)
+  //     errors.push("Title length cannot exceed 100 characters")
+  //   if (description.length > 500)
+  //     errors.push("Description length cannot exceed 500 characters")
+  //   if (description.length < 5)
+  //     errors.push("Decription length must be at least 5 characters")
+  //   let priceRegex = /^[0-9]+(\.[0-9][0-9])?$/;
+  //   let priceReg = price;
+  //   if(!priceRegex.test(priceReg)) {
+  //     errors.push("Must provide a valid US dollar amount")
+  //   }
+  //   setValidationErrors(errors)
+  // }, [coverPic, title, description, price])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +56,9 @@ export default function SnackForm() {
 
     const newSnack = await dispatch(thunkPostSnack(snack))
 
+
     if (newSnack) {
+      setValidationErrors(newSnack)
       reset();
       history.push("/")
     }
@@ -67,7 +69,7 @@ export default function SnackForm() {
     setTitle("");
     setDescription("");
     setPrice('')
-    setCategory('');
+    setCategory('Chips');
     setHasSubmitted(false);
     setValidationErrors([]);
   }

@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField
+from wtforms import StringField, TextAreaField, IntegerField, FloatField, SelectField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Snack
 import re
+
+
 
 def title_exists(form, field):
     title = field.data
@@ -49,5 +51,13 @@ class SnackForm(FlaskForm):
     cover_pic = StringField('cover_pic', validators=[DataRequired(), pic_regex])
     title = StringField("title", validators=[DataRequired(), title_exists, title_length])
     description = TextAreaField("description", validators=[DataRequired(), description_length])
-    price = IntegerField("price", validators=[DataRequired(), price_regex])
-    category = StringField("category", validators=[DataRequired()])
+    price = FloatField("price", validators=[DataRequired(), price_regex])
+    category = SelectField("category", choices=['Chips', 'Candy', 'Baked Goods', 'Protein', 'Beverages'],validators=[DataRequired()])
+
+# class SnackForm(FlaskForm):
+#     user_id = IntegerField('user_id')
+#     cover_pic = StringField('cover_pic', validators=[DataRequired()])
+#     title = StringField("title", validators=[DataRequired()])
+#     description = TextAreaField("description", validators=[DataRequired()])
+#     price = FloatField("price", validators=[DataRequired()])
+#     category = SelectField("category", choices=['Chips', 'Candy', 'Baked Goods', 'Protein', 'Beverages'],validators=[DataRequired()])

@@ -60,17 +60,25 @@ export const thunkGetSingleSnack = (id) => async dispatch => {
     }
 }
 
-export const thunkPostSnack = (snack) => async (dispatch) => {
+export const thunkPostSnack = ({user_id, cover_pic, title, description, price, category}) => async (dispatch) => {
     const response = await fetch('/api/snacks/new', {
         method: "POST",
         headers: {'Content-Type': "application/json"},
-        body: JSON.stringify(snack),
+        body: JSON.stringify({user_id, cover_pic, title, description, price, category}),
     });
 
     if (response.ok) {
         const data = await response.json();
         dispatch(actionPostSnack(data));
         return data;
+    }
+    else if(response.status < 500){
+        const data = await response.json();
+        if (data.errors) {
+        return data.errors;
+        }
+    } else {
+        return ['An error occurred.']
     }
 }
 

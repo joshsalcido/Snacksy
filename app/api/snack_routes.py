@@ -28,7 +28,7 @@ def snacks():
 #     db.session.commit()
 #     return new_snack.to_dict()
 
-@snack_routes.route('/new', methods=['POST', 'GET'])
+@snack_routes.route('/new', methods=['POST'])
 def create_snack():
     form = SnackForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -44,7 +44,8 @@ def create_snack():
         db.session.add(new_snack)
         db.session.commit()
         return new_snack.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @snack_routes.route('/<id>')
