@@ -46,18 +46,18 @@ def price_regex(form, field):
     if (not re.search(r'^[0-9]+(\.[0-9][0-9])?$', str(price))):
         raise ValidationError('Please provide a valid US dollar amount')
 
-class SnackForm(FlaskForm):
-    user_id = IntegerField('user_id')
-    cover_pic = StringField('cover_pic', validators=[DataRequired(), pic_regex])
-    title = StringField("title", validators=[DataRequired(), title_exists, title_length])
-    description = TextAreaField("description", validators=[DataRequired(), description_length])
-    price = FloatField("price", validators=[DataRequired(), price_regex])
-    category = SelectField("category", choices=['Chips', 'Candy', 'Baked Goods', 'Protein', 'Beverages'],validators=[DataRequired()])
-
 # class SnackForm(FlaskForm):
 #     user_id = IntegerField('user_id')
-#     cover_pic = StringField('cover_pic', validators=[DataRequired()])
-#     title = StringField("title", validators=[DataRequired()])
-#     description = TextAreaField("description", validators=[DataRequired()])
+#     cover_pic = StringField('cover_pic', validators=[DataRequired(), pic_regex])
+#     title = StringField("title", validators=[DataRequired(), title_exists, title_length])
+#     description = TextAreaField("description", validators=[DataRequired(), description_length])
 #     price = FloatField("price", validators=[DataRequired()])
 #     category = SelectField("category", choices=['Chips', 'Candy', 'Baked Goods', 'Protein', 'Beverages'],validators=[DataRequired()])
+
+class SnackForm(FlaskForm):
+    user_id = IntegerField('user_id')
+    cover_pic = StringField('cover_pic', validators=[DataRequired()])
+    title = StringField("title", validators=[DataRequired()])
+    description = TextAreaField("description", validators=[DataRequired()])
+    price = FloatField("price", validators=[DataRequired()])
+    category = SelectField("category", choices=['Chips', 'Candy', 'Baked Goods', 'Protein', 'Beverages'],validators=[DataRequired()])

@@ -44,8 +44,7 @@ def create_snack():
         db.session.add(new_snack)
         db.session.commit()
         return new_snack.to_dict()
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @snack_routes.route('/<id>')
@@ -71,7 +70,7 @@ def edit_snack(id):
 
 @snack_routes.route('/<id>/delete', methods=['DELETE'])
 def delete_snack(id):
-     snack = Snack.query(User).get(id)
+     snack = Snack.query.get(id)
      db.session.delete(snack)
      db.session.commit()
      return snack.to_dict()
@@ -82,11 +81,7 @@ def delete_snack(id):
 def get_reviews(id):
     snack = Snack.query.get(id)
     reviews = snack.reviews
-    # reviews = db.session.query(Review, User).join(User).filter(Review.snack_id == id)
-    # reviews = Review.query.join(User).filter(Review.snack_id == id).filter(User.id == Review.user_id)
-    # reviews = Review.query.join(User).filter(Review.snack_id == id)
     data = [review.to_dict() for review in reviews]
-    print(data)
     return {'reviews': data}
 
 
