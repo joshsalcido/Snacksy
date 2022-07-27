@@ -1,6 +1,5 @@
-from flask import Blueprint, request, jsonify, session
-from sqlalchemy.orm import joinedload
-from app.models import db, ShoppingCart, Snack, items
+from flask import Blueprint, redirect, request
+from app.models import db, ShoppingCart, items
 
 cart_routes = Blueprint('cart', __name__)
 
@@ -18,9 +17,8 @@ def add_to_cart(id):
 
     cart = ShoppingCart.query.get(id)
     db.session.execute(items.insert().values(
-        shopping_cart_id=id, snack_id=data))
+        shopping_cart_id=id, snack_id=data, quantity=1))
     db.session.commit()
-
     return cart.to_dict()
 
 

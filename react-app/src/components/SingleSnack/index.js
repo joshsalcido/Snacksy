@@ -13,8 +13,9 @@ export default function SingleSnack() {
     const sessionUser = useSelector((state) => state.session.user);
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
-    const userId = useSelector((state) => state.session.user.id)
-    // console.log('**CART', cart)
+    const userId = useSelector((state) => state.session?.user?.id);
+    console.log('**CART!!!', cart)
+    console.log("***SNACK", snack)
 
     useEffect(() => {
         dispatch(thunkGetSingleSnack(snackId))
@@ -27,6 +28,15 @@ export default function SingleSnack() {
     }
 
     if (!snack) return null
+
+    const isInCart = false
+    if (cart) {
+        cart.snacks.forEach(item => {
+            if (item.id === snackId) {
+                isInCart = true
+            }
+        })
+    }
 
     return (
         <>
@@ -44,7 +54,12 @@ export default function SingleSnack() {
                         <button onClick={onDelete}>Delete</button>
                     </>
                 }
-                <button onClick={() => { dispatch(thunkAddToCart(cart, snack)) }}>Add to Cart</button>
+                {cart && isInCart && (
+                    <button onClick={() => { dispatch(thunkAddToCart(cart, snack)) }}>Add to Cart</button>
+                )}
+                {cart && !isInCart && (
+                    <p>Snack is already in cart!</p>
+                )}
             </div>
         </>
     )

@@ -62,6 +62,7 @@ def upgrade():
                     sa.Column('shopping_cart_id',
                               sa.Integer(), nullable=False),
                     sa.Column('snack_id', sa.Integer(), nullable=False),
+                    sa.Column('quantity', sa.Integer(), nullable=False),
                     sa.ForeignKeyConstraint(['shopping_cart_id'], [
                                             'shopping_carts.id'], ),
                     sa.ForeignKeyConstraint(['snack_id'], ['snacks.id'], ),

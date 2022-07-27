@@ -10,5 +10,5 @@ items = db.Table(
         'shopping_carts.id'), primary_key=True),
     db.Column('snack_id', db.Integer, db.ForeignKey(
         'snacks.id'), primary_key=True),
-    # db.Column('quantity', db.Integer, nullable=False)
+    db.Column('quantity', db.Integer, nullable=False)
 )
