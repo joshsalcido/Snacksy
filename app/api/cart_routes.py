@@ -13,11 +13,12 @@ def cart(id):
 @cart_routes.route('/<id>', methods=['POST'])
 def add_to_cart(id):
     data = request.json
-    # print('****THIS IS THE DATA', data)
+    print('****THIS IS THE DATA', data)
+
 
     cart = ShoppingCart.query.get(id)
     db.session.execute(items.insert().values(
-        shopping_cart_id=id, snack_id=data, quantity=1))
+        shopping_cart_id=id, snack_id=data[0], quantity=data[1]))
     db.session.commit()
     return cart.to_dict()
 
@@ -25,7 +26,7 @@ def add_to_cart(id):
 @cart_routes.route('/<id>', methods=['DELETE'])
 def delete_from_cart(id):
     data = request.json
-    print("***DATA", data)
+    # print("***DATA", data)
 
     cart = ShoppingCart.query.get(id)
     db.session.execute(items.delete().where(

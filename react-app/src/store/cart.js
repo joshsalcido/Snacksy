@@ -10,10 +10,10 @@ export const actionGetCart = (cart) => {
     }
 }
 
-export const actionAddToCart = (cart, snack) => {
+export const actionAddToCart = (cart, snack, quantity) => {
     return {
         type: ADD_TO_CART,
-        cart, snack
+        cart, snack, quantity
     }
 }
 
@@ -44,12 +44,12 @@ export const thunkGetCart = (id) => async (dispatch) => {
     }
 }
 
-export const thunkAddToCart = (cart, snack) => async (dispatch) => {
+export const thunkAddToCart = (cart, snack, quantity) => async (dispatch) => {
     // console.log('**FROM THUNK', snack)
     const response = await fetch(`/api/cart/${cart.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(snack.id)
+        body: JSON.stringify([snack.id, quantity])
     });
 
     if (response.ok) {
