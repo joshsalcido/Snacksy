@@ -7,6 +7,7 @@ import "./allSnacks.css"
 
 const AllSnacks = () => {
     const snacks = useSelector(state => Object.values(state.allSnacks));
+    const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
 
     const dispatch = useDispatch();
 
@@ -21,7 +22,7 @@ const AllSnacks = () => {
             {snacks && snacks.map(snack => (
                 <div key={snack.id}>
                     <Link to={`/snacks/${snack.id}`}>
-                        <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
+                        <img id="snack-image" src={snack.cover_pic} alt="snackImg"></img>
                     </Link>
                     <p>{snack.title}</p>
                     <p>{snack.description}</p>

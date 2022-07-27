@@ -8,10 +8,10 @@ export const actionGetCart = (cart) => {
     }
 }
 
-export const actionAddToCart = (snack, cart) => {
+export const actionAddToCart = (snack) => {
     return {
         type: ADD_TO_CART,
-        snack, cart
+        snack
     }
 }
 
@@ -26,8 +26,9 @@ export const thunkGetCart = (id) => async (dispatch) => {
     }
 }
 
-export const thunkAddToCart = (snack) => async (dispatch) => {
-    const response = await fetch('/api/cart', {
+export const thunkAddToCart = (id, snack) => async (dispatch) => {
+    console.log('**FROM THUNK', snack)
+    const response = await fetch(`/api/cart/${id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(snack)
@@ -52,10 +53,9 @@ const cartReducer = (state = initialState, action) => {
             return cartState
 
         case ADD_TO_CART:
-            // console.log(action.snack)
-            newState[action.cart.id] = action.snack
-            return newState
-
+            console.log('**ACTION', action)
+            let addState = { ...state, [action.snack.id]: action.snack };
+            return addState
         default:
             return state;
     }

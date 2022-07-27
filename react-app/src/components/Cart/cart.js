@@ -8,6 +8,7 @@ const Cart = () => {
     // const snacks = cart.snacks
     const userId = useSelector(state => state.session.user.id);
 
+    let total = 0
 
     const dispatch = useDispatch();
 
@@ -17,16 +18,25 @@ const Cart = () => {
 
     console.log('hi cart', cart)
     return (
-        <div>
-            {cart && cart.snacks.map(snack => (
-                <div>
-                    <img src={snack.cover_pic}></img>
-                    <p>{snack.title}</p>
-                    <p>{snack.price}</p>
-                </div>
-            ))}
-            {/* <div>{cart.getTotal()}</div> */}
-        </div>
+        <>
+            <div>
+                {cart && cart.snacks && cart.snacks.map(snack => (
+                    <>
+                        <div style={{ 'display': 'none' }}>
+                            {total += snack.price}
+                        </div>
+                        <div>
+                            <img src={snack.cover_pic}></img>
+                            <p>{snack.title}</p>
+                            <p>{snack.price}</p>
+                        </div>
+                    </>
+                ))}
+            </div>
+            <div>
+                <p>Total Price: {total}</p>
+            </div>
+        </>
     )
 }
 
