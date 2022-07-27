@@ -57,11 +57,11 @@ const NavBar = () => {
         }
         {!sessionUser && (
         <li>
-          <button onClick={openLoginModal}>Log In</button>
+          <button onClick={openLoginModal}>Sign in</button>
           <Modal isOpen={showLoginForm} style={formStyles}>
             <LoginForm />
             <button onClick={closeLoginModal}>Cancel</button>
-            <button onClick={openClose}> Sign up</button>
+            <button onClick={openClose}>Register</button>
           </Modal>
           <Modal isOpen={showSignupForm} style={formStyles}>
             <SignUpForm setTrigger={setShowSignupForm}/>

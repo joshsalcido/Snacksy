@@ -31,36 +31,39 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-          required
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    <>
+      <h2>Sign in</h2>
+      <form onSubmit={onLogin}>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div>
+          <label htmlFor='email'>Email address</label>
+          <input
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+            required
+          />
+          <button type='submit'>Sign in</button>
+        </div>
+      </form>
+    </>
   );
 };
 
