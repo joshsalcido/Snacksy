@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetCart } from "../../store/cart";
+import { thunkDeleteFromCart, thunkGetCart } from "../../store/cart";
 
 
 const Cart = () => {
@@ -30,6 +30,7 @@ const Cart = () => {
                             <img src={snack.cover_pic}></img>
                             <p>{snack.title}</p>
                             <p>{snack.price}</p>
+                            <button onClick={() => dispatch(thunkDeleteFromCart(cart, snack))}>Remove from cart</button>
                         </div>
                     </div>
                 ))}

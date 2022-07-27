@@ -25,6 +25,7 @@ export const actionUpdateCart = (cart) => {
 }
 
 export const actionDeleteFromCart = (cart, snack) => {
+    console.log("***FROM ACTION", cart, snack)
     return {
         type: DELETE_FROM_CART,
         cart, snack
@@ -53,7 +54,7 @@ export const thunkAddToCart = (cart, snack) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log('**THE DATA', data)
+        // console.log('**THE DATA', data)
         dispatch(actionAddToCart(data));
         return data
     } else {
@@ -81,7 +82,11 @@ export const thunkUpdateCart = (cart) => async (dispatch) => {
 
 export const thunkDeleteFromCart = (cart, snack) => async (dispatch) => {
     const response = await fetch(`/api/cart/${cart.id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(snack.id)
     });
 
     if (response.ok) {
@@ -96,18 +101,22 @@ export const thunkDeleteFromCart = (cart, snack) => async (dispatch) => {
 const initialState = {};
 
 const cartReducer = (state = initialState, action) => {
-    let newState = { ...state }
     switch (action.type) {
         case GET_SHOPPING_CART:
-            let cartState = {};
+            let cartState = { ...state };
             cartState[action.cart.id] = action.cart
             return cartState
 
         case ADD_TO_CART:
-            console.log('**ACTION', action)
-            let addState = {};
+            // console.log('**ACTION', action)
+            let addState = { ...state };
             addState[action.cart.id] = action.cart
             return addState
+
+        case DELETE_FROM_CART:
+            let deleteState = { ...state };
+            deleteState[action.cart.id] = action.cart
+            return deleteState
 
         default:
             return state;

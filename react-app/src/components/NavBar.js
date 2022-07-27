@@ -86,7 +86,7 @@ const NavBar = () => {
           </NavLink>
         </li> */}
         <li>
-          <NavLink to='/cart/:id'>
+          <NavLink to={`/cart/:id`}>
             Cart
           </NavLink>
         </li>
