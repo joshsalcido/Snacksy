@@ -35,9 +35,9 @@ export default function SingleSnack() {
                 {sessionUser && sessionUser.id === snack.user_id &&
                    <>
                     <Link to={`/snacks/${snack.id}/edit`}>
-                        <button>Edit</button>
+                        <button>Edit  <i className="fa-solid fa-pen-to-square"></i></button>
                     </Link>
-                     <button onClick={onDelete}>Delete</button>
+                     <button onClick={onDelete}>Delete  <i className="fa-solid fa-trash-can"></i></button>
                    </>
                 }
             </div>

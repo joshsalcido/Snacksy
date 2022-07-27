@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams} from 'react-router-dom';
 import { thunkEditSnack } from '../../store/snacks'
+import '../CreateSnackForm/createSnack.css'
 
 export default function EditSnackForm() {
   const history = useHistory()
@@ -100,6 +101,7 @@ export default function EditSnackForm() {
             <label>Image:</label>
             <input
               type="text"
+              className='form-input'
               value={coverPic}
               onChange={(e) => setCoverPic(e.target.value)}
               required
@@ -107,13 +109,15 @@ export default function EditSnackForm() {
             <label>Title:</label>
             <input
               type="text"
+              className='form-input'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
             <label>Description:</label>
-            <input
-              type="text"
+            <textarea
+
+              className='form-input'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -122,6 +126,7 @@ export default function EditSnackForm() {
             <span className='currency-code'>$</span>
             <input
               type="text"
+              className='form-input'
               value={price}
               placeholder="22.22"
               onChange={(e) => setPrice(e.target.value)}
@@ -129,6 +134,7 @@ export default function EditSnackForm() {
             />
             <label>Category: </label>
             <select
+              className='form-input'
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
