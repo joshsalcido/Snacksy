@@ -9,7 +9,7 @@ import "./allSnacks.css"
 const AllSnacks = () => {
     const snacks = useSelector(state => Object.values(state.allSnacks));
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
-    const userId = useSelector((state) => state.session.user.id)
+    const userId = useSelector((state) => state.session?.user?.id)
 
     const dispatch = useDispatch();
 
