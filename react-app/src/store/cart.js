@@ -17,15 +17,15 @@ export const actionAddToCart = (cart, snack, quantity) => {
     }
 }
 
-export const actionUpdateCart = (cart) => {
+export const actionUpdateCart = (cart, snackId, quantity) => {
     return {
         type: UPDATE_CART,
-        cart
+        cart, snackId, quantity
     }
 }
 
 export const actionDeleteFromCart = (cart, snack) => {
-    console.log("***FROM ACTION", cart, snack)
+    // console.log("***FROM ACTION", cart, snack)
     return {
         type: DELETE_FROM_CART,
         cart, snack
@@ -62,18 +62,18 @@ export const thunkAddToCart = (cart, snack, quantity) => async (dispatch) => {
     }
 }
 
-export const thunkUpdateCart = (cart) => async (dispatch) => {
+export const thunkUpdateCart = (cart, snackId, quantity) => async (dispatch) => {
     const response = await fetch(`/api/cart/${cart.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(cart)
+        body: JSON.stringify([snackId, quantity])
     });
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionUpdateCart(cart));
+        dispatch(actionUpdateCart(data));
         return data;
     } else {
         return await response.json()
@@ -117,6 +117,11 @@ const cartReducer = (state = initialState, action) => {
             let deleteState = { ...state };
             deleteState[action.cart.id] = action.cart
             return deleteState
+
+        case UPDATE_CART:
+            let updateState = { ...state };
+            updateState[action.cart.id] = action.cart
+            return updateState
 
         default:
             return state;

@@ -9,7 +9,7 @@ const Cart = () => {
 
     const userId = useSelector(state => state.session?.user?.id);
     const [quantity, setQuantity] = useState(1)
-    const [snackId, setSnackId] = useState()
+    const [snackId, setSnackId] = useState(0)
     let total = 0
 
     const dispatch = useDispatch();
@@ -19,9 +19,10 @@ const Cart = () => {
 
     //     await dispatch(thunkUpdateCart())
     // }
-    async function handleChange(e){
+    async function handleSubmit(e) {
         // console.log("@@@@SnackID@@@", snackId)
-        setQuantity(parseInt(e.target.value))
+        e.preventDefault();
+
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
     }
 
@@ -43,16 +44,17 @@ const Cart = () => {
                             <p>{snack.title}</p>
                             <p>{snack.price}</p>
                             <button onClick={() => dispatch(thunkDeleteFromCart(cart, snack))}>Remove from cart</button>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <label>Qty</label>
-                                <select onChange={(e)=> {setSnackId(snack.id); handleChange(e)}}
-                                value={quantity}>
+                                <select onChange={(e) => { setQuantity(parseInt(e.target.value)) }}
+                                    value={quantity}>
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>
                                     <option value={4}>4</option>
                                     <option value={5}>5</option>
                                 </select>
+                                <button type="submit" onClick={() => setSnackId(snack.id)}>Update Quantity</button>
                             </form>
                         </div>
                     </div>
