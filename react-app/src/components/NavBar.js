@@ -50,13 +50,13 @@ const NavBar = () => {
           </NavLink>
         </li>
         {sessionUser &&
-        <li>
-          <NavLink to="/new-snack">
-            <button className='create-snack-bttn'>
-              <i className="fa-solid fa-store"></i>
-            </button>
-          </NavLink>
-        </li>
+          <li>
+            <NavLink to="/new-snack">
+              <button className='create-snack-bttn'>
+                <i className="fa-solid fa-store"></i>
+              </button>
+            </NavLink>
+          </li>
         }
         <li>
           <button onClick={openLoginModal}>Log In</button>
@@ -85,6 +85,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
+        <li>
+          <NavLink to='/cart/:id'>
+            Cart
+          </NavLink>
+        </li>
         <li>
           <LogoutButton />
         </li>

@@ -23,4 +23,4 @@ def add_to_cart(id):
     db.session.commit()
     print("**updated?", shopping_cart['snacks'])
 
-    return cart.to_dict()
+    return shopping_cart

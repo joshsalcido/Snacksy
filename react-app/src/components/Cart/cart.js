@@ -4,7 +4,8 @@ import { thunkGetCart } from "../../store/cart";
 
 
 const Cart = () => {
-    const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
+    const cart = useSelector(state => state.shoppingCart)
+    const snacks = useSelector(state => Object.values(state.shoppingCart)[0].snacks);
     // const snacks = cart.snacks
     const userId = useSelector(state => state.session.user.id);
 
@@ -16,12 +17,12 @@ const Cart = () => {
         dispatch(thunkGetCart(userId));
     }, [dispatch]);
 
-    console.log('hi cart', cart)
+    console.log('hi cart', snacks)
     return (
         <>
             <div>
-                {cart && cart.snacks && cart.snacks.map(snack => (
-                    <>
+                {snacks && snacks.map(snack => (
+                    <div key={snack.id}>
                         <div style={{ 'display': 'none' }}>
                             {total += snack.price}
                         </div>
@@ -30,7 +31,7 @@ const Cart = () => {
                             <p>{snack.title}</p>
                             <p>{snack.price}</p>
                         </div>
-                    </>
+                    </div>
                 ))}
             </div>
             <div>

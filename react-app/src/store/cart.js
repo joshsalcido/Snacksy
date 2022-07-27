@@ -44,7 +44,7 @@ export const thunkGetCart = (id) => async (dispatch) => {
 }
 
 export const thunkAddToCart = (cart, snack) => async (dispatch) => {
-    console.log('**FROM THUNK', snack)
+    // console.log('**FROM THUNK', snack)
     const response = await fetch(`/api/cart/${cart.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -53,6 +53,7 @@ export const thunkAddToCart = (cart, snack) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log('**THE DATA', data)
         dispatch(actionAddToCart(data));
         return data
     } else {
