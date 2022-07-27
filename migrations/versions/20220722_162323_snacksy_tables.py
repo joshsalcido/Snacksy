@@ -1,7 +1,7 @@
 """snacksy tables
 
 Revision ID: a7fe6decc363
-Revises: 
+Revises:
 Create Date: 2022-07-22 16:23:23.558483
 
 """

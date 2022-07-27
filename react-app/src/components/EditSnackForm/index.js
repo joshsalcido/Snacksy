@@ -16,7 +16,7 @@ export default function EditSnackForm() {
   const [coverPic, setCoverPic] = useState(`${snack.cover_pic}`);
   const [title, setTitle] = useState(`${snack.title}`);
   const [description, setDescription] = useState(`${snack.description}`);
-  const [price, setPrice] = useState(`${snack.price}`);
+  const [price, setPrice] = useState(`${snack.price.toFixed(2)}`);
   const [category, setCategory] = useState(`${snack.category}`);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);

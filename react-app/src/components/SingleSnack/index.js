@@ -30,7 +30,7 @@ export default function SingleSnack() {
                 <img src={snack.cover_pic} alt='snackImage'></img>
                 <h1>{snack.title}</h1>
                 <h2>{snack.category}</h2>
-                <h2>$ {snack.price}</h2>
+                <h2>${snack.price.toFixed(2)}</h2>
                 <h3>{snack.description}</h3>
                 {sessionUser && sessionUser.id === snack.user_id &&
                    <>
