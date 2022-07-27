@@ -14,7 +14,7 @@ def cart(id):
 @cart_routes.route('/<id>', methods=['POST'])
 def add_to_cart(id):
     data = request.json
-    print('****THIS IS THE DATA', data)
+    # print('****THIS IS THE DATA', data)
 
     cart = ShoppingCart.query.get(id)
     shopping_cart = cart.to_dict()

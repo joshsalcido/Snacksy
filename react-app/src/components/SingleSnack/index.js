@@ -14,7 +14,7 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session.user.id)
-    console.log('**CART', cart)
+    // console.log('**CART', cart)
 
     useEffect(() => {
         dispatch(thunkGetSingleSnack(snackId))
@@ -44,7 +44,7 @@ export default function SingleSnack() {
                         <button onClick={onDelete}>Delete</button>
                     </>
                 }
-                <button onClick={() => { dispatch(thunkAddToCart(cart.id, snack)) }}>Add to Cart</button>
+                <button onClick={() => { dispatch(thunkAddToCart(cart, snack)) }}>Add to Cart</button>
             </div>
         </>
     )

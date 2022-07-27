@@ -1,5 +1,7 @@
 const GET_SHOPPING_CART = 'cart/getCart';
 const ADD_TO_CART = 'cart/addToCart';
+const UPDATE_CART = 'cart/updateCart';
+const DELETE_FROM_CART = 'cart/deleteFromCart';
 
 export const actionGetCart = (cart) => {
     return {
@@ -8,13 +10,26 @@ export const actionGetCart = (cart) => {
     }
 }
 
-export const actionAddToCart = (snack) => {
+export const actionAddToCart = (cart, snack) => {
     return {
         type: ADD_TO_CART,
-        snack
+        cart, snack
     }
 }
 
+export const actionUpdateCart = (cart) => {
+    return {
+        type: UPDATE_CART,
+        cart
+    }
+}
+
+export const actionDeleteFromCart = (cart, snack) => {
+    return {
+        type: DELETE_FROM_CART,
+        cart, snack
+    }
+}
 
 export const thunkGetCart = (id) => async (dispatch) => {
     const response = await fetch(`/api/cart/${id}`);
@@ -23,12 +38,14 @@ export const thunkGetCart = (id) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionGetCart(data));
         return data;
+    } else {
+        return await response.json()
     }
 }
 
-export const thunkAddToCart = (id, snack) => async (dispatch) => {
+export const thunkAddToCart = (cart, snack) => async (dispatch) => {
     console.log('**FROM THUNK', snack)
-    const response = await fetch(`/api/cart/${id}`, {
+    const response = await fetch(`/api/cart/${cart.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(snack)
@@ -38,9 +55,42 @@ export const thunkAddToCart = (id, snack) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionAddToCart(data));
         return data
+    } else {
+        return await response.json()
     }
 }
 
+export const thunkUpdateCart = (cart) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${cart.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cart)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionUpdateCart(cart));
+        return data;
+    } else {
+        return await response.json()
+    }
+}
+
+export const thunkDeleteFromCart = (cart, snack) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${cart.id}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const snackId = await response.json();
+        dispatch(actionDeleteFromCart(snackId));
+        return snackId;
+    } else {
+        return await response.json()
+    }
+}
 
 const initialState = {};
 
@@ -54,8 +104,10 @@ const cartReducer = (state = initialState, action) => {
 
         case ADD_TO_CART:
             console.log('**ACTION', action)
-            let addState = { ...state, [action.snack.id]: action.snack };
+            let addState = {};
+            addState[action.cart.id] = action.cart
             return addState
+
         default:
             return state;
     }
