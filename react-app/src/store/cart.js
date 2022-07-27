@@ -48,7 +48,7 @@ export const thunkAddToCart = (cart, snack) => async (dispatch) => {
     const response = await fetch(`/api/cart/${cart.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(snack)
+        body: JSON.stringify(snack.id)
     });
 
     if (response.ok) {

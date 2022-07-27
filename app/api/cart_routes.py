@@ -14,13 +14,11 @@ def cart(id):
 @cart_routes.route('/<id>', methods=['POST'])
 def add_to_cart(id):
     data = request.json
-    # print('****THIS IS THE DATA', data)
+    print('****THIS IS THE DATA', data)
 
     cart = ShoppingCart.query.get(id)
-    shopping_cart = cart.to_dict()
-    print('**the cart', shopping_cart['snacks'])
-    shopping_cart['snacks'].append(data)
+    db.session.execute(items.insert().values(
+        shopping_cart_id=1, snack_id=data))
     db.session.commit()
-    print("**updated?", shopping_cart['snacks'])
 
-    return shopping_cart
+    return cart.to_dict()
