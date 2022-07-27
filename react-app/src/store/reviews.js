@@ -1,6 +1,7 @@
 const GET_ALL_REVIEWS = 'review/getAllReviews'
 const CREATE_REVIEW = 'review/createReview'
 const DELETE_REVIEW = 'review/deleteReview'
+const EDIT_REVIEW = 'review/editReview'
 
 export const actionGetAllReviews = (reviews) => {
     return {
@@ -20,6 +21,13 @@ export const actionDeleteReview = (reviewId) => {
     return {
         type: DELETE_REVIEW,
         reviewId
+    }
+}
+
+export const actionEditReview = (review) => {
+    return {
+        type: EDIT_REVIEW,
+        review
     }
 }
 
@@ -59,6 +67,20 @@ export const thunkDeleteReview = (id) => async dispatch => {
     }
 }
 
+export const thunkEditReview = (review) => async dispatch => {
+    const response = await fetch(`/api/reviews/${review.id}/edit`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(review)
+    })
+
+    if (response.ok) {
+        const editedReview = await response.json();
+        dispatch(actionEditReview(editedReview));
+        return editedReview
+    }
+}
+
 const initialState = {};
 
 const reviewsReducer = (state = initialState, action) => {
@@ -77,6 +99,10 @@ const reviewsReducer = (state = initialState, action) => {
 
         case DELETE_REVIEW:
             delete newState[action.reviewId]
+            return newState
+
+        case EDIT_REVIEW:
+            newState[action.review.id] = action.review
             return newState
 
         default:
