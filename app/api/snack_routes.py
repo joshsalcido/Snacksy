@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models import db, Snack, Review, User
-from app.forms import SnackForm
+from app.forms import SnackForm, ReviewForm
 
 snack_routes = Blueprint('snacks', __name__)
 
@@ -17,16 +17,6 @@ def snacks():
     data = [snack.to_dict() for snack in snacks]
     return {'snacks': data}
 
-
-# @snack_routes.route('/new', methods=['POST', 'GET'])
-# def create_snack():
-#     data = request.json
-
-#     new_snack = Snack(**data)
-
-#     db.session.add(new_snack)
-#     db.session.commit()
-#     return new_snack.to_dict()
 
 @snack_routes.route('/new', methods=['POST'])
 def create_snack():
@@ -89,16 +79,16 @@ def get_reviews(id):
 
 @snack_routes.route('/<id>/reviews/new', methods=['POST', "GET"])
 def post_review(id):
-    data = request.json
-    new_review = Review (
-        user_id=data['user_id'],
-        snack_id= id,
-        rating= data['rating'],
-        comment= data['comment']
-    )
-
-    db.session.add(new_review)
-    db.session.commit()
-
-
-    return new_review.to_dict()
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_review = Review (
+            user_id=form.data['user_id'],
+            snack_id= id,
+            rating= form.data['rating'],
+            comment= form.data['comment']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
