@@ -21,7 +21,7 @@ export default function ReviewForm({setTrigger}){
   useEffect(() => {
     const errors = [];
     if(rating === null) errors.push("Must provide a rating between 1-5!")
-    // if (comment.length < 5) errors.push("Review must be at least 5 characters!");
+    if (comment.length < 5) errors.push("Review must be at least 5 characters!");
     setValidationErrors(errors);
   }, [comment, rating]);
 
@@ -50,7 +50,7 @@ export default function ReviewForm({setTrigger}){
   return (
       <>
         <div className="reviewFormContainer">
-          <h1> Write a review </h1>
+          <h1> Leave a review </h1>
           <form className="reviewForm" onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
               <div className="errorHandling">
@@ -95,6 +95,7 @@ export default function ReviewForm({setTrigger}){
               <label> {!rating ? 0 : rating} / 5</label>
               <label>Leave your thoughts: </label>
               <textarea
+                required
                 placeholder="Start typing here..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}

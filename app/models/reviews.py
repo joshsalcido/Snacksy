@@ -9,7 +9,7 @@ class Review(db.Model):
   rating = db.Column(db.Integer, nullable=False)
   comment = db.Column(db.String(500), nullable=True)
 
-  user = db.relationship("User", back_populates="reviews")
+  user = db.relationship("User", back_populates="reviews", lazy='subquery')
   snack = db.relationship("Snack", back_populates="reviews")
 
   def to_dict(self):
@@ -18,5 +18,7 @@ class Review(db.Model):
             'user_id': self.user_id,
             'snack_id': self.snack_id,
             'rating': self.rating,
-            'comment': self.comment
+            'comment': self.comment,
+            'user': self.user.to_dict()
+
         }

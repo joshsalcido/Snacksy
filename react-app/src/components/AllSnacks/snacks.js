@@ -25,7 +25,7 @@ const AllSnacks = () => {
                     </Link>
                     <p>{snack.title}</p>
                     <p>{snack.description}</p>
-                    <p>{snack.price}</p>
+                    <p>$ {snack.price.toFixed(2)}</p>
                 </div>
             ))}
         </div>

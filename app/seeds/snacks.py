@@ -31,7 +31,7 @@ def seed_snacks():
 
   rxbar_protein_bar=Snack(
     user_id=1,
-    cover_pic="https://m.media-amazon.com/images/I/71Yv87ycsrL._SL1500_.jpg",
+    cover_pic="https://m.media-amazon.com/images/I/61WvZOPTM0L._SX679_.jpg",
     title="RXBAR, Chocolate Sea Salt, Protein Bar",
     description=" Our Chocolate Sea Salt RXBAR is the perfect protein bar for any brownie lover. Made with real food ingredients- 100% chocolate, egg whites for protein, dates to bind, nuts for texture. 12 gram of protein. 5 gram fiber. Gluten free. It is always the perfect time for a wholesome snack. That’s why we suggest trying this real food protein bar for breakfast time, lunch time, or as a pre or post workout snack. Eat the whole snack bar or save some for later.",
     price=11.40,

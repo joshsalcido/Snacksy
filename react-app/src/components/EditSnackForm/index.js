@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams} from 'react-router-dom';
+import { NavLink, useHistory, useParams} from 'react-router-dom';
 import { thunkEditSnack } from '../../store/snacks'
+import '../CreateSnackForm/createSnack.css'
 
 export default function EditSnackForm() {
   const history = useHistory()
@@ -15,7 +16,7 @@ export default function EditSnackForm() {
   const [coverPic, setCoverPic] = useState(`${snack.cover_pic}`);
   const [title, setTitle] = useState(`${snack.title}`);
   const [description, setDescription] = useState(`${snack.description}`);
-  const [price, setPrice] = useState(`${snack.price}`);
+  const [price, setPrice] = useState(`${snack.price.toFixed(2)}`);
   const [category, setCategory] = useState(`${snack.category}`);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -100,6 +101,7 @@ export default function EditSnackForm() {
             <label>Image:</label>
             <input
               type="text"
+              className='form-input'
               value={coverPic}
               onChange={(e) => setCoverPic(e.target.value)}
               required
@@ -107,13 +109,15 @@ export default function EditSnackForm() {
             <label>Title:</label>
             <input
               type="text"
+              className='form-input'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
             <label>Description:</label>
-            <input
-              type="text"
+            <textarea
+
+              className='form-input'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -122,6 +126,7 @@ export default function EditSnackForm() {
             <span className='currency-code'>$</span>
             <input
               type="text"
+              className='form-input'
               value={price}
               placeholder="22.22"
               onChange={(e) => setPrice(e.target.value)}
@@ -129,6 +134,7 @@ export default function EditSnackForm() {
             />
             <label>Category: </label>
             <select
+              className='form-input'
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
@@ -141,6 +147,9 @@ export default function EditSnackForm() {
               <option>Beverages</option>
             </select>
             <button id="snackFormSubmit" type="submit">Edit your Snack</button>
+            <NavLink  to={`/snacks/${snackId}`}>
+              <button>Cancel</button>
+            </NavLink>
           </form>
         </section>
 

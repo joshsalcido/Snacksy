@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, validators
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
+import re
 
 
 def user_exists(form, field):
@@ -19,9 +20,29 @@ def username_exists(form, field):
     if user:
         raise ValidationError('Username is already in use.')
 
+def email_validate(form, field):
+    email = field.data
+    if (not re.fullmatch('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}', email)):
+        raise ValidationError('Please enter a valid email')
+
+def address_validate(form, field):
+    address = field.data
+    if(not re.fullmatch('^\d+?[A-Za-z]*\s\w*\s?\w+?\s\w{2}\w*\s*\w*$', address)):
+        raise ValidationError("Please enter a valid US address")
+
+def password_validate(form, field):
+    password = field.data
+    if(not re.fullmatch('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$', password)):
+        raise ValidationError('Password must be a minimum of 8 characters and contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")')
+
+
 
 class SignUpForm(FlaskForm):
+    profile_picture = StringField("profile_picture")
+    first_name = StringField("first_name", validators=[DataRequired()])
+    last_name = StringField("last_name", validators=[DataRequired()])
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), user_exists, email_validate])
+    address = StringField("address", validators=[DataRequired(), address_validate])
+    password = StringField('password', validators=[DataRequired(), password_validate])
