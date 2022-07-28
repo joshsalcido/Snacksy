@@ -7,14 +7,15 @@ import Modal from 'react-modal';
 const Cart = () => {
     // const shopping_cart = useSelector(state => state.shoppingCart)
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
-    const snackQ =  useSelector(state => state.shoppingCart.snackQuantity)
-    console.log("###Finding Quantity #", snackQ)
+    const snackQ = useSelector(state => state.shoppingCart.snackQuantity)
+    const snacks = useSelector(state => state.shoppingCart.allsnacks);
 
     const userId = useSelector(state => state.session?.user?.id);
     const [quantity, setQuantity] = useState(snackQ)
     const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
     let total = 0
+    let totalItems = 0
 
     Modal.setAppElement('body');
 
@@ -25,8 +26,6 @@ const Cart = () => {
         e.preventDefault();
 
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
-
-        // setQuantity(quantity)
     }
 
     useEffect(() => {
@@ -55,15 +54,17 @@ const Cart = () => {
     return (
         <>
             <div>
-                {cart && cart.snacks.map(snack => (
+                {cart && snacks.map(snack => (
                     <div key={snack.id}>
                         <div style={{ 'display': 'none' }}>
-                            {total += snack.price}
+                            {total += Math.round((snack.snackyQty * snack.snacky.price) * 100) / 100}
+                            {totalItems += snack.snackyQty}
                         </div>
                         <div>
-                            <img src={snack.cover_pic}></img>
-                            <p>{snack.title}</p>
-                            <p>{snack.price}</p>
+                            <img src={snack.snacky.cover_pic}></img>
+                            <p>{snack.snacky.title}</p>
+                            <p>{snack.snacky.price}</p>
+                            <p>Quantity: {snack.snackyQty}</p>
                             <button onClick={() => dispatch(thunkDeleteFromCart(cart, snack))}>Remove from cart</button>
                             <form onSubmit={handleSubmit}>
                                 <label>Qty</label>
@@ -84,11 +85,11 @@ const Cart = () => {
             <div>
                 {cart && cart.quantity > 0 && (
                     <>
-                        <p>Cart Quantity: {cart.quantity}</p>
+                        <p>Cart Quantity: {totalItems}</p>
                         <p>Cart Total: {total}</p>
                         <button onClick={openOrderModal}>Place Order!</button>
                         <Modal isOpen={showOrderForm} style={styling}>
-                            <OrderForm closeOrderModal={closeOrderModal} total={total} />
+                            <OrderForm closeOrderModal={closeOrderModal} total={total} totalItems={totalItems} />
                         </Modal>
                     </>
                 )}

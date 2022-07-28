@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkClearCart, thunkGetCart } from '../../store/cart';
 
-const OrderForm = ({ closeOrderModal, total }) => {
+const OrderForm = ({ closeOrderModal, total, totalItems }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
 
@@ -36,6 +36,7 @@ const OrderForm = ({ closeOrderModal, total }) => {
                     <label htmlFor='ae'>American Express</label>
                 </div>
             </fieldset>
+            <p>Total Items: {totalItems}</p>
             <p>Order Total: {total}</p>
             <button onClick={closeOrderModal}>Cancel Order</button>
             <button onClick={handleOrder}>Submit Order</button>

@@ -46,10 +46,12 @@ export default function SingleSnack() {
     if (!snack) return null
 
     function stringify() {
-        cart.snacks.forEach(item => {
-            snacks.push(JSON.stringify(item))
-        })
-        return snacks
+        if (cart) {
+            cart.snacks.forEach(item => {
+                snacks.push(JSON.stringify(item))
+            })
+            return snacks
+        }
     }
 
     const strgs = stringify(cart)
