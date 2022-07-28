@@ -62,8 +62,9 @@ export const thunkAddToCart = (cart, snack, quantity) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        // console.log('**THE DATA', data)
-        dispatch(actionAddToCart(data));
+        // const snackInfo = {snack: snack}
+        // console.log('***********************THE BACKEND DATA', data," SSSSSNACK", snack,"QQQQ", quantity)
+        dispatch(actionAddToCart(data, snack, quantity));
         return data
     } else {
         return await response.json()
@@ -81,7 +82,7 @@ export const thunkUpdateCart = (cart, snackId, quantity) => async (dispatch) => 
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionUpdateCart(data));
+        dispatch(actionUpdateCart(data, snackId, quantity));
         return data;
     } else {
         return await response.json()
@@ -98,9 +99,9 @@ export const thunkDeleteFromCart = (cart, snack) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const snackId = await response.json();
-        dispatch(actionDeleteFromCart(snackId));
-        return snackId;
+        const cartData = await response.json();
+        dispatch(actionDeleteFromCart(cartData, snack));
+        return cartData;
     } else {
         return await response.json()
     }
@@ -120,35 +121,51 @@ export const thunkClearCart = (cart) => async (dispatch) => {
     }
 }
 
-const initialState = {};
+const initialState = {allsnacks: []};
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SHOPPING_CART:
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
-            return cartState
+            const getList = [...cartState.allsnacks]
+
+            return {...cartState, allsnacks: getList}
 
         case ADD_TO_CART:
             // console.log('**ACTION', action)
             let addState = { ...state };
             addState[action.cart.id] = action.cart
-            return addState
+            const list = [...addState.allsnacks]
+            list.push({'id': action.snack.id,"snacky": action.snack, "snackyQty": action.quantity})
+            // addState["snackQuantity"] = action.quantity
+            // console.log("++addSTate->", addState, "++++>", action.quantity)
+            return {...addState, allsnacks: list}
 
         case DELETE_FROM_CART:
             let deleteState = { ...state };
             deleteState[action.cart.id] = action.cart
-            return deleteState
+            console.log("++ACTION in DELETE+++",action)
+            const newList = deleteState.allsnacks.filter(snack => snack.id !== action.snack.id)
+            return {...deleteState, allsnacks: newList}
 
         case UPDATE_CART:
             let updateState = { ...state };
             updateState[action.cart.id] = action.cart
-            return updateState
+            const updateList = [...updateState.allsnacks]
+            const index = updateState.allsnacks.findIndex(snack => snack.id === action.snackId)
+            console.log("action.SNACKID", action.snackId)
+            console.log("##INDEX", index)
+            console.log("++UPDATESTATE++", updateList)
+            updateList[index]['snackyQty'] = action.quantity
+            return {...updateState, allsnacks : updateList}
 
         case CLEAR_CART:
             let clearState = { ...state };
             clearState[action.cart.id] = action.cart
-            return clearState
+            let clearList = [...clearState.allsnacks]
+            clearList = [];
+            return {...clearState, allsnacks: clearList}
 
         default:
             return state;

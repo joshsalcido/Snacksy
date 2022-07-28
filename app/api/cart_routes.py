@@ -16,6 +16,7 @@ def add_to_cart(id):
     # print('****THIS IS THE DATA', data)
 
     cart = ShoppingCart.query.get(id)
+    # print("&+++&&++++++++++++In the BACKEND", cart.__dict__)
     db.session.execute(items.insert().values(
         shopping_cart_id=id, snack_id=data[0], quantity=data[1]))
     db.session.commit()

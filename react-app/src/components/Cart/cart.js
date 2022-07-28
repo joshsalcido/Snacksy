@@ -5,11 +5,13 @@ import OrderForm from "../OrderForm/orderForm";
 import Modal from 'react-modal';
 
 const Cart = () => {
-    const shopping_cart = useSelector(state => state.shoppingCart)
+    // const shopping_cart = useSelector(state => state.shoppingCart)
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
+    const snackQ =  useSelector(state => state.shoppingCart.snackQuantity)
+    console.log("###Finding Quantity #", snackQ)
 
     const userId = useSelector(state => state.session?.user?.id);
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState(snackQ)
     const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
     let total = 0
@@ -24,7 +26,7 @@ const Cart = () => {
 
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
 
-        setQuantity(quantity)
+        // setQuantity(quantity)
     }
 
     useEffect(() => {

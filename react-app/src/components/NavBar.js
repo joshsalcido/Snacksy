@@ -6,9 +6,14 @@ import LogoutButton from './auth/LogoutButton';
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import Modal from 'react-modal';
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { createTheme } from '@material-ui/core';
+// import ShoppingCart from '@material-ui/icons/ShoppingCart';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const cart = useSelector(state => Object.values(state?.shoppingCart)[0]);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
 
@@ -41,6 +46,22 @@ const NavBar = () => {
     },
   };
 
+  let cartQuantity = null;
+  // if (cart.quantity) {
+  //   cartQuantity = cart.quantity
+  // }
+
+  // const theme = createTheme(
+  //   {
+  //     palette: {
+  //       primary: {
+  //         main: deepOrange[A100],
+  //       },
+  //       secondary: '#f73378',
+  //     },
+  //   }
+  // )
+
   return (
     <nav>
       <ul>
@@ -60,7 +81,9 @@ const NavBar = () => {
             </li>
             <li>
               <NavLink to={`/cart/${sessionUser.id}`}>
-                Cart
+                <Badge color="primary" badgeContent={cartQuantity}>
+                  <ShoppingCartIcon />
+                </Badge>
               </NavLink>
             </li>
           </>
