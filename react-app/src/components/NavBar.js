@@ -6,6 +6,7 @@ import LogoutButton from './auth/LogoutButton';
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import Modal from 'react-modal';
+import SearchBar from './SearchBar';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -46,6 +47,7 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
+        <SearchBar/>
         {sessionUser &&
         <li>
           <NavLink to="/new-snack">
