@@ -38,11 +38,21 @@ def delete_from_cart(id):
 @cart_routes.route('/<id>', methods=["PUT"])
 def update_cart(id):
     data = request.json
-    print("***DATA", data)
+    # print("***DATA", data)
 
     cart = ShoppingCart.query.get(id)
     db.session.execute(items.update().values(
         shopping_cart_id=id, snack_id=data[0], quantity=data[1]).where(items.c.snack_id == data[0]))
+    db.session.commit()
+
+    return cart.to_dict()
+
+
+@cart_routes.route('/<id>/clear', methods=['Delete'])
+def clear_cart(id):
+
+    cart = ShoppingCart.query.get(id)
+    db.session.execute(items.delete().where(items.c.shopping_cart_id == id))
     db.session.commit()
 
     return cart.to_dict()

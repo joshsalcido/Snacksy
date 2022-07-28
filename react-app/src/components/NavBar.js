@@ -49,15 +49,22 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        {sessionUser &&
-          <li>
-            <NavLink to="/new-snack">
-              <button className='create-snack-bttn'>
-                <i className="fa-solid fa-store"></i>
-              </button>
-            </NavLink>
-          </li>
-        }
+        {sessionUser && (
+          <>
+            <li>
+              <NavLink to="/new-snack">
+                <button className='create-snack-bttn'>
+                  <i className="fa-solid fa-store"></i>
+                </button>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`/cart/${sessionUser.id}`}>
+                Cart
+              </NavLink>
+            </li>
+          </>
+        )}
         <li>
           <button onClick={openLoginModal}>Log In</button>
           <Modal isOpen={showLoginForm} style={formStyles}>
@@ -85,11 +92,6 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
-        <li>
-          <NavLink to={`/cart/:id`}>
-            Cart
-          </NavLink>
-        </li>
         <li>
           <LogoutButton />
         </li>

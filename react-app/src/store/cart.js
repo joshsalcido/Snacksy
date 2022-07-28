@@ -2,6 +2,7 @@ const GET_SHOPPING_CART = 'cart/getCart';
 const ADD_TO_CART = 'cart/addToCart';
 const UPDATE_CART = 'cart/updateCart';
 const DELETE_FROM_CART = 'cart/deleteFromCart';
+const CLEAR_CART = 'cart/clearCart';
 
 export const actionGetCart = (cart) => {
     return {
@@ -29,6 +30,13 @@ export const actionDeleteFromCart = (cart, snack) => {
     return {
         type: DELETE_FROM_CART,
         cart, snack
+    }
+}
+
+export const actionClearCart = (cart) => {
+    return {
+        type: CLEAR_CART,
+        cart
     }
 }
 
@@ -98,6 +106,20 @@ export const thunkDeleteFromCart = (cart, snack) => async (dispatch) => {
     }
 }
 
+export const thunkClearCart = (cart) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${cart.id}/clear`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionClearCart(data))
+        return data;
+    } else {
+        return await response.json()
+    }
+}
+
 const initialState = {};
 
 const cartReducer = (state = initialState, action) => {
@@ -122,6 +144,11 @@ const cartReducer = (state = initialState, action) => {
             let updateState = { ...state };
             updateState[action.cart.id] = action.cart
             return updateState
+
+        case CLEAR_CART:
+            let clearState = { ...state };
+            clearState[action.cart.id] = action.cart
+            return clearState
 
         default:
             return state;

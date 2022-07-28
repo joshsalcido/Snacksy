@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkDeleteFromCart, thunkGetCart, thunkUpdateCart } from "../../store/cart";
-
+import OrderForm from "../OrderForm/orderForm";
+import Modal from 'react-modal';
 
 const Cart = () => {
     const shopping_cart = useSelector(state => state.shoppingCart)
@@ -10,27 +11,45 @@ const Cart = () => {
     const userId = useSelector(state => state.session?.user?.id);
     const [quantity, setQuantity] = useState(1)
     const [snackId, setSnackId] = useState(0)
+    const [showOrderForm, setShowOrderForm] = useState(false)
     let total = 0
+
+    Modal.setAppElement('body');
 
     const dispatch = useDispatch();
 
-    // async function handleSubmit(e){
-    //     e.preventDefault();
-
-    //     await dispatch(thunkUpdateCart())
-    // }
     async function handleSubmit(e) {
         // console.log("@@@@SnackID@@@", snackId)
         e.preventDefault();
 
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
+
+        setQuantity(quantity)
     }
 
     useEffect(() => {
         dispatch(thunkGetCart(userId));
     }, [dispatch]);
 
-    console.log('hi cart', cart)
+    function openOrderModal() {
+        setShowOrderForm(true)
+    }
+
+    function closeOrderModal() {
+        setShowOrderForm(false)
+    }
+
+    const styling = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+    };
+
     return (
         <>
             <div>
@@ -61,7 +80,14 @@ const Cart = () => {
                 ))}
             </div>
             <div>
-                <p>Total Price: {total}</p>
+                {cart && (
+                    <p>Cart Quantity: {cart.quantity}</p>
+                )}
+                <p>Cart Total: {total}</p>
+                <button onClick={openOrderModal}>Place Order!</button>
+                <Modal isOpen={showOrderForm} style={styling}>
+                    <OrderForm closeOrderModal={closeOrderModal} total={total} />
+                </Modal>
             </div>
         </>
     )

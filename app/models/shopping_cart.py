@@ -35,10 +35,9 @@ class ShoppingCart(db.Model):
     #     return total
 
     # def getShoppingList(self):
-    #     items = None
-    #     for item in self.shoppingList:
-    #         items = items + item
-    #     return items
+    #     # for item in self.shoppingList:
+    #     #     items = items + item
+    #     return self.shoppingList
 
     def getsnacked(self):
         data = [snack.to_dict() for snack in self.snacks]
@@ -48,7 +47,7 @@ class ShoppingCart(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            # 'total': self.total,
             'user': self.user.to_dict(),
-            'snacks': self.getsnacked()
+            'snacks': self.getsnacked(),
+            'quantity': len(self.cart_items)
         }

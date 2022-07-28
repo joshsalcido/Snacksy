@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkDeleteSnack, thunkGetSingleSnack } from '../../store/snacks';
 import { useParams, useHistory, Link } from 'react-router-dom';
@@ -15,15 +15,17 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    console.log('**CART!!!', cart)
-    console.log("***SNACK", snack)
-    console.log("***QUANTITY", quantity)
+    // console.log('**CART!!!', cart)
+    // console.log("***SNACK", snack)
+    // console.log("***QUANTITY", quantity)
 
-    async function handleSubmit(e){
+    async function handleSubmit(e) {
         e.preventDefault();
 
         await dispatch(thunkAddToCart(cart, snack, quantity))
 
+        setQuantity(quantity)
+        return alert("Added to cart!")
     }
 
     useEffect(() => {
@@ -63,16 +65,10 @@ export default function SingleSnack() {
                         <button onClick={onDelete}>Delete</button>
                     </>
                 }
-                {/* {cart && isInCart && (
-                    <button onClick={() => { dispatch(thunkAddToCart(cart, snack)) }}>Add to Cart</button>
-                )}
-                {cart && !isInCart && (
-                    <p>Snack is already in cart!</p>
-                )} */}
                 <form onSubmit={handleSubmit}>
                     <label>Qty</label>
-                    <select onChange={(e)=> setQuantity(parseInt(e.target.value))}
-                    value={quantity}>
+                    <select onChange={(e) => setQuantity(parseInt(e.target.value))}
+                        value={quantity}>
                         <option value={1}>1</option>
                         <option value={2}>2</option>
                         <option value={3}>3</option>
