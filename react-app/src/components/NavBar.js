@@ -6,6 +6,8 @@ import LogoutButton from './auth/LogoutButton';
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import Modal from 'react-modal';
+import SearchBar from './SearchBar';
+import './navbar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -39,15 +41,18 @@ const NavBar = () => {
   };
 
   return (
-    <nav>
-      <ul>
+    <nav >
+      <ul className='navbar'>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <NavLink to='/' exact={true} activeClassName='active' className='home-title'>
+            Snacksy
           </NavLink>
         </li>
-        {sessionUser &&
         <li>
+          <SearchBar className='search-bar'/>
+        </li>
+        {sessionUser &&
+        <li id="create-snack-button">
           <NavLink to="/new-snack">
             <button className='create-snack-bttn'>
               <i className="fa-solid fa-store"></i>
@@ -57,11 +62,11 @@ const NavBar = () => {
         }
         {!sessionUser && (
         <li>
-          <button onClick={openLoginModal}>Sign in</button>
+          <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
           <Modal isOpen={showLoginForm} style={formStyles}>
             <LoginForm />
             <button onClick={closeLoginModal}>Cancel</button>
-            <button onClick={openClose}>Register</button>
+            <button  onClick={openClose}>Register</button>
           </Modal>
           <Modal isOpen={showSignupForm} style={formStyles}>
             <SignUpForm setTrigger={setShowSignupForm}/>

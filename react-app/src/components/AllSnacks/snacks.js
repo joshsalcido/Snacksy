@@ -17,15 +17,14 @@ const AllSnacks = () => {
     if (!snacks) return null
 
     return (
-        <div>
+        <div className="container">
             {snacks && snacks.map(snack => (
-                <div key={snack.id}>
+                <div key={snack.id} className='snack-card'>
                     <Link to={`/snacks/${snack.id}`}>
                         <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
                     </Link>
                     <p>{snack.title}</p>
-                    <p>{snack.description}</p>
-                    <p>$ {snack.price.toFixed(2)}</p>
+                    <p id='snack-price'>$ {snack.price.toFixed(2)}</p>
                 </div>
             ))}
         </div>

@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { thunkDeleteSnack, thunkGetSingleSnack } from '../../store/snacks';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import Reviews from '../Reviews';
+import './SingleSnack.css'
 
 export default function SingleSnack() {
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function SingleSnack() {
 
     return (
         <>
+        <div className='container'>
             <div className='snackDetails'>
                 <img src={snack.cover_pic} alt='snackImage'></img>
                 <h1>{snack.title}</h1>
@@ -41,7 +43,8 @@ export default function SingleSnack() {
                    </>
                 }
             </div>
-            <Reviews />
+        </div>
+        <Reviews />
         </>
     )
 }

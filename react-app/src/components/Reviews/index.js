@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 import Modal from 'react-modal';
 import ReviewForm from '../ReviewFormModal/ReviewForm';
 import EditReviewForm from '../ReviewEditForm';
-
+import './reviews.css'
 
 export default function Reviews() {
     const dispatch = useDispatch();
