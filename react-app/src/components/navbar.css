@@ -1,0 +1,21 @@
+.navbar{
+  display: inline-flex;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  align-items: center;
+  border-bottom: 2px solid lightgray;
+
+}
+
+.navbar li {
+  width: 100%;
+}
+
+.home-title{
+  text-decoration: none;
+  color: #F1641E  ;  /* etsy color */
+  padding-left: 36px;
+  font-size: 40px;
+}

@@ -1,3 +1,29 @@
 #snack-image {
-  width: 400px;
+  width: 300px;
+  height: 300px;
+}
+
+.container {
+  margin: 30px 20px 10px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+.snack-card{
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  transition: 1s;
+}
+
+#snack-image{
+  border-radius: 30px;
+}
+
+
+.snack-card:hover{
+  box-shadow: 0 0 5px 2px lightgray;
+  transition: .5s;
 }

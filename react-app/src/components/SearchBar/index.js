@@ -32,6 +32,7 @@ const SearchBar = () => {
         }
     }
 
+
     const clearInput = () => {
         setFilteredSnacks([])
         setWordEntry("")
@@ -41,16 +42,16 @@ const SearchBar = () => {
         <div className="search">
             <div className='search-inputs'>
                 <input type="text" placeholder="Search for snacks" value={wordEntry} onChange={handleFilter}></input>
-                    <div className="searchIcon">
-                        {filteredSnacks.length === 0 ? <SearchIcon/> : <CloseIcon id="close-button" onClick={clearInput}/>}
-                    </div>
+                <div className="searchIcon">
+                    {wordEntry.length === 0 ? <SearchIcon id="search-icon" /> : <><CloseIcon id="close-button" onClick={clearInput}/> <SearchIcon id="search-icon"/></>}
+                </div>
             </div>
             {filteredSnacks.length !== 0 && (
                 <div className="snack-result">
                     {filteredSnacks.map((snack) => {
                         return (
-                            <Link className="snack-item" to={`/snacks/${snack.id}`}>
-                                <p>{snack.title}</p>
+                            <Link className="snack-item" to={`/snacks/${snack.id}`} onClick={clearInput}>
+                                <p id='snack-title'>{snack.title}</p>
                             </Link>
                         )
                     })}
