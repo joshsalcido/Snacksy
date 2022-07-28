@@ -121,7 +121,7 @@ export const thunkClearCart = (cart) => async (dispatch) => {
     }
 }
 
-const initialState = {allsnacks: []};
+const initialState = { allsnacks: [] };
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -129,43 +129,45 @@ const cartReducer = (state = initialState, action) => {
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
             const getList = [...cartState.allsnacks]
-
-            return {...cartState, allsnacks: getList}
+            // action.cart.snacks.forEach(snack => {
+            //     getList.push({ 'id': snack.id, "snacky": snack, "snackyQty": 1 })
+            // })
+            return { ...cartState, allsnacks: getList }
 
         case ADD_TO_CART:
             // console.log('**ACTION', action)
             let addState = { ...state };
             addState[action.cart.id] = action.cart
             const list = [...addState.allsnacks]
-            list.push({'id': action.snack.id,"snacky": action.snack, "snackyQty": action.quantity})
+            list.push({ 'id': action.snack.id, "snacky": action.snack, "snackyQty": action.quantity })
             // addState["snackQuantity"] = action.quantity
             // console.log("++addSTate->", addState, "++++>", action.quantity)
-            return {...addState, allsnacks: list}
+            return { ...addState, allsnacks: list }
 
         case DELETE_FROM_CART:
             let deleteState = { ...state };
             deleteState[action.cart.id] = action.cart
-            console.log("++ACTION in DELETE+++",action)
+            // console.log("++ACTION in DELETE+++", action)
             const newList = deleteState.allsnacks.filter(snack => snack.id !== action.snack.id)
-            return {...deleteState, allsnacks: newList}
+            return { ...deleteState, allsnacks: newList }
 
         case UPDATE_CART:
             let updateState = { ...state };
             updateState[action.cart.id] = action.cart
             const updateList = [...updateState.allsnacks]
             const index = updateState.allsnacks.findIndex(snack => snack.id === action.snackId)
-            console.log("action.SNACKID", action.snackId)
-            console.log("##INDEX", index)
-            console.log("++UPDATESTATE++", updateList)
+            // console.log("action.SNACKID", action.snackId)
+            // console.log("##INDEX", index)
+            // console.log("++UPDATESTATE++", updateList)
             updateList[index]['snackyQty'] = action.quantity
-            return {...updateState, allsnacks : updateList}
+            return { ...updateState, allsnacks: updateList }
 
         case CLEAR_CART:
             let clearState = { ...state };
             clearState[action.cart.id] = action.cart
             let clearList = [...clearState.allsnacks]
             clearList = [];
-            return {...clearState, allsnacks: clearList}
+            return { ...clearState, allsnacks: clearList }
 
         default:
             return state;

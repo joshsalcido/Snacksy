@@ -47,9 +47,9 @@ const NavBar = () => {
   };
 
   let cartQuantity = null;
-  // if (cart.quantity) {
-  //   cartQuantity = cart.quantity
-  // }
+  if (cart.quantity) {
+    cartQuantity = cart.quantity
+  }
 
   // const theme = createTheme(
   //   {

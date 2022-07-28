@@ -46,7 +46,7 @@ export default function SingleSnack() {
     if (!snack) return null
 
     function stringify() {
-        if (cart) {
+        if (cart.snacks) {
             cart.snacks.forEach(item => {
                 snacks.push(JSON.stringify(item))
             })
