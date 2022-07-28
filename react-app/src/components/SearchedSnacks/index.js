@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { thunkGetSearchedSnacks } from '../../store/snacks'
+import "./SearchedSnacks.css"
 
 export default function SearchedSnacks() {
   const dispatch = useDispatch()
@@ -23,13 +24,13 @@ export default function SearchedSnacks() {
       }
       <div>
         {snacks && snacks.map(snack => (
-            <div key={snack.id} className='snack-card'>
-                <Link to={`/snacks/${snack.id}`}>
+            <div key={snack.id}>
+                <Link className='search-snacks'to={`/snacks/${snack.id}`}>
                     <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
+                    <p>{snack.title}</p>
+                    <p id='snack-price'>$ {snack.price.toFixed(2)}</p>
+                    <p>{snack.description}</p>
                 </Link>
-                <p>{snack.title}</p>
-                <p id='snack-price'>$ {snack.price.toFixed(2)}</p>
-                <p>{snack.description}</p>
             </div>
         ))}
       </div>

@@ -66,7 +66,7 @@ const SearchBar = () => {
                 <div className="snack-result">
                     {filteredSnacks.map((snack) => {
                         return (
-                            <Link className="snack-item" to={`/snacks/${snack.id}`} onClick={clearInput}>
+                            <Link key={snack.id} className="snack-item" to={`/snacks/${snack.id}`} onClick={clearInput}>
                                 <p id='snack-title'>{snack.title}</p>
                             </Link>
                         )
