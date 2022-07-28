@@ -10,6 +10,8 @@ import { authenticate } from './store/session';
 import SnackForm from './components/CreateSnackForm';
 import SingleSnack from './components/SingleSnack';
 import EditSnackForm from './components/EditSnackForm';
+import SearchedSnacks from './components/SearchedSnacks';
+
 
 
 function App() {
@@ -51,6 +53,9 @@ function App() {
         </Route>
         <Route path="/snacks/:snackId/edit" exact={true}>
           <EditSnackForm />
+        </Route>
+        <Route path='/snacks/search/:searchWord' exact={true}>
+          <SearchedSnacks />
         </Route>
       </Switch>
     </BrowserRouter>

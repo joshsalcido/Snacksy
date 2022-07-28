@@ -92,3 +92,10 @@ def post_review(id):
         db.session.commit()
         return new_review.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@snack_routes.route('/search/<searchword>')
+def search(searchword):
+    snacks = db.session.query(Snack).filter(Snack.title.ilike(f"%{searchword}%"))
+    data = [snack.to_dict() for snack in snacks]
+    return {'snacks': data}

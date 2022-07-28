@@ -36,6 +36,12 @@
     place-items: center;
 
 }
+
+.search-icon-button{
+    background-color: white;
+    border: 0;
+}
+
 #search-icon {
     border-radius: 50%;
     transition: 0.5s;

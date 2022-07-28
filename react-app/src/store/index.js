@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import reviewsReducer from './reviews';
 import session from './session'
 import snacksReducer from './snacks';
+import searchReducer from './searchbar';
 
 const rootReducer = combineReducers({
   session,
   allSnacks: snacksReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  search: searchReducer
 });
 
 
