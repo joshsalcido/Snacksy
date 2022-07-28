@@ -82,14 +82,19 @@ const Cart = () => {
                 ))}
             </div>
             <div>
-                {cart && (
-                    <p>Cart Quantity: {cart.quantity}</p>
+                {cart && cart.quantity > 0 && (
+                    <>
+                        <p>Cart Quantity: {cart.quantity}</p>
+                        <p>Cart Total: {total}</p>
+                        <button onClick={openOrderModal}>Place Order!</button>
+                        <Modal isOpen={showOrderForm} style={styling}>
+                            <OrderForm closeOrderModal={closeOrderModal} total={total} />
+                        </Modal>
+                    </>
                 )}
-                <p>Cart Total: {total}</p>
-                <button onClick={openOrderModal}>Place Order!</button>
-                <Modal isOpen={showOrderForm} style={styling}>
-                    <OrderForm closeOrderModal={closeOrderModal} total={total} />
-                </Modal>
+                {cart && !cart.quantity && (
+                    <p>No items here yet!</p>
+                )}
             </div>
         </>
     )

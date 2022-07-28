@@ -15,17 +15,22 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    // console.log('**CART!!!', cart)
-    // console.log("***SNACK", snack)
+    console.log('**CART!!!', cart)
+    console.log("***SNACK", snack)
+    let snacks = []
     // console.log("***QUANTITY", quantity)
+
 
     async function handleSubmit(e) {
         e.preventDefault();
 
-        await dispatch(thunkAddToCart(cart, snack, quantity))
+        const ok = await dispatch(thunkAddToCart(cart, snack, quantity))
 
         setQuantity(quantity)
         return alert("Added to cart!")
+
+        // return alert("Snack already in cart!")
+
     }
 
     useEffect(() => {
@@ -40,14 +45,15 @@ export default function SingleSnack() {
 
     if (!snack) return null
 
-    const isInCart = false
-    if (cart) {
+    function stringify() {
         cart.snacks.forEach(item => {
-            if (item.id === snackId) {
-                isInCart = true
-            }
+            snacks.push(JSON.stringify(item))
         })
+        return snacks
     }
+
+    const strgs = stringify(cart)
+    // console.log(strgs)
 
     return (
         <>
@@ -75,7 +81,12 @@ export default function SingleSnack() {
                         <option value={4}>4</option>
                         <option value={5}>5</option>
                     </select>
-                    <button type="submit">Add to Cart</button>
+                    {snack && !snacks.includes(JSON.stringify(snack)) && (
+                        <button type="submit">Add to Cart</button>
+                    )}
+                    {snack && snacks.includes(JSON.stringify(snack)) && (
+                        <p>This snack is in your cart!</p>
+                    )}
                 </form>
             </div>
         </>
