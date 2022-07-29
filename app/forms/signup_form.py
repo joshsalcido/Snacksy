@@ -27,8 +27,8 @@ def email_validate(form, field):
 
 def address_validate(form, field):
     address = field.data
-    if(not re.fullmatch('^\d+?[A-Za-z]*\s\w*\s?\w+?\s\w{2}\w*\s*\w*$', address)):
-        raise ValidationError("Please enter a valid US address")
+    if (len(address) < 10 or len(address) > 50):
+        raise ValidationError('Please enter a valid address')
 
 def password_validate(form, field):
     password = field.data

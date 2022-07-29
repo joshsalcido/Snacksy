@@ -3,19 +3,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { thunkGetAllSnacks } from "../../store/snacks";
 import CategoriesPage from "../Categories";
+import { thunkGetCart } from "../../store/cart";
 import "./allSnacks.css"
 
 
 const AllSnacks = () => {
     const snacks = useSelector(state => Object.values(state.allSnacks));
 
+    const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
+    const userId = useSelector((state) => state.session?.user?.id)
+
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllSnacks());
+        if (userId) {
+            dispatch(thunkGetCart(userId))
+        }
     }, [dispatch]);
 
     if (!snacks) return null
+    // if (!userId) return null
 
     return (
         <>
@@ -60,6 +69,7 @@ const AllSnacks = () => {
                         <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
                         <p id='snack-title'>{snack.title}</p>
                         <p id='snack-price'>$ {snack.price.toFixed(2)}</p>
+
                     </Link>
                 </div>
             ))}
