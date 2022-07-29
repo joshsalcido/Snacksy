@@ -14,6 +14,7 @@ const Cart = () => {
     const [quantity, setQuantity] = useState(snackQ)
     const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
+    // let snackies = []
     const [snackies, setSnackies] = useState([])
 
     let total = 0
@@ -29,12 +30,17 @@ const Cart = () => {
         // console.log("@@@@SnackID@@@", snackId)
         e.preventDefault();
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
-        sessionStorage.setItem('snacks', JSON.stringify(snacks))
-        snackies.push(JSON.parse(sessionStorage.getItem('snacks')))
+        localStorage.setItem('snacks', JSON.stringify(snacks))
+        setSnackies(JSON.parse(localStorage.getItem('snacks')))
+        dispatch(thunkGetCart(userId, snackies))
+        console.log("***AFTER SUBMIT", snackies)
     }
 
     useEffect(() => {
-        sessionStorage.setItem('snacks', JSON.stringify(snacks))
+        localStorage.setItem('snacks', JSON.stringify(snacks))
+    }, [snackies]);
+
+    useEffect(() => {
         setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
         console.log('***SNACKIES', snackies)
         dispatch(thunkGetCart(userId, snackies))

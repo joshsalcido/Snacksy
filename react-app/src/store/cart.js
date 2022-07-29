@@ -126,13 +126,15 @@ const initialState = { allsnacks: [] };
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SHOPPING_CART:
-            console.log("***ACTION", action)
+            console.log("***ACTION", action.snackies)
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
             const getList = [...cartState.allsnacks]
-            action.snackies.forEach(snack => {
-                getList.push({ 'id': snack.id, "snacky": snack, "snackyQty": snack.snackyQty })
-            })
+            if (action.snackies) {
+                action.snackies.forEach(snack => {
+                    getList.push({ 'id': snack.id, "snacky": snack.snacky, "snackyQty": snack.snackyQty })
+                })
+            }
             return { ...cartState, allsnacks: getList }
 
         case ADD_TO_CART:
