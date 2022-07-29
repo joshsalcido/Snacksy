@@ -15,6 +15,8 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
+    const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
+    const [snackies, setSnackies] = useState([])
     // console.log('**CART!!!', cart)
     // console.log("***SNACK", snack)
     let snacks = []
@@ -24,9 +26,10 @@ export default function SingleSnack() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const ok = await dispatch(thunkAddToCart(cart, snack, quantity))
-
+        await dispatch(thunkAddToCart(cart, snack, quantity))
         setQuantity(quantity)
+        window.sessionStorage.setItem('snacks', JSON.stringify(allsnacks))
+        setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
         return alert("Added to cart!")
 
         // return alert("Snack already in cart!")
@@ -74,7 +77,7 @@ export default function SingleSnack() {
                     </>
                 }
                 <form onSubmit={handleSubmit}>
-                    <label>Qty</label>
+                    {/* <label>Qty</label>
                     <select onChange={(e) => setQuantity(parseInt(e.target.value))}
                         value={quantity}>
                         <option value={1}>1</option>
@@ -82,7 +85,7 @@ export default function SingleSnack() {
                         <option value={3}>3</option>
                         <option value={4}>4</option>
                         <option value={5}>5</option>
-                    </select>
+                    </select> */}
                     {snack && !snacks.includes(JSON.stringify(snack)) && (
                         <button type="submit">Add to Cart</button>
                     )}

@@ -8,14 +8,14 @@ const Cart = () => {
     // const shopping_cart = useSelector(state => state.shoppingCart)
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const snackQ = useSelector(state => state.shoppingCart?.snackQuantity)
-    const snacks = useSelector(state => state.shoppingCart?.allsnacks);
+    const snacks = useSelector(state => state.shoppingCart.allsnacks);
 
     const userId = useSelector(state => state.session?.user?.id);
     const [quantity, setQuantity] = useState(snackQ)
     const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
     // let snackies = []
-    const [snackies, setSnackies] = useState([])
+    // const [snackies, setSnackies] = useState([])
 
     let total = 0
     let totalItems = 0
@@ -26,24 +26,24 @@ const Cart = () => {
     const dispatch = useDispatch();
 
 
-    async function handleSubmit(e) {
-        // console.log("@@@@SnackID@@@", snackId)
-        e.preventDefault();
-        await dispatch(thunkUpdateCart(cart, snackId, quantity))
-        localStorage.setItem('snacks', JSON.stringify(snacks))
-        setSnackies(JSON.parse(localStorage.getItem('snacks')))
-        dispatch(thunkGetCart(userId, snackies))
-        console.log("***AFTER SUBMIT", snackies)
-    }
+    // async function handleSubmit(e) {
+    //     // console.log("@@@@SnackID@@@", snackId)
+    //     e.preventDefault();
+    //     await dispatch(thunkUpdateCart(cart, snackId, quantity))
+    //     // window.sessionStorage.setItem('snacks', JSON.stringify(snacks))
+    //     setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
+    //     dispatch(thunkGetCart(userId, snackies))
+    //     console.log("***AFTER SUBMIT", snackies)
+    // }
+
+    // useEffect(() => {
+    //     window.sessionStorage.setItem('snacks', JSON.stringify(snacks))
+    // }, [snackies]);
 
     useEffect(() => {
-        localStorage.setItem('snacks', JSON.stringify(snacks))
-    }, [snackies]);
-
-    useEffect(() => {
-        setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
-        console.log('***SNACKIES', snackies)
-        dispatch(thunkGetCart(userId, snackies))
+        // setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
+        dispatch(thunkGetCart(userId))
+        // console.log('***SNACKIES', snackies)
     }, [dispatch]);
 
     function openOrderModal() {
@@ -72,21 +72,21 @@ const Cart = () => {
         <>
             <button onClick={() => dispatch(thunkClearCart(cart))}>Clear Cart</button>
             <div>
-                {snacks && snacks.map(snack => (
-                    !(currentKey === snack.id) && (
-                        <div key={snack.id}>
-                            <div style={{ 'display': 'none' }}>
-                                {total += Math.round((snack.snackyQty * snack.snacky.price) * 100) / 100}
-                                {totalItems += snack.snackyQty}
-                                {currentKey = snack.id}
-                            </div>
-                            <div>
-                                <img src={snack.snacky.cover_pic}></img>
-                                <p>{snack.snacky.title}</p>
-                                <p>{snack.snacky.price}</p>
-                                <p>Quantity: {snack.snackyQty}</p>
-                                <button onClick={() => dispatch(thunkDeleteFromCart(cart, snack))}>Remove from cart</button>
-                                <form onSubmit={handleSubmit}>
+                {cart.snacks && cart.snacks.map(snack => (
+                    // !(currentKey === snack.id) && (
+                    <div key={snack.id}>
+                        <div style={{ 'display': 'none' }}>
+                            {total += snack.price}
+                            {totalItems += 1}
+                            {/* {currentKey = snack.id} */}
+                        </div>
+                        <div>
+                            <img src={snack.cover_pic}></img>
+                            <p>{snack.title}</p>
+                            <p>Price: {snack.price}</p>
+                            {/* <p>Quantity: {snack.snackyQty}</p> */}
+                            <button onClick={() => dispatch(thunkDeleteFromCart(cart, snack))}>Remove from cart</button>
+                            {/* <form onSubmit={handleSubmit}>
                                     <label>Qty</label>
                                     <select onChange={(e) => { setQuantity(parseInt(e.target.value)) }}
                                         value={quantity}>
@@ -97,10 +97,10 @@ const Cart = () => {
                                         <option value={5}>5</option>
                                     </select>
                                     <button type="submit" onClick={() => { setSnackId(snack.id); dispatch(thunkUpdateCart(cart, snack.id, quantity)) }}>Update Quantity</button>
-                                </form>
-                            </div>
+                                </form> */}
                         </div>
-                    )
+                    </div>
+                    // )
                 ))}
             </div>
             <div>
