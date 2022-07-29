@@ -4,12 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { logout } from '../../store/session';
 import { thunkClearCart } from '../../store/cart';
 
-const LogoutButton = ({ setTrigger }) => {
+const LogoutButton = ({setTrigger, setTriggerSignup}) => {
   const cart = useSelector(state => Object.values(state.shoppingCart)[0])
   const dispatch = useDispatch()
   const onLogout = async (e) => {
     await dispatch(logout());
     setTrigger(false)
+    setTriggerSignup(false)
     if (cart) {
       await dispatch(thunkClearCart(cart))
     }
