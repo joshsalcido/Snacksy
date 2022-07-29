@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.models import ShoppingCart
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -41,6 +42,14 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
+        cart = ShoppingCart.query.filter(ShoppingCart.user_id == user.id).all()
+        if not cart:
+            new_cart = ShoppingCart(
+                user_id=user.id,
+                total=0
+            )
+            db.session.add(new_cart)
+            db.session.commit()
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -67,10 +76,19 @@ def sign_up():
             username=form.data['username'],
             first_name=form.data['first_name'],
             last_name=form.data['last_name'],
-            address =form.data['address'],
+            address=form.data['address'],
             password=form.data['password']
         )
+
         db.session.add(user)
+        db.session.commit()
+
+        new_cart = ShoppingCart(
+            user_id=user.id,
+            total=0
+        )
+
+        db.session.add(new_cart)
         db.session.commit()
         login_user(user)
         return user.to_dict()

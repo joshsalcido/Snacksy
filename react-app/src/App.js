@@ -10,7 +10,10 @@ import { authenticate } from './store/session';
 import SnackForm from './components/CreateSnackForm';
 import SingleSnack from './components/SingleSnack';
 import EditSnackForm from './components/EditSnackForm';
+
 import SearchedSnacks from './components/SearchedSnacks';
+import Cart from './components/Cart/cart';
+
 
 
 
@@ -43,7 +46,7 @@ function App() {
           <User />
         </Route>
         <Route path='/' exact={true} >
-          <AllSnacks/>
+          <AllSnacks />
         </Route>
         <Route path='/new-snack' exact={true}>
           <SnackForm />
@@ -56,6 +59,9 @@ function App() {
         </Route>
         <Route path='/snacks/search/:searchWord' exact={true}>
           <SearchedSnacks />
+        </Route>
+        <Route path='/cart/:userId'>
+          <Cart />
         </Route>
       </Switch>
     </BrowserRouter>

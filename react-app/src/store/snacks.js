@@ -49,7 +49,7 @@ export const actionDeleteSnack = (snackId) => {
 }
 
 export const thunkGetAllSnacks = () => async (dispatch) => {
-    const response = await fetch('/api/snacks');
+    const response = await fetch('/api/snacks/');
 
     if (response.ok) {
         const data = await response.json();
