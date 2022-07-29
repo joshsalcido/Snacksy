@@ -76,8 +76,9 @@ const Cart = () => {
     // if (!snackQ) return null
 
     return (
-        <>
+        <>  {cart && (
             <button onClick={() => dispatch(thunkClearCart(cart))}>Clear Cart</button>
+        )}
             <div>
                 {cart && cart.snacks && cart.snacks.map(snack => (
                     // !(currentKey === snack.id) && (

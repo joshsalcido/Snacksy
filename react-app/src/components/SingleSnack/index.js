@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkDeleteSnack, thunkGetSingleSnack } from '../../store/snacks';
 import { thunkAddToCart } from '../../store/cart';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import { thunkGetCart } from '../../store/cart';
 
 import Reviews from '../Reviews';
 import LoginForm from '../auth/LoginForm';
@@ -39,19 +40,23 @@ export default function SingleSnack() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const ok = await dispatch(thunkAddToCart(cart, snack, quantity))
-
-        if (ok) {
-            setQuantity(quantity)
-            return alert("Added to cart!")
+        if (cart) {
+            const ok = await dispatch(thunkAddToCart(cart, snack, quantity))
+            if (ok) {
+                setQuantity(quantity)
+                return alert("Added to cart!")
+            }
+            return alert("Snack already in cart!")
         }
-        return alert("Snack already in cart!")
+
 
     }
 
     useEffect(() => {
         dispatch(thunkGetSingleSnack(snackId))
-        // dispatch(thunkGetCart(userId))
+        if (userId) {
+            dispatch(thunkGetCart(userId))
+        }
     }, [dispatch, snackId])
 
     const onDelete = () => {

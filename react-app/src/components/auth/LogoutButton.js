@@ -10,7 +10,9 @@ const LogoutButton = ({ setTrigger }) => {
   const onLogout = async (e) => {
     await dispatch(logout());
     setTrigger(false)
-    await dispatch(thunkClearCart(cart))
+    if (cart) {
+      await dispatch(thunkClearCart(cart))
+    }
   };
 
   return (
