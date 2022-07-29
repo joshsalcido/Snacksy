@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { thunkCreateCart } from '../../store/cart';
+import { thunkGetCart } from '../../store/cart';
 
-const SignUpForm = ({setTrigger}) => {
+const SignUpForm = ({ setTrigger }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -12,14 +14,17 @@ const SignUpForm = ({setTrigger}) => {
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
+  const cart = useSelector(state => state.shoppingCart);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-      const data = await dispatch(signUp(username, email, firstName, lastName, address ,password));
-      if (data) {
-        setErrors(data)
-      }
+    const data = await dispatch(signUp(username, email, firstName, lastName, address, password));
+    if (data) {
+      setErrors(data)
+    }
+    await dispatch(thunkCreateCart(user.id))
+    await dispatch(thunkGetCart(cart))
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
@@ -123,7 +128,7 @@ const SignUpForm = ({setTrigger}) => {
         </div>
         <button type='submit'>Sign Up</button>
         {/* <NavLink to={'/'}> */}
-          <button onClick={() => setTrigger(false)}>Cancel</button>
+        <button onClick={() => setTrigger(false)}>Cancel</button>
         {/* </NavLink> */}
       </form>
     </>

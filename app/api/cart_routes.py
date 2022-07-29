@@ -3,7 +3,18 @@ from app.models import db, ShoppingCart, items
 
 cart_routes = Blueprint('cart', __name__)
 
-# Get Cart Route
+
+@cart_routes.route('/<id>/create', methods=["POST"])
+def create_cart(id):
+    new_cart = ShoppingCart(
+        user_id=id,
+        total=0
+    )
+    print("**WE BACK HERE", new_cart)
+    db.session.add(new_cart)
+    db.session.commit()
+    return new_cart.to_dict()
+
 
 @cart_routes.route('/<id>', methods=['GET'])
 def cart(id):

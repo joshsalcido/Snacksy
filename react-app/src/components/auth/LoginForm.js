@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { thunkGetCart } from '../../store/cart';
 import { login } from '../../store/session';
+import { thunkCreateCart } from '../../store/cart';
 import './LoginForm.css'
 
 const LoginForm = ({ showLoginForm, closeModal }) => {
@@ -21,7 +22,11 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
       setErrors(data);
     }
 
+    if (user) {
+      await dispatch(thunkCreateCart(user.id))
+    }
   };
+
 
   // useEffect(() => {
   //   console.log("user2", user)
@@ -30,7 +35,11 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
 
   const demoSubmit = (e) => {
     e.preventDefault();
-    return dispatch(login('demo@aa.io','password'))
+    dispatch(login('demo@aa.io', 'password'))
+    if (user) {
+      dispatch(thunkCreateCart(user.id))
+    }
+    return
   }
 
   const updateEmail = (e) => {
@@ -76,7 +85,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
             required
           />
           <button type='submit'>Sign in</button>
-          <Link to='/' className='demo-link'onClick={demoSubmit}>Demo Snacksy</Link>
+          <Link to='/' className='demo-link' onClick={demoSubmit}>Demo Snacksy</Link>
         </div>
       </form>
     </>

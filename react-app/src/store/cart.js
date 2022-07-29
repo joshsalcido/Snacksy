@@ -3,6 +3,8 @@ const ADD_TO_CART = 'cart/addToCart';
 const UPDATE_CART = 'cart/updateCart';
 const DELETE_FROM_CART = 'cart/deleteFromCart';
 const CLEAR_CART = 'cart/clearCart';
+const CREATE_CART = 'cart/createCart';
+const REMOVE_CART = 'cart/clearCart';
 
 
 export const actionGetCart = (cart) => {
@@ -11,6 +13,7 @@ export const actionGetCart = (cart) => {
         cart
     }
 }
+
 
 export const actionAddToCart = (cart, snack, quantity) => {
     return {
@@ -41,6 +44,33 @@ export const actionClearCart = (cart) => {
     }
 }
 
+export const actionCreateCart = (userId) => {
+    console.log("** ACTION GET CART", userId)
+    return {
+        type: CREATE_CART,
+        userId
+    }
+}
+
+export const actionRemoveCart = (userId) => {
+    return {
+        type: REMOVE_CART,
+        userId
+    }
+}
+
+export const thunkCreateCart = (userId) => async (dispatch) => {
+    console.log("***THUNK CREATE CART", userId)
+    const response = await fetch(`/api/cart/${userId}/create`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionCreateCart(userId));
+        return data
+    } else {
+        return await response.json()
+    }
+}
 
 export const thunkGetCart = (id) => async (dispatch) => {
     const response = await fetch(`/api/cart/${id}`);
@@ -123,12 +153,26 @@ export const thunkClearCart = (cart) => async (dispatch) => {
     }
 }
 
+export const thunkRemoveCart = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/cart${userId}/remove`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionRemoveCart(userId));
+        return data;
+    } else {
+        return await response.json()
+    }
+}
+
 const initialState = { allsnacks: [] };
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SHOPPING_CART:
-            console.log("***ACTION", action.snackies)
+            // console.log("***ACTION", action.snackies)
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
             const getList = [...cartState.allsnacks]
@@ -174,11 +218,20 @@ const cartReducer = (state = initialState, action) => {
             clearList = [];
             return { ...clearState, allsnacks: clearList }
 
+        case CREATE_CART:
+            console.log("***ACTION CREATE CART", action)
+            let createState = { ...state };
+            createState[action.payload] = action.payload
+            return createState
+
+        case REMOVE_CART:
+            let removeState = { ...state };
+            //todo
+            return removeState
+
         default:
             return state;
     }
-
-
 }
 
 

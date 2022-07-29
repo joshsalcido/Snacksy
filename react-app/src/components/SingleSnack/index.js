@@ -85,7 +85,7 @@ export default function SingleSnack() {
 
     const strgs = stringify(cart)
     // console.log(strgs)
- 
+
     const formStyles = {
         content: {
           top: '50%',
@@ -115,15 +115,15 @@ export default function SingleSnack() {
                    </>
                 }
                 <form onSubmit={handleSubmit}>
-                    <label>Qty</label>
-                    <select onChange={(e) => setQuantity(parseInt(e.target.value))}
+                    {/* <label>Qty</label> */}
+                    {/* <select onChange={(e) => setQuantity(parseInt(e.target.value))}
                         value={quantity}>
                         <option value={1}>1</option>
                         <option value={2}>2</option>
                         <option value={3}>3</option>
                         <option value={4}>4</option>
                         <option value={5}>5</option>
-                    </select>
+                    </select> */}
                     {sessionUser && snack && !snacks.includes(JSON.stringify(snack)) && (
                         <button type="submit">Add to Cart</button>
                     )}
