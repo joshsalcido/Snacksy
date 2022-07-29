@@ -74,6 +74,7 @@ export default function ReviewForm({setTrigger}){
                 return (
                   <label key={index}>
                     <input
+                      className='stars'
                       type="radio"
                       id="radioBttn"
                       name="rating"

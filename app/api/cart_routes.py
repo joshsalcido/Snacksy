@@ -4,20 +4,12 @@ from app.models import db, ShoppingCart, items
 cart_routes = Blueprint('cart', __name__)
 
 
-# @cart_routes.route('/<id>/create', methods=["POST"])
-# def create_cart(id):
-
-#     print("**WE BACK HERE", new_cart)
-#     db.session.add(new_cart)
-#     db.session.commit()
-#     return new_cart.to_dict()
-
 
 @cart_routes.route('/<id>', methods=['GET'])
 def cart(id):
-    print("***ROUTE", id)
+    # print("***ROUTE", id)
     cart = ShoppingCart.query.filter(ShoppingCart.user_id == id).one()
-    print("****CART", cart)
+    # print("****CART", cart)
     return cart.to_dict()
 
 

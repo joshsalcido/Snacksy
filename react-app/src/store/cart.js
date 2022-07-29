@@ -173,7 +173,6 @@ const initialState = {};
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SHOPPING_CART:
-            console.log("***ACTION", action)
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
             // const getList = [...cartState.allsnacks]
@@ -185,7 +184,6 @@ const cartReducer = (state = initialState, action) => {
             return cartState
 
         case ADD_TO_CART:
-            // console.log('**ACTION', action)
             let addState = { ...state };
             addState[action.cart.id] = action.cart
             // const list = [...addState.allsnacks]
@@ -197,8 +195,6 @@ const cartReducer = (state = initialState, action) => {
         case DELETE_FROM_CART:
             let deleteState = { ...state };
             deleteState[action.cart.id] = action.cart
-            // console.log("++ACTION in DELETE+++", action)
-            // const newList = deleteState.allsnacks.filter(snack => snack.id !== action.snack.id)
             return deleteState
 
         // case UPDATE_CART:
@@ -216,17 +212,6 @@ const cartReducer = (state = initialState, action) => {
             let clearState = { ...state };
             clearState[action.cart.id] = action.cart
             return clearState
-
-        // case CREATE_CART:
-        //     console.log("***ACTION CREATE CART", action)
-        //     let createState = { ...state };
-        //     createState[action.payload] = action.payload
-        //     return createState
-
-        // case REMOVE_CART:
-        //     let removeState = { ...state };
-        //     //todo
-        //     return removeState
 
         default:
             return state;
