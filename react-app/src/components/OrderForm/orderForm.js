@@ -43,7 +43,7 @@ const OrderForm = ({ closeOrderModal, total, totalItems }) => {
                 </div>
             </fieldset>
             <p>Total Items: {totalItems}</p>
-            <p>Order Total: {total}</p>
+            <p>Order Total: ${total.toFixed(2)}</p>
             <button onClick={closeOrderModal}>Cancel Order</button>
             <button onClick={handleOrder}>Submit Order</button>
         </form>
