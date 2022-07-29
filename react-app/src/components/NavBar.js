@@ -57,36 +57,38 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <SearchBar className='search-bar'/>
+          <SearchBar className='search-bar' />
         </li>
         {sessionUser &&
-        <li id="create-snack-button">
-          <NavLink to="/new-snack">
-            <button className='create-snack-bttn'>
-              <i className="fa-solid fa-store"></i>
-            </button>
-          </NavLink>
-        </li>
+          <li id="create-snack-button">
+            <NavLink to="/new-snack">
+              <button className='create-snack-bttn'>
+                <i className="fa-solid fa-store"></i>
+              </button>
+            </NavLink>
+          </li>
         }
-        <li>
-          <NavLink to={`/cart/${sessionUser?.id}`}>
-            <Badge color="primary" badgeContent={cartQuantity}>
-              <ShoppingCartIcon />
-            </Badge>
-          </NavLink>
-        </li>
+        {sessionUser && (
+          <li>
+            <NavLink to={`/cart/${sessionUser?.id}`}>
+              <Badge color="primary" badgeContent={cartQuantity}>
+                <ShoppingCartIcon />
+              </Badge>
+            </NavLink>
+          </li>
+        )}
         {!sessionUser && (
-        <li>
-          <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
-          <Modal isOpen={showLoginForm} style={formStyles}>
-            <LoginForm />
-            <button onClick={closeLoginModal}>Cancel</button>
-            <button  onClick={openClose}>Register</button>
-          </Modal>
-          <Modal isOpen={showSignupForm} style={formStyles}>
-            <SignUpForm setTrigger={setShowSignupForm}/>
-          </Modal>
-        </li>
+          <li>
+            <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
+            <Modal isOpen={showLoginForm} style={formStyles}>
+              <LoginForm />
+              <button onClick={closeLoginModal}>Cancel</button>
+              <button onClick={openClose}>Register</button>
+            </Modal>
+            <Modal isOpen={showSignupForm} style={formStyles}>
+              <SignUpForm setTrigger={setShowSignupForm} />
+            </Modal>
+          </li>
         )}
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
@@ -105,7 +107,7 @@ const NavBar = () => {
         </li> */}
         {sessionUser && (
           <li>
-            <LogoutButton setTrigger={setShowLoginForm}/>
+            <LogoutButton setTrigger={setShowLoginForm} />
           </li>
         )}
       </ul>
