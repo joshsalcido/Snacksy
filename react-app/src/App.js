@@ -11,6 +11,7 @@ import SnackForm from './components/CreateSnackForm';
 import SingleSnack from './components/SingleSnack';
 import EditSnackForm from './components/EditSnackForm';
 import SearchedSnacks from './components/SearchedSnacks';
+import CategoriesPage from './components/Categories';
 
 
 
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route path='/snacks/search/:searchWord' exact={true}>
           <SearchedSnacks />
+        </Route>
+        <Route path='/categories/:category' exact={true}>
+          <CategoriesPage />
         </Route>
       </Switch>
     </BrowserRouter>

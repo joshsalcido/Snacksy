@@ -11,13 +11,14 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+# GET ALL SNACKS
 @snack_routes.route('/')
 def snacks():
     snacks = Snack.query.all()
     data = [snack.to_dict() for snack in snacks]
     return {'snacks': data}
 
-
+# CREATE NEW SNACK
 @snack_routes.route('/new', methods=['POST'])
 def create_snack():
     form = SnackForm()
@@ -36,12 +37,13 @@ def create_snack():
         return new_snack.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-
+# GET SINGLE SNACK
 @snack_routes.route('/<id>')
 def single_snack(id):
     snack = Snack.query.get(id)
     return snack.to_dict()
 
+# EDIT SNACK
 @snack_routes.route('/<id>/edit', methods=['PUT'])
 def edit_snack(id):
     form = SnackForm()
@@ -60,6 +62,7 @@ def edit_snack(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
+# DELETE SNACK
 @snack_routes.route('/<id>/delete', methods=['DELETE'])
 def delete_snack(id):
      snack = Snack.query.get(id)
@@ -69,6 +72,7 @@ def delete_snack(id):
 
 # ------- Reviews --------
 
+# GET REVIEWS
 @snack_routes.route('/<id>/reviews')
 def get_reviews(id):
     snack = Snack.query.get(id)
@@ -76,7 +80,7 @@ def get_reviews(id):
     data = [review.to_dict() for review in reviews]
     return {'reviews': data}
 
-
+#POST REVIEW
 @snack_routes.route('/<id>/reviews/new', methods=['POST', "GET"])
 def post_review(id):
     form = ReviewForm()
@@ -94,6 +98,7 @@ def post_review(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+#SEARCH FOR WORD IN SEARCHBAR
 @snack_routes.route('/search/<searchword>')
 def search(searchword):
     snacks = db.session.query(Snack).filter(Snack.title.ilike(f"%{searchword}%"))
