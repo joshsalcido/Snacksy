@@ -30,19 +30,19 @@ const Cart = () => {
         // console.log("@@@@SnackID@@@", snackId)
         e.preventDefault();
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
-        localStorage.setItem('snacks', JSON.stringify(snacks))
-        setSnackies(JSON.parse(localStorage.getItem('snacks')))
+        // localStorage.setItem('snacks', JSON.stringify(snacks))
+        // setSnackies(JSON.parse(localStorage.getItem('snacks')))
         dispatch(thunkGetCart(userId, snackies))
         console.log("***AFTER SUBMIT", snackies)
     }
 
-    useEffect(() => {
-        localStorage.setItem('snacks', JSON.stringify(snacks))
-    }, [snackies]);
+    // useEffect(() => {
+    //     localStorage.setItem('snacks', JSON.stringify(snacks))
+    // }, [snackies]);
 
     useEffect(() => {
-        setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
-        console.log('***SNACKIES', snackies)
+        // setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
+        // console.log('***SNACKIES', snackies)
         dispatch(thunkGetCart(userId, snackies))
     }, [dispatch]);
 

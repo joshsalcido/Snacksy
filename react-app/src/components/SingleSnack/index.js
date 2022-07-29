@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { thunkDeleteSnack, thunkGetSingleSnack } from '../../store/snacks';
-import { thunkAddToCart, thunkGetCart } from '../../store/cart';
+import { thunkAddToCart } from '../../store/cart';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import Reviews from '../Reviews';
 import LoginForm from '../auth/LoginForm';
@@ -29,7 +29,7 @@ export default function SingleSnack() {
         e.preventDefault();
 
         const ok = await dispatch(thunkAddToCart(cart, snack, quantity))
-        
+
         if (ok) {
             setQuantity(quantity)
             return alert("Added to cart!")

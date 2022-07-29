@@ -17,17 +17,16 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
 
     const data = await dispatch(login(email, password))
 
-    console.log("user2", user)
     if (data) {
       setErrors(data);
     }
-    console.log("user1", user)
+    
   };
 
-  useEffect(() => {
-    console.log("user2", user)
-    dispatch(thunkGetCart(user?.id))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("user2", user)
+  //   // dispatch(thunkGetCart(user?.id))
+  // }, [dispatch])
 
   const demoSubmit = (e) => {
     e.preventDefault();
