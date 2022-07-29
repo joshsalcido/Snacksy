@@ -90,7 +90,7 @@ const Cart = () => {
                         <div>
                             <img src={snack.cover_pic}></img>
                             <p>{snack.title}</p>
-                            <p>Price: {snack.price}</p>
+                            <p>Price: ${(snack.price).toFixed(2)}</p>
                             {/* <p>Quantity: {snack.snackyQty}</p> */}
                             <button onClick={() => dispatch(thunkDeleteFromCart(cart, snack))}>Remove from cart</button>
                             {/* <form onSubmit={handleSubmit}>
@@ -115,7 +115,7 @@ const Cart = () => {
                 {cart && cart.quantity > 0 && (
                     <>
                         <p>Cart Quantity: {totalItems}</p>
-                        <p>Cart Total: {total}</p>
+                        <p>Cart Total: ${total.toFixed(2)}</p>
                         <button onClick={openOrderModal}>Place Order!</button>
                         <Modal isOpen={showOrderForm} style={styling}>
                             <OrderForm closeOrderModal={closeOrderModal} total={total} totalItems={totalItems} />
