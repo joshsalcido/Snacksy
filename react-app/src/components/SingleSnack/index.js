@@ -1,29 +1,40 @@
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+
 import { thunkDeleteSnack, thunkGetSingleSnack } from '../../store/snacks';
 import { thunkAddToCart } from '../../store/cart';
 import { useParams, useHistory, Link } from 'react-router-dom';
+
 import Reviews from '../Reviews';
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
 import Modal from 'react-modal';
 import './SingleSnack.css'
 
+
 export default function SingleSnack() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { snackId } = useParams();
     const [quantity, setQuantity] = useState(1);
+
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showSignupForm, setShowSignupForm] = useState(false);
+
 
 
     const sessionUser = useSelector((state) => state.session.user);
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    console.log("Cart in SingleSnack",cart)
+    const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
+    const [snackies, setSnackies] = useState([])
+    // console.log('**CART!!!', cart)
+    // console.log("***SNACK", snack)
     let snacks = []
+    // console.log("***QUANTITY", quantity)
+
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -40,6 +51,7 @@ export default function SingleSnack() {
 
     useEffect(() => {
         dispatch(thunkGetSingleSnack(snackId))
+        // dispatch(thunkGetCart(userId))
     }, [dispatch, snackId])
 
     const onDelete = () => {
@@ -61,17 +73,19 @@ export default function SingleSnack() {
 
     if (!snack) return null
 
-    // function stringify() {
-    //     if (cart.snacks) {
-    //         cart.snacks.forEach(item => {
-    //             snacks.push(JSON.stringify(item))
-    //         })
-    //         return snacks
-    //     }
-    // }
 
-    // const strgs = stringify(cart)
+    function stringify() {
+        if (cart.snacks) {
+            cart.snacks.forEach(item => {
+                snacks.push(JSON.stringify(item))
+            })
+            return snacks
+        }
+    }
+
+    const strgs = stringify(cart)
     // console.log(strgs)
+ 
     const formStyles = {
         content: {
           top: '50%',

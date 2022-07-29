@@ -17,7 +17,9 @@ class User(db.Model, UserMixin):
 
     snacks = db.relationship("Snack", back_populates="users")
     reviews = db.relationship("Review", back_populates="user")
+
     shopping_cart = db.relationship("ShoppingCart", uselist=False, back_populates="user")
+
 
 
     @property

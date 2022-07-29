@@ -4,6 +4,7 @@ from app.models import db, ShoppingCart, items
 cart_routes = Blueprint('cart', __name__)
 
 # Get Cart Route
+
 @cart_routes.route('/<id>', methods=['GET'])
 def cart(id):
     cart = ShoppingCart.query.get(id)

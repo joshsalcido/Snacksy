@@ -6,6 +6,7 @@ def seed_carts():
         user_id=1,
         total=0.00
     )
+
     marnie = ShoppingCart(
         user_id=2,
         total=0.00
@@ -18,6 +19,7 @@ def seed_carts():
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+
 
     db.session.commit()
 
