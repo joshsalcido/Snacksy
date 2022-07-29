@@ -6,9 +6,8 @@
 .container {
   margin: 30px 20px 10px 20px;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 
 }
 
@@ -16,6 +15,17 @@
   border: 1px solid lightgray;
   border-radius: 30px;
   transition: 1s;
+  width: 300px;
+  height: 400px;
+  margin: 0 10px;
+}
+
+.home-page-snack-card{
+  text-decoration: none;
+}
+
+.home-page-snack-card > p{
+  color: black;
 }
 
 #snack-image{
@@ -26,4 +36,30 @@
 .snack-card:hover{
   box-shadow: 0 0 5px 2px lightgray;
   transition: .5s;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.category-list{
+  list-style: none;
+  text-align: center;
+  margin: 0 20px;
+  text-decoration: none;
+}
+
+
+.category-button {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+#category-bttn-name {
+  color: black;
+
 }

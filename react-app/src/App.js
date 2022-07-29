@@ -12,7 +12,9 @@ import SingleSnack from './components/SingleSnack';
 import EditSnackForm from './components/EditSnackForm';
 
 import SearchedSnacks from './components/SearchedSnacks';
+import CategoriesPage from './components/Categories';
 import Cart from './components/Cart/cart';
+
 
 
 
@@ -60,6 +62,8 @@ function App() {
         <Route path='/snacks/search/:searchWord' exact={true}>
           <SearchedSnacks />
         </Route>
+        <Route path='/categories/:category' exact={true}>
+          <CategoriesPage />
         <Route path='/cart/:userId'>
           <Cart />
         </Route>

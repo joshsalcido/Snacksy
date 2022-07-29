@@ -1,0 +1,12 @@
+.category-snack{
+  text-decoration: none;
+  color: black;
+}
+
+.category-snack-card {
+  border: 2px solid lightgray;
+}
+
+#category-snack-img {
+  width: 500px;
+}
