@@ -74,10 +74,11 @@ export const thunkCreateCart = (userId) => async (dispatch) => {
 
 export const thunkGetCart = (id) => async (dispatch) => {
     const response = await fetch(`/api/cart/${id}`);
-
+    console.log("***THUNK", id)
     if (response.ok) {
         const data = await response.json();
         dispatch(actionGetCart(data));
+        console.log("***THE DATA", data)
         return data;
     } else {
         return await response.json()
@@ -167,67 +168,65 @@ export const thunkRemoveCart = (userId) => async (dispatch) => {
     }
 }
 
-const initialState = { allsnacks: [] };
+const initialState = {};
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SHOPPING_CART:
-            // console.log("***ACTION", action.snackies)
+            console.log("***ACTION", action)
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
-            const getList = [...cartState.allsnacks]
+            // const getList = [...cartState.allsnacks]
             // if (action.snackies) {
             //     action.snackies.forEach(snack => {
             //         getList.push({ 'id': snack.id, "snacky": snack.snacky, "snackyQty": snack.snackyQty })
             //     })
             // }
-            return { ...cartState, allsnacks: getList }
+            return cartState
 
         case ADD_TO_CART:
             // console.log('**ACTION', action)
             let addState = { ...state };
             addState[action.cart.id] = action.cart
-            const list = [...addState.allsnacks]
-            list.push({ 'id': action.snack.id, "snacky": action.snack, "snackyQty": action.quantity })
+            // const list = [...addState.allsnacks]
+            // list.push({ 'id': action.snack.id, "snacky": action.snack, "snackyQty": action.quantity })
             // addState["snackQuantity"] = action.quantity
             // console.log("++addSTate->", addState, "++++>", action.quantity)
-            return { ...addState, allsnacks: list }
+            return addState
 
         case DELETE_FROM_CART:
             let deleteState = { ...state };
             deleteState[action.cart.id] = action.cart
             // console.log("++ACTION in DELETE+++", action)
-            const newList = deleteState.allsnacks.filter(snack => snack.id !== action.snack.id)
-            return { ...deleteState, allsnacks: newList }
+            // const newList = deleteState.allsnacks.filter(snack => snack.id !== action.snack.id)
+            return deleteState
 
-        case UPDATE_CART:
-            let updateState = { ...state };
-            updateState[action.cart.id] = action.cart
-            const updateList = [...updateState.allsnacks]
-            const index = updateState.allsnacks.findIndex(snack => snack.id === action.snackId)
-            // console.log("action.SNACKID", action.snackId)
-            // console.log("##INDEX", index)
-            // console.log("++UPDATESTATE++", updateList)
-            updateList[index]['snackyQty'] = action.quantity
-            return { ...updateState, allsnacks: updateList }
+        // case UPDATE_CART:
+        //     let updateState = { ...state };
+        //     updateState[action.cart.id] = action.cart
+        //     const updateList = [...updateState.allsnacks]
+        //     const index = updateState.allsnacks.findIndex(snack => snack.id === action.snackId)
+        //     // console.log("action.SNACKID", action.snackId)
+        //     // console.log("##INDEX", index)
+        //     // console.log("++UPDATESTATE++", updateList)
+        //     updateList[index]['snackyQty'] = action.quantity
+        //     return { ...updateState, allsnacks: updateList }
 
         case CLEAR_CART:
             let clearState = { ...state };
             clearState[action.cart.id] = action.cart
-            let clearList = [...clearState.allsnacks]
-            clearList = [];
-            return { ...clearState, allsnacks: clearList }
+            return clearState
 
-        case CREATE_CART:
-            console.log("***ACTION CREATE CART", action)
-            let createState = { ...state };
-            createState[action.payload] = action.payload
-            return createState
+        // case CREATE_CART:
+        //     console.log("***ACTION CREATE CART", action)
+        //     let createState = { ...state };
+        //     createState[action.payload] = action.payload
+        //     return createState
 
-        case REMOVE_CART:
-            let removeState = { ...state };
-            //todo
-            return removeState
+        // case REMOVE_CART:
+        //     let removeState = { ...state };
+        //     //todo
+        //     return removeState
 
         default:
             return state;

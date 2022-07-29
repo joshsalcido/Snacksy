@@ -30,15 +30,15 @@ const Cart = () => {
 
 
 
-   // async function handleSubmit(e) {
-        // console.log("@@@@SnackID@@@", snackId)
-       // e.preventDefault();
-       // await dispatch(thunkUpdateCart(cart, snackId, quantity))
-        // localStorage.setItem('snacks', JSON.stringify(snacks))
-        // setSnackies(JSON.parse(localStorage.getItem('snacks')))
-      //  dispatch(thunkGetCart(userId, snackies))
+    // async function handleSubmit(e) {
+    // console.log("@@@@SnackID@@@", snackId)
+    // e.preventDefault();
+    // await dispatch(thunkUpdateCart(cart, snackId, quantity))
+    // localStorage.setItem('snacks', JSON.stringify(snacks))
+    // setSnackies(JSON.parse(localStorage.getItem('snacks')))
+    //  dispatch(thunkGetCart(userId, snackies))
     //    console.log("***AFTER SUBMIT", snackies)
-   // }
+    // }
 
     // useEffect(() => {
     //     localStorage.setItem('snacks', JSON.stringify(snacks))
@@ -79,7 +79,7 @@ const Cart = () => {
         <>
             <button onClick={() => dispatch(thunkClearCart(cart))}>Clear Cart</button>
             <div>
-                {cart.snacks && cart.snacks.map(snack => (
+                {cart && cart.snacks && cart.snacks.map(snack => (
                     // !(currentKey === snack.id) && (
                     <div key={snack.id}>
                         <div style={{ 'display': 'none' }}>

@@ -44,7 +44,7 @@ const NavBar = () => {
   };
 
   let cartQuantity = null;
-  if (cart.quantity) {
+  if (cart) {
     cartQuantity = cart.quantity
   }
 

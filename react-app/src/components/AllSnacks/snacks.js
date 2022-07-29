@@ -13,15 +13,17 @@ const AllSnacks = () => {
     const userId = useSelector((state) => state.session?.user?.id)
 
 
-
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllSnacks());
-        // dispatch(thunkGetCart(userId))
+        if (userId) {
+            dispatch(thunkGetCart(userId))
+        }
     }, [dispatch]);
 
     if (!snacks) return null
+    // if (!userId) return null
 
     return (
         <div className="container">
