@@ -20,6 +20,14 @@
   margin: 0 10px;
 }
 
+.home-page-snack-card{
+  text-decoration: none;
+}
+
+.home-page-snack-card > p{
+  color: black;
+}
+
 #snack-image{
   border-radius: 30px;
 }
@@ -51,12 +59,7 @@
   height: 150px;
 }
 
-.category-button-candy {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-}
-
 #category-bttn-name {
   color: black;
+
 }
