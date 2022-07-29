@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../store/session';
 
-const LogoutButton = ({setTrigger}) => {
+const LogoutButton = ({setTrigger, setTriggerSignup}) => {
   const dispatch = useDispatch()
   const onLogout = async (e) => {
     await dispatch(logout());
     setTrigger(false)
+    setTriggerSignup(false)
   };
 
   return (
