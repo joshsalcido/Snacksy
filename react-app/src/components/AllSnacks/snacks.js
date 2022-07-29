@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import { thunkGetCart } from "../../store/cart";
 import { thunkGetAllSnacks } from "../../store/snacks";
 import { thunkGetCart } from "../../store/cart";
 import "./allSnacks.css"

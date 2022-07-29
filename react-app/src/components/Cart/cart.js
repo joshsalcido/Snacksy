@@ -49,7 +49,7 @@ const Cart = () => {
         // setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
 
         // console.log('***SNACKIES', snackies)
-        dispatch(thunkGetCart(userId, snackies))
+        dispatch(thunkGetCart(userId))
 
     }, [dispatch]);
 
