@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { thunkPostSnack } from '../../store/snacks'
+import './createSnack.css'
 
 export default function SnackForm() {
   const history = useHistory()
@@ -12,8 +13,8 @@ export default function SnackForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState("");
-  const [validationErrors, setValidationErrors] = useState([]);
+  const [category, setCategory] = useState("Chips");
+  const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
@@ -36,14 +37,14 @@ export default function SnackForm() {
     if(!priceRegex.test(priceReg)) {
       errors.push("Must provide a valid US dollar amount")
     }
-    setValidationErrors(errors)
+    setErrors(errors)
   }, [coverPic, title, description, price])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
 
-    if(validationErrors.length) return alert("Cannot Submit Snack");
+    if (errors.length) return alert("Cannot Submit Snack");
 
     const snack = {
       user_id: sessionUser.id,
@@ -56,7 +57,11 @@ export default function SnackForm() {
 
     const newSnack = await dispatch(thunkPostSnack(snack))
 
-    if(newSnack){
+    // if (newSnack) setErrors(newSnack)
+
+    // if (errors.length) return alert("Cannot Submit Snack");
+
+    if (newSnack) {
       reset();
       history.push("/")
     }
@@ -67,9 +72,9 @@ export default function SnackForm() {
     setTitle("");
     setDescription("");
     setPrice('')
-    setCategory('');
-    setHasSubmitted(false);
-    setValidationErrors([]);
+    setCategory('Chips');
+    setHasSubmitted();
+    setErrors([]);
   }
 
 
@@ -78,13 +83,13 @@ export default function SnackForm() {
         <section className='snack-form'>
           <h1 className='snackFormTitle'> Create a new snack </h1>
           <form className='createSnackForm' onSubmit={handleSubmit}>
-            {hasSubmitted && validationErrors.length > 0 && (
+            {hasSubmitted && errors.length > 0 && (
               <div className="errorHandling">
                 <div className="errorTitle">
                   Please fix the following errors before submitting:
                 </div>
                 <ul className='errors'>
-                  {validationErrors.map((error) => (
+                  {errors.map((error) => (
                     <ul key={error} id="error">
                     {error}
                     </ul>
@@ -95,6 +100,7 @@ export default function SnackForm() {
             <label>Image:</label>
             <input
               type="text"
+              className='form-input'
               value={coverPic}
               onChange={(e) => setCoverPic(e.target.value)}
               required
@@ -102,13 +108,14 @@ export default function SnackForm() {
             <label>Title:</label>
             <input
               type="text"
+              className='form-input'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
             <label>Description:</label>
-            <input
-              type="text"
+            <textarea
+              className='form-input'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -117,6 +124,7 @@ export default function SnackForm() {
             <span className='currency-code'>$</span>
             <input
               type="text"
+              className='price-input'
               value={price}
               placeholder="22.22"
               onChange={(e) => setPrice(e.target.value)}
@@ -136,6 +144,9 @@ export default function SnackForm() {
               <option>Beverages</option>
             </select>
             <button id="snackFormSubmit" type="submit">Create New Snack</button>
+            <NavLink to={'/'}>
+              <button>Cancel</button>
+            </NavLink>
           </form>
         </section>
 

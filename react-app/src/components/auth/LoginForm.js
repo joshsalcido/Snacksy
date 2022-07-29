@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import { thunkGetCart } from '../../store/cart';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = ({ showLoginForm, closeModal }) => {
   const [errors, setErrors] = useState([]);
@@ -12,11 +14,24 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+
+    const data = await dispatch(login(email, password))
+
     if (data) {
       setErrors(data);
     }
+
   };
+
+  // useEffect(() => {
+  //   console.log("user2", user)
+  //   // dispatch(thunkGetCart(user?.id))
+  // }, [dispatch])
+
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(login('demo@aa.io','password'))
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -31,34 +46,40 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    <>
+      <h2>Sign in</h2>
+      <form onSubmit={onLogin}>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div>
+          <label htmlFor='email'>Email address</label>
+          <input
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+            required
+          />
+          <button type='submit'>Sign in</button>
+          <Link to='/' className='demo-link'onClick={demoSubmit}>Demo Snacksy</Link>
+        </div>
+      </form>
+    </>
   );
 };
 

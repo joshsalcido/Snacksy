@@ -1,5 +1,6 @@
 const GET_ALL_SNACKS = 'snack/getAllSnacks';
 const GET_SINGLE_SNACK = 'snack/getSingleSnack';
+const GET_SEARCHED_SNACKS ='snack/getSearchedSnacks';
 const POST_SNACK = 'snack/postSnack';
 const EDIT_SNACK = 'snack/editSnack';
 const DELETE_SNACK = 'snack/deleteSnack'
@@ -16,6 +17,13 @@ export const actionGetSingleSnack = (snack) => {
     return {
         type: GET_SINGLE_SNACK,
         snack
+    }
+}
+
+export const actionGetSearchedSnacks = (snacks) => {
+    return {
+        type: GET_SEARCHED_SNACKS,
+        snacks
     }
 }
 
@@ -57,6 +65,16 @@ export const thunkGetSingleSnack = (id) => async dispatch => {
         const singleSnack = await response.json();
         dispatch(actionGetSingleSnack(singleSnack));
         return singleSnack
+    }
+}
+
+export const thunkGetSearchedSnacks = (searchword) => async (dispatch) => {
+    const response = await fetch(`/api/snacks/search/${searchword}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionGetSearchedSnacks(data.snacks));
+        return data.snacks;
     }
 }
 
@@ -116,6 +134,13 @@ const snacksReducer = (state = initialState, action) => {
         case POST_SNACK:
             newState[action.snack.id] = action.snack
             return newState
+
+        case GET_SEARCHED_SNACKS:
+            newState = {};
+            action.snacks.forEach(snack => {
+                newState[snack.id] = snack
+            });
+            return newState;
 
         case EDIT_SNACK:
             newState[action.snack.id] = action.snack

@@ -8,11 +8,11 @@ import SignUpForm from './auth/SignUpForm';
 import Modal from 'react-modal';
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { createTheme } from '@material-ui/core';
-// import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import SearchBar from './SearchBar';
+import './navbar.css'
 
 const NavBar = () => {
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state.session?.user);
   const cart = useSelector(state => Object.values(state?.shoppingCart)[0]);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
@@ -27,12 +27,9 @@ const NavBar = () => {
     setShowLoginForm(false)
   }
 
-  function openSignupModal() {
+  function openClose() {
     setShowSignupForm(true)
-  }
-
-  function closeSignupModal() {
-    setShowSignupForm(false)
+    closeLoginModal(true)
   }
 
   const formStyles = {
@@ -51,55 +48,46 @@ const NavBar = () => {
     cartQuantity = cart.quantity
   }
 
-  // const theme = createTheme(
-  //   {
-  //     palette: {
-  //       primary: {
-  //         main: deepOrange[A100],
-  //       },
-  //       secondary: '#f73378',
-  //     },
-  //   }
-  // )
-
   return (
-    <nav>
-      <ul>
+    <nav >
+      <ul className='navbar'>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <NavLink to='/' exact={true} activeClassName='active' className='home-title'>
+            Snacksy
           </NavLink>
         </li>
-        {sessionUser && (
-          <>
-            <li>
-              <NavLink to="/new-snack">
-                <button className='create-snack-bttn'>
-                  <i className="fa-solid fa-store"></i>
-                </button>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={`/cart/${sessionUser.id}`}>
-                <Badge color="primary" badgeContent={cartQuantity}>
-                  <ShoppingCartIcon />
-                </Badge>
-              </NavLink>
-            </li>
-          </>
-        )}
         <li>
-          <button onClick={openLoginModal}>Log In</button>
+          <SearchBar className='search-bar'/>
+        </li>
+        {sessionUser &&
+        <li id="create-snack-button">
+          <NavLink to="/new-snack">
+            <button className='create-snack-bttn'>
+              <i className="fa-solid fa-store"></i>
+            </button>
+          </NavLink>
+        </li>
+        }
+        <li>
+          <NavLink to={`/cart/${sessionUser?.id}`}>
+            <Badge color="primary" badgeContent={cartQuantity}>
+              <ShoppingCartIcon />
+            </Badge>
+          </NavLink>
+        </li>
+        {!sessionUser && (
+        <li>
+          <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
           <Modal isOpen={showLoginForm} style={formStyles}>
             <LoginForm />
             <button onClick={closeLoginModal}>Cancel</button>
-            <button onClick={openSignupModal}>Sign up</button>
+            <button  onClick={openClose}>Register</button>
           </Modal>
           <Modal isOpen={showSignupForm} style={formStyles}>
-            <SignUpForm />
-            <button onClick={closeSignupModal}>Cancel</button>
+            <SignUpForm setTrigger={setShowSignupForm}/>
           </Modal>
         </li>
+        )}
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
@@ -115,9 +103,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
-        <li>
-          <LogoutButton />
-        </li>
+        {sessionUser && (
+          <li>
+            <LogoutButton setTrigger={setShowLoginForm}/>
+          </li>
+        )}
       </ul>
     </nav>
   );

@@ -8,13 +8,16 @@ const Cart = () => {
     // const shopping_cart = useSelector(state => state.shoppingCart)
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const snackQ = useSelector(state => state.shoppingCart?.snackQuantity)
-    const snacks = useSelector(state => state.shoppingCart.allsnacks);
+
+    const snacks = useSelector(state => state.shoppingCart?.allsnacks);
+
 
     const userId = useSelector(state => state.session?.user?.id);
     const [quantity, setQuantity] = useState(snackQ)
     const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
     // let snackies = []
+
     // const [snackies, setSnackies] = useState([])
 
     let total = 0
@@ -26,24 +29,28 @@ const Cart = () => {
     const dispatch = useDispatch();
 
 
-    // async function handleSubmit(e) {
-    //     // console.log("@@@@SnackID@@@", snackId)
-    //     e.preventDefault();
-    //     await dispatch(thunkUpdateCart(cart, snackId, quantity))
-    //     // window.sessionStorage.setItem('snacks', JSON.stringify(snacks))
-    //     setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
-    //     dispatch(thunkGetCart(userId, snackies))
-    //     console.log("***AFTER SUBMIT", snackies)
-    // }
+
+   // async function handleSubmit(e) {
+        // console.log("@@@@SnackID@@@", snackId)
+       // e.preventDefault();
+       // await dispatch(thunkUpdateCart(cart, snackId, quantity))
+        // localStorage.setItem('snacks', JSON.stringify(snacks))
+        // setSnackies(JSON.parse(localStorage.getItem('snacks')))
+      //  dispatch(thunkGetCart(userId, snackies))
+    //    console.log("***AFTER SUBMIT", snackies)
+   // }
 
     // useEffect(() => {
-    //     window.sessionStorage.setItem('snacks', JSON.stringify(snacks))
+    //     localStorage.setItem('snacks', JSON.stringify(snacks))
+
     // }, [snackies]);
 
     useEffect(() => {
         // setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
-        dispatch(thunkGetCart(userId))
+
         // console.log('***SNACKIES', snackies)
+        dispatch(thunkGetCart(userId, snackies))
+
     }, [dispatch]);
 
     function openOrderModal() {
@@ -101,6 +108,7 @@ const Cart = () => {
                         </div>
                     </div>
                     // )
+
                 ))}
             </div>
             <div>

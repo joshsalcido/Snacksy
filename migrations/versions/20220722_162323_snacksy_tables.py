@@ -45,29 +45,33 @@ def upgrade():
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table('snacks',
-                    sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('user_id', sa.Integer(), nullable=False),
-                    sa.Column('cover_pic', sa.String(
-                        length=255), nullable=False),
-                    sa.Column('title', sa.String(length=100), nullable=False),
-                    sa.Column('description', sa.String(
-                        length=500), nullable=False),
-                    sa.Column('price', sa.Float(), nullable=False),
-                    sa.Column('category', sa.String(
-                        length=20), nullable=False),
-                    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-                    sa.PrimaryKeyConstraint('id')
-                    )
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('cover_pic', sa.String(length=255), nullable=False),
+    sa.Column('title', sa.String(length=100), nullable=False),
+    sa.Column('description', sa.String(length=500), nullable=False),
+    sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('category', sa.String(length=20), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    # op.create_table('cart_items',
+    # sa.Column('id', sa.Integer(), nullable=False),
+    # sa.Column('shopping_cart_id', sa.Integer(), nullable=False),
+    # sa.Column('snack_id', sa.Integer(), nullable=False),
+    # sa.Column('quanity', sa.Integer(), nullable=False),
+    # sa.ForeignKeyConstraint(['shopping_cart_id'], ['shopping_carts.id'], ),
+    # sa.ForeignKeyConstraint(['snack_id'], ['snacks.id'], ),
+    # sa.PrimaryKeyConstraint('id')
+    # )
     op.create_table('items',
-                    sa.Column('shopping_cart_id',
-                              sa.Integer(), nullable=False),
-                    sa.Column('snack_id', sa.Integer(), nullable=False),
-                    sa.Column('quantity', sa.Integer(), nullable=False),
-                    sa.ForeignKeyConstraint(['shopping_cart_id'], [
-                                            'shopping_carts.id'], ),
-                    sa.ForeignKeyConstraint(['snack_id'], ['snacks.id'], ),
-                    sa.PrimaryKeyConstraint('shopping_cart_id', 'snack_id')
-                    )
+    sa.Column('shopping_cart_id', sa.Integer(), nullable=False),
+    sa.Column('snack_id', sa.Integer(), nullable=False),
+    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['shopping_cart_id'], ['shopping_carts.id'], ),
+    sa.ForeignKeyConstraint(['snack_id'], ['snacks.id'], ),
+    sa.PrimaryKeyConstraint('shopping_cart_id', 'snack_id')
+    )
     op.create_table('reviews',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('user_id', sa.Integer(), nullable=False),

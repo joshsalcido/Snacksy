@@ -5,7 +5,9 @@ import { thunkClearCart, thunkGetCart } from '../../store/cart';
 import { useHistory } from 'react-router-dom';
 
 const OrderForm = ({ closeOrderModal, total, totalItems }) => {
-    const sessionUser = useSelector((state) => state.session.user);
+
+    const sessionUser = useSelector((state) => state.session?.user);
+
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const history = useHistory()
 
@@ -23,7 +25,7 @@ const OrderForm = ({ closeOrderModal, total, totalItems }) => {
     return (
         <form>
             <div>
-                <p>Shipping order to: {sessionUser.address}</p>
+                <p>Shipping order to: {sessionUser?.address}</p>
             </div>
             <fieldset>
                 <legend>Select your payment method:</legend>

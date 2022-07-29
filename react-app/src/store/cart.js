@@ -4,6 +4,7 @@ const UPDATE_CART = 'cart/updateCart';
 const DELETE_FROM_CART = 'cart/deleteFromCart';
 const CLEAR_CART = 'cart/clearCart';
 
+
 export const actionGetCart = (cart) => {
     return {
         type: GET_SHOPPING_CART,
@@ -39,6 +40,7 @@ export const actionClearCart = (cart) => {
         cart
     }
 }
+
 
 export const thunkGetCart = (id) => async (dispatch) => {
     const response = await fetch(`/api/cart/${id}`);

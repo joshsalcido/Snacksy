@@ -12,6 +12,11 @@ class Snack(db.Model):
     price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(20), nullable=False)
 
+
+    # users = db.relationship("User", back_populates="snack")
+    # cart_item = db.relationship("CartItem", uselist=False, back_populates="snack")
+    # reviews = db.relationship("Review", back_populates="snack")
+
     users = db.relationship("User", back_populates="snacks")
     reviews = db.relationship("Review", back_populates="snack")
     shopping_carts = db.relationship(
