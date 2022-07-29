@@ -11,18 +11,19 @@ const AllSnacks = () => {
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id)
 
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllSnacks());
-        dispatch(thunkGetCart(userId))
+        // dispatch(thunkGetCart(userId))
     }, [dispatch]);
 
     if (!snacks) return null
 
     return (
         <div>
-            {snacks && snacks.map(snack => (
+            {snacks && snacks.length && snacks.map(snack => (
                 <div key={snack.id}>
                     <Link to={`/snacks/${snack.id}`}>
                         <img id="snack-image" src={snack.cover_pic} alt="snackImg"></img>

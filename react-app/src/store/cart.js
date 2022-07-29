@@ -4,10 +4,10 @@ const UPDATE_CART = 'cart/updateCart';
 const DELETE_FROM_CART = 'cart/deleteFromCart';
 const CLEAR_CART = 'cart/clearCart';
 
-export const actionGetCart = (cart) => {
+export const actionGetCart = (cart, snackies) => {
     return {
         type: GET_SHOPPING_CART,
-        cart
+        cart, snackies
     }
 }
 
@@ -40,12 +40,12 @@ export const actionClearCart = (cart) => {
     }
 }
 
-export const thunkGetCart = (id) => async (dispatch) => {
+export const thunkGetCart = (id, snackies) => async (dispatch) => {
     const response = await fetch(`/api/cart/${id}`);
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionGetCart(data));
+        dispatch(actionGetCart(data, snackies));
         return data;
     } else {
         return await response.json()
@@ -126,12 +126,13 @@ const initialState = { allsnacks: [] };
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SHOPPING_CART:
+            console.log("***ACTION", action)
             let cartState = { ...state };
             cartState[action.cart.id] = action.cart
             const getList = [...cartState.allsnacks]
-            // action.cart.snacks.forEach(snack => {
-            //     getList.push({ 'id': snack.id, "snacky": snack, "snackyQty": 1 })
-            // })
+            action.snackies.forEach(snack => {
+                getList.push({ 'id': snack.id, "snacky": snack, "snackyQty": snack.snackyQty })
+            })
             return { ...cartState, allsnacks: getList }
 
         case ADD_TO_CART:

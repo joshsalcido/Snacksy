@@ -7,13 +7,14 @@ import Modal from 'react-modal';
 const Cart = () => {
     // const shopping_cart = useSelector(state => state.shoppingCart)
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
-    const snackQ = useSelector(state => state.shoppingCart.snackQuantity)
-    const snacks = useSelector(state => state.shoppingCart.allsnacks);
+    const snackQ = useSelector(state => state.shoppingCart?.snackQuantity)
+    const snacks = useSelector(state => state.shoppingCart?.allsnacks);
 
     const userId = useSelector(state => state.session?.user?.id);
     const [quantity, setQuantity] = useState(snackQ)
     const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
+    const [snackies, setSnackies] = useState([])
 
     let total = 0
     let totalItems = 0
@@ -23,15 +24,20 @@ const Cart = () => {
 
     const dispatch = useDispatch();
 
+
     async function handleSubmit(e) {
         // console.log("@@@@SnackID@@@", snackId)
         e.preventDefault();
         await dispatch(thunkUpdateCart(cart, snackId, quantity))
-        
+        sessionStorage.setItem('snacks', JSON.stringify(snacks))
+        snackies.push(JSON.parse(sessionStorage.getItem('snacks')))
     }
 
     useEffect(() => {
-        dispatch(thunkGetCart(userId))
+        sessionStorage.setItem('snacks', JSON.stringify(snacks))
+        setSnackies(JSON.parse(window.sessionStorage.getItem('snacks')))
+        console.log('***SNACKIES', snackies)
+        dispatch(thunkGetCart(userId, snackies))
     }, [dispatch]);
 
     function openOrderModal() {
@@ -52,6 +58,9 @@ const Cart = () => {
             transform: 'translate(-50%, -50%)',
         },
     };
+
+    // if (!snacks) return null
+    // if (!snackQ) return null
 
     return (
         <>

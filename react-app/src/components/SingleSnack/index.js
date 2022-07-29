@@ -15,8 +15,8 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    console.log('**CART!!!', cart)
-    console.log("***SNACK", snack)
+    // console.log('**CART!!!', cart)
+    // console.log("***SNACK", snack)
     let snacks = []
     // console.log("***QUANTITY", quantity)
 
@@ -35,7 +35,7 @@ export default function SingleSnack() {
 
     useEffect(() => {
         dispatch(thunkGetSingleSnack(snackId))
-        dispatch(thunkGetCart(userId))
+        // dispatch(thunkGetCart(userId))
     }, [dispatch, snackId])
 
     const onDelete = () => {
