@@ -45,7 +45,7 @@ export const actionClearCart = (cart) => {
 }
 
 export const actionCreateCart = (userId) => {
-    console.log("** ACTION GET CART", userId)
+    // console.log("** ACTION GET CART", userId)
     return {
         type: CREATE_CART,
         userId
@@ -60,7 +60,7 @@ export const actionRemoveCart = (userId) => {
 }
 
 export const thunkCreateCart = (userId) => async (dispatch) => {
-    console.log("***THUNK CREATE CART", userId)
+    // console.log("***THUNK CREATE CART", userId)
     const response = await fetch(`/api/cart/${userId}/create`);
 
     if (response.ok) {
@@ -74,11 +74,11 @@ export const thunkCreateCart = (userId) => async (dispatch) => {
 
 export const thunkGetCart = (id) => async (dispatch) => {
     const response = await fetch(`/api/cart/${id}`);
-    console.log("***THUNK", id)
+    // console.log("***THUNK", id)
     if (response.ok) {
         const data = await response.json();
         dispatch(actionGetCart(data));
-        console.log("***THE DATA", data)
+        // console.log("***THE DATA", data)
         return data;
     } else {
         return await response.json()
