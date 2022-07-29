@@ -26,9 +26,10 @@ export default function SingleSnack() {
 
         const ok = await dispatch(thunkAddToCart(cart, snack, quantity))
 
-        setQuantity(quantity)
-        return alert("Added to cart!")
-
+        if (ok) {
+            setQuantity(quantity)
+            return alert("Added to cart!")
+        }
         // return alert("Snack already in cart!")
 
     }
