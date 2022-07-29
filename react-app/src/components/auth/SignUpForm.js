@@ -124,9 +124,9 @@ const SignUpForm = ({setTrigger}) => {
           ></input>
         </div>
         <button type='submit'>Sign Up</button>
-        <NavLink to={'/'}>
+        {/* <NavLink to={'/'}> */}
           <button onClick={() => setTrigger(false)}>Cancel</button>
-        </NavLink>
+        {/* </NavLink> */}
       </form>
     </>
   );

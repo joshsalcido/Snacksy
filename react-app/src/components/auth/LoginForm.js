@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { thunkGetCart } from '../../store/cart';
 import { login } from '../../store/session';
+import { thunkCreateCart } from '../../store/cart';
 import './LoginForm.css'
 
 const LoginForm = ({ showLoginForm, closeModal }) => {
@@ -13,15 +15,23 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+
+    const data = await dispatch(login(email, password))
+
     if (data) {
       setErrors(data);
     }
   };
 
+
+  // useEffect(() => {
+  //   console.log("user2", user)
+  //   // dispatch(thunkGetCart(user?.id))
+  // }, [dispatch])
+
   const demoSubmit = (e) => {
     e.preventDefault();
-    return dispatch(login('demo@aa.io','password'))
+    return dispatch(login('demo@aa.io', 'password'))
   }
 
   const updateEmail = (e) => {
@@ -67,7 +77,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
             required
           />
           <button type='submit'>Sign in</button>
-          <Link className='demo-link'onClick={demoSubmit}>Demo Snacksy</Link>
+          <Link to='/' className='demo-link' onClick={demoSubmit}>Demo Snacksy</Link>
         </div>
       </form>
     </>

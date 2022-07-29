@@ -6,11 +6,14 @@ import LogoutButton from './auth/LogoutButton';
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import Modal from 'react-modal';
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SearchBar from './SearchBar';
 import './navbar.css'
 
 const NavBar = () => {
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state.session?.user);
+  const cart = useSelector(state => Object.values(state?.shoppingCart)[0]);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
 
@@ -40,6 +43,11 @@ const NavBar = () => {
     },
   };
 
+  let cartQuantity = null;
+  if (cart) {
+    cartQuantity = cart.quantity
+  }
+
   return (
     <nav >
       <ul className='navbar'>
@@ -49,29 +57,38 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <SearchBar className='search-bar'/>
+          <SearchBar className='search-bar' />
         </li>
         {sessionUser &&
-        <li id="create-snack-button">
-          <NavLink to="/new-snack">
-            <button className='create-snack-bttn'>
-              <i className="fa-solid fa-store"></i>
-            </button>
-          </NavLink>
-        </li>
+          <li id="create-snack-button">
+            <NavLink to="/new-snack">
+              <button className='create-snack-bttn'>
+                <i className="fa-solid fa-store"></i>
+              </button>
+            </NavLink>
+          </li>
         }
+        {sessionUser && (
+          <li>
+            <NavLink to={`/cart/${sessionUser?.id}`}>
+              <Badge color="primary" badgeContent={cartQuantity}>
+                <ShoppingCartIcon />
+              </Badge>
+            </NavLink>
+          </li>
+        )}
         {!sessionUser && (
-        <li>
-          <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
-          <Modal isOpen={showLoginForm} style={formStyles}>
-            <LoginForm />
-            <button onClick={closeLoginModal}>Cancel</button>
-            <button  onClick={openClose}>Register</button>
-          </Modal>
-          <Modal isOpen={showSignupForm} style={formStyles}>
-            <SignUpForm setTrigger={setShowSignupForm}/>
-          </Modal>
-        </li>
+          <li>
+            <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
+            <Modal isOpen={showLoginForm} style={formStyles}>
+              <LoginForm />
+              <button onClick={closeLoginModal}>Cancel</button>
+              <button onClick={openClose}>Register</button>
+            </Modal>
+            <Modal isOpen={showSignupForm} style={formStyles}>
+              <SignUpForm setTrigger={setShowSignupForm} />
+            </Modal>
+          </li>
         )}
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
@@ -91,6 +108,7 @@ const NavBar = () => {
         {sessionUser && (
           <li>
             <LogoutButton setTrigger={setShowLoginForm} setTriggerSignup={setShowSignupForm}/>
+
           </li>
         )}
       </ul>

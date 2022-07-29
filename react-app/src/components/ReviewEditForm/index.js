@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkEditReview } from "../../store/reviews";
-import {FaStar} from "react-icons/fa"
+import { FaStar } from "react-icons/fa"
 
 
-export default function EditReviewForm({setTrigger}){
+export default function EditReviewForm({ setTrigger }) {
   const { snackId } = useParams()
   const dispatch = useDispatch()
 
   const sessionUser = useSelector((state) => state.session.user)
-  const reviews= useSelector((state) => Object.values(state.reviews))
+  const reviews = useSelector((state) => Object.values(state.reviews))
 
   const userReview = reviews.filter(review => review.user_id === sessionUser.id)
   const review = Object.values(userReview)[0]
@@ -24,7 +24,7 @@ export default function EditReviewForm({setTrigger}){
 
   useEffect(() => {
     const errors = [];
-    if(rating === null) errors.push("Must provide a rating between 1-5!")
+    if (rating === null) errors.push("Must provide a rating between 1-5!")
     if (comment.length < 5) errors.push("Review must be at least 5 characters!");
     setValidationErrors(errors);
   }, [comment, rating]);
@@ -34,7 +34,7 @@ export default function EditReviewForm({setTrigger}){
 
     setHasSubmitted(true);
 
-    if(validationErrors.length) return alert("Cannot Submit Review");
+    if (validationErrors.length) return alert("Cannot Submit Review");
 
     const editedReview = {
       ...review,
@@ -78,6 +78,7 @@ export default function EditReviewForm({setTrigger}){
               return (
                 <label key={index}>
                   <input
+                    className='stars'
                     type="radio"
                     id="radioBttn"
                     name="rating"
