@@ -21,10 +21,6 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
     if (data) {
       setErrors(data);
     }
-
-    if (user) {
-      await dispatch(thunkCreateCart(user.id))
-    }
   };
 
 
@@ -35,11 +31,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
 
   const demoSubmit = (e) => {
     e.preventDefault();
-    dispatch(login('demo@aa.io', 'password'))
-    if (user) {
-      dispatch(thunkCreateCart(user.id))
-    }
-    return
+    return dispatch(login('demo@aa.io', 'password'))
   }
 
   const updateEmail = (e) => {

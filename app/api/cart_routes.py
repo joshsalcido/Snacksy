@@ -6,10 +6,7 @@ cart_routes = Blueprint('cart', __name__)
 
 @cart_routes.route('/<id>/create', methods=["POST"])
 def create_cart(id):
-    new_cart = ShoppingCart(
-        user_id=id,
-        total=0
-    )
+    
     print("**WE BACK HERE", new_cart)
     db.session.add(new_cart)
     db.session.commit()
