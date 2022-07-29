@@ -20,7 +20,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
     if (data) {
       setErrors(data);
     }
-    
+
   };
 
   // useEffect(() => {
@@ -76,7 +76,7 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
             required
           />
           <button type='submit'>Sign in</button>
-          <Link className='demo-link'onClick={demoSubmit}>Demo Snacksy</Link>
+          <Link to='/' className='demo-link'onClick={demoSubmit}>Demo Snacksy</Link>
         </div>
       </form>
     </>
