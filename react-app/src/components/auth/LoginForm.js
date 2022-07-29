@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { thunkGetCart } from '../../store/cart';
 import { login } from '../../store/session';
 import './LoginForm.css'
 
@@ -13,11 +14,20 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+
+    const data = await dispatch(login(email, password))
+
+    console.log("user2", user)
     if (data) {
       setErrors(data);
     }
+    console.log("user1", user)
   };
+
+  useEffect(() => {
+    console.log("user2", user)
+    dispatch(thunkGetCart(user?.id))
+  }, [dispatch])
 
   const demoSubmit = (e) => {
     e.preventDefault();

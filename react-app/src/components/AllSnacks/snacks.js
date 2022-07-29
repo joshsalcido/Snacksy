@@ -2,16 +2,20 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { thunkGetAllSnacks } from "../../store/snacks";
+import { thunkGetCart } from "../../store/cart";
 import "./allSnacks.css"
 
 
 const AllSnacks = () => {
     const snacks = useSelector(state => Object.values(state.allSnacks));
+    // const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
+    // const userId = useSelector((state) => state.session?.user?.id)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllSnacks());
+        // dispatch(thunkGetCart(userId))
     }, [dispatch]);
 
     if (!snacks) return null
