@@ -64,6 +64,7 @@ function App() {
         </Route>
         <Route path='/categories/:category' exact={true}>
           <CategoriesPage />
+        </Route>
         <Route path='/cart/:userId'>
           <Cart />
         </Route>
