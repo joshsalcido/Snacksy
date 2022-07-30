@@ -18,7 +18,7 @@ const LogoutButton = ({setTrigger, setTriggerSignup}) => {
 
   return (
     <NavLink to='/'>
-      <button onClick={onLogout}> <i className="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+      <button className="logout-button" onClick={onLogout}> <i className="fa-solid fa-right-from-bracket"></i> Sign Out</button>
     </NavLink>
   )
 };

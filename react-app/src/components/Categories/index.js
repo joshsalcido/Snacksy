@@ -13,7 +13,7 @@ function CategoriesPage() {
 
   useEffect(() => {
     dispatch(thunkGetCategory(category))
-  },dispatch, category)
+  },[dispatch, category])
 
   return (
     <div>

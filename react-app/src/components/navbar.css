@@ -1,9 +1,16 @@
+nav{
+  width: 100%;
+  margin: 0;
+}
+
 .navbar{
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   list-style: none;
-  margin: 0;
-  padding: 10px;
+  margin: auto;
+  padding: 10px 0;
   align-items: center;
   border-bottom: 2px solid lightgray;
 
@@ -13,9 +20,68 @@
   width: 100%;
 }
 
+
 .home-title{
   text-decoration: none;
-  color: #F1641E  ;  /* etsy color */
-  padding-left: 36px;
+  color: #F1641E;  /* etsy color */
+  padding-left: 10px;
   font-size: 40px;
+  padding-right: 5px;
+}
+
+.snacksy-home-bttn {
+  width: 200px;
+}
+
+.search-bar{
+  width: 100%;
+}
+
+.signin-navbar{
+  width: 100px;
+  margin-left: 5px;
+}
+
+.nav-buttons{
+  border-radius: 50px;
+}
+
+
+.logout-button{
+  width: 100px;
+  margin: 0 5px;
+  border-radius: 50px;
+}
+
+
+
+.shopping-cart {
+  margin: 0 5px;
+  padding: 10px 10px;
+}
+
+
+.create-snack-bttn {
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  padding: 12px 12px;
+  margin-left: 5px;
+}
+
+.create-snack-bttn:hover{
+  box-shadow: 0 0 4px 2px rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  border-radius: 50%;
+}
+
+.shopping-cart:hover{
+  box-shadow: 0 0 4px 2px rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  border-radius: 50%;
+}
+
+.logout-button:hover{
+  transform: scale(1);
+  box-shadow: 0 0 4px 2px rgb(226, 226, 226);
 }

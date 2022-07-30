@@ -1,5 +1,5 @@
 .search {
-    padding-right: 10px;
+    padding-right: 5px;
 }
 .search-inputs {
     display:flex;
@@ -20,7 +20,7 @@
     font-size: 18px;
     padding: 5px 5px 5px 5px;
     height: 25px;
-    width: 500px;
+    width: 100%;
 }
 
 .search input:focus {
@@ -90,8 +90,15 @@
     overflow:hidden;
     width: 600px;
     position: absolute;
+    z-index: 4;
 }
 
 #snack-title{
     margin-left: 10px;
+}
+
+@media screen and (max-width: 780px) {
+    .snack-result{
+        width: auto;
+    }
 }

@@ -49,36 +49,36 @@ const NavBar = () => {
   }
 
   return (
-    <nav >
+    <nav className='nav'>
       <ul className='navbar'>
-        <li>
+        <div className='snacksy-home-bttn'>
           <NavLink to='/' exact={true} activeClassName='active' className='home-title'>
             Snacksy
           </NavLink>
-        </li>
-        <li>
-          <SearchBar className='search-bar' />
-        </li>
-        {sessionUser &&
-          <li id="create-snack-button">
+        </div>
+        <div className='search-bar'>
+          <SearchBar />
+        </div>
+        {sessionUser && (
+        <>
+          <div className="create-snack">
             <NavLink to="/new-snack">
               <button className='create-snack-bttn'>
-                <i className="fa-solid fa-store"></i>
+                <i className="fa-solid fa-store fa-lg"></i>
               </button>
             </NavLink>
-          </li>
-        }
-        {sessionUser && (
-          <li>
+          </div>
+          <div className='shopping-cart'>
             <NavLink to={`/cart/${sessionUser?.id}`}>
-              <Badge color="primary" badgeContent={cartQuantity}>
+              <Badge color="primary" badgeContent={cartQuantity} overlap="rectangular">
                 <ShoppingCartIcon />
               </Badge>
             </NavLink>
-          </li>
+          </div>
+        </>
         )}
         {!sessionUser && (
-          <li>
+          <div className='signin-navbar'>
             <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
             <Modal isOpen={showLoginForm} style={formStyles}>
               <LoginForm />
@@ -88,7 +88,7 @@ const NavBar = () => {
             <Modal isOpen={showSignupForm} style={formStyles}>
               <SignUpForm setTrigger={setShowSignupForm} />
             </Modal>
-          </li>
+          </div>
         )}
         {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
@@ -106,10 +106,10 @@ const NavBar = () => {
           </NavLink>
         </li> */}
         {sessionUser && (
-          <li>
+          <div className='logout-button'>
             <LogoutButton setTrigger={setShowLoginForm} setTriggerSignup={setShowSignupForm}/>
 
-          </li>
+          </div>
         )}
       </ul>
     </nav>
