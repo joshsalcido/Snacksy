@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkClearCart, thunkDeleteFromCart, thunkGetCart, thunkUpdateCart } from "../../store/cart";
+import { thunkClearCart, thunkDeleteFromCart, thunkGetCart } from "../../store/cart";
 import OrderForm from "../OrderForm/orderForm";
 import Modal from 'react-modal';
 
 const Cart = () => {
     // const shopping_cart = useSelector(state => state.shoppingCart)
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
-    const snackQ = useSelector(state => state.shoppingCart?.snackQuantity)
+    // const snackQ = useSelector(state => state.shoppingCart?.snackQuantity)
 
-    const snacks = useSelector(state => state.shoppingCart?.allsnacks);
+    // const snacks = useSelector(state => state.shoppingCart?.allsnacks);
 
 
     const userId = useSelector(state => state.session?.user?.id);
-    const [quantity, setQuantity] = useState(snackQ)
-    const [snackId, setSnackId] = useState(0)
+    // const [quantity, setQuantity] = useState(snackQ)
+    // const [snackId, setSnackId] = useState(0)
     const [showOrderForm, setShowOrderForm] = useState(false)
     // let snackies = []
 
@@ -22,7 +22,7 @@ const Cart = () => {
 
     let total = 0
     let totalItems = 0
-    let currentKey = ''
+    // let currentKey = ''
 
     Modal.setAppElement('body');
 
@@ -89,7 +89,7 @@ const Cart = () => {
                             {/* {currentKey = snack.id} */}
                         </div>
                         <div>
-                            <img src={snack.cover_pic}></img>
+                            <img src={snack.cover_pic} alt='snack_cover'></img>
                             <p>{snack.title}</p>
                             <p>Price: ${(snack.price).toFixed(2)}</p>
                             {/* <p>Quantity: {snack.snackyQty}</p> */}
