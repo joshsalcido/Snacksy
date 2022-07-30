@@ -28,8 +28,8 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
-    const [snackies, setSnackies] = useState([])
+    // const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
+    // const [snackies, setSnackies] = useState([])
     // console.log('**CART!!!', cart)
     // console.log("***SNACK", snack)
     let snacks = []
@@ -79,16 +79,16 @@ export default function SingleSnack() {
     if (!snack) return null
 
 
-    function stringify() {
-        if (cart) {
-            cart.snacks.forEach(item => {
-                snacks.push(JSON.stringify(item))
-            })
-            return snacks
-        }
-    }
+    // function stringify() {
+    //     if (cart) {
+    //         cart.snacks.forEach(item => {
+    //             snacks.push(JSON.stringify(item))
+    //         })
+    //         return snacks
+    //     }
+    // }
 
-    const strgs = stringify(cart)
+    // const strgs = stringify(cart)
     // console.log(strgs)
 
     const formStyles = {

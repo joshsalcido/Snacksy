@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { thunkGetCart } from '../../store/cart';
 import { login } from '../../store/session';
-import { thunkCreateCart } from '../../store/cart';
 import './LoginForm.css'
 
 const LoginForm = ({ showLoginForm, closeModal }) => {
