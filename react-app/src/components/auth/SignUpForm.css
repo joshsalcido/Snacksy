@@ -18,7 +18,7 @@ input:hover {
 }
 
 #registration_is_easy {
-    margin-top: -10px;
+    margin-top: 10px;
 }
 
 #registration_is_easy {
@@ -58,6 +58,7 @@ label {
 
 .register_errors {
     padding-bottom: 10px;
+    padding-top: 10px;
     font-size: 12px;
     font-weight: bold;
 }

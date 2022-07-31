@@ -51,6 +51,7 @@
     padding-bottom: 35px;
     padding-top: 20px;
     width: 300px;
+    margin-bottom: 100px;
 }
 
 .fa-brands {
@@ -120,20 +121,24 @@ input[type='radio'] {
 }
 
 .empty-msg {
-    position: absolute;
-    left: 45%;
+    /* position: absolute; */
+    /* left: 45%; */
+    /* border: 1px solid blue; */
+    margin-left: 13rem;
     margin-top: 50px;
+    margin-bottom: 350px;
 }
 
 .empty-msg h1 {
     font-weight: 100;
+    margin-bottom: 20px;
 }
 
 .empty-add {
-    background-color: rgba(51, 51, 51, 0.05);
+    background-color: black;
     border-radius: 8px;
     border-width: 0;
-    color: #333333;
+    color: white;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
@@ -142,4 +147,10 @@ input[type='radio'] {
     padding: 10px 12px;
     text-align: center;
     margin-left: 25px;
+    margin-top: 20px;
+}
+.empty-add:hover {
+    box-shadow: 2px  2px 8px #888888;
+    background-color: rgb(34, 34, 34);
+    color: white;
 }

@@ -127,7 +127,7 @@ export default function SnackForm() {
                 <span className='currency-code'>$</span>
                 <input
                   type="text"
-                  className="price-input"
+                  className="create-snack-price-input"
                   value={price}
                   placeholder="22.22"
                   maxLength="10"

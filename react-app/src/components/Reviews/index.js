@@ -47,15 +47,38 @@ export default function Reviews() {
     }, [dispatch, snackId])
 
     const formStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
+        overlay: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          minHeight: '100%',
+          padding: '12px',
+          backgroundColor: 'rgba(34, 34, 34, 0.65)'
         },
+        content: {
+          position: 'relative',
+          margin: 'auto',
+          maxWidth: '500px',
+          width: '100%',
+          top: '40px',
+          left: '40px',
+          right: '40px',
+          bottom: '40px',
+          border: '1px solid #ccc',
+          background: '#fff',
+          overflow: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          borderRadius: '24px',
+          outline: 'none',
+          padding: '0px 18px 18px',
+          overflow: 'visibile'
+        }
     };
+
     let review;
     if(sessionUser) {
         const userReview = reviews.filter(review => review.user_id === sessionUser.id)
@@ -82,16 +105,16 @@ export default function Reviews() {
                     <>
                         <button className='write-review-btn' onClick={oneReview}> Write a review</button>
                         <Modal isOpen={showReviewEditForm} style={formStyles}>
+                            <button className="close_review_btn" onClick={closeReviewEditForm}>X</button>
                             <EditReviewForm setTrigger={setShowReviewEditForm}/>
-                            <button onClick={closeReviewEditForm}>Cancel</button>
                         </Modal>
                     </>
                 ) : (
                     <>
                         <button className='write-review-btn' onClick={openReviewForm}> Write a review</button>
                         <Modal isOpen={showReviewForm} style={formStyles}>
+                            <button className="close_review_btn" onClick={closeReviewForm}>X</button>
                             <ReviewForm setTrigger={setShowReviewForm}/>
-                            <button className="cancel-review" onClick={closeReviewForm}>Cancel</button>
                         </Modal>
                     </>
                 )}
@@ -156,8 +179,8 @@ export default function Reviews() {
                             <>
                                 <button className='edit-review'  onClick={openReviewEditForm}>Edit Review</button>
                                     <Modal isOpen={showReviewEditForm} style={formStyles}>
+                                        <button className="close_review_btn" onClick={closeReviewEditForm}>X</button>
                                         <EditReviewForm setTrigger={setShowReviewEditForm}/>
-                                        <button className="cancel-review" onClick={closeReviewEditForm}>Cancel</button>
                                     </Modal>
                                 <button className='delete-review-button'
                                     onClick={() => dispatch(thunkDeleteReview(review.id))}>
