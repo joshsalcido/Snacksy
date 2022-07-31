@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
 
-const LoginForm = ({ showLoginForm, closeModal }) => {
+const LoginForm = ({ setTrigger }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,40 +45,36 @@ const LoginForm = ({ showLoginForm, closeModal }) => {
   }
 
   return (
-    <>
-      <h2>Sign in</h2>
-      <form onSubmit={onLogin}>
+    <div class="sign_in_modal">
+      <h2 id="sign_in_header">Sign in</h2>
+      <form className="sign_in_form" onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label htmlFor='email'>Email address</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-            required
-          />
-          <button type='submit'>Sign in</button>
-          <Link to='/' className='demo-link' onClick={demoSubmit}>Demo Snacksy</Link>
-        </div>
+        <label id="email_signin_label" htmlFor='email'>Email address</label>
+        <input
+          id="email_signin_input"
+          name='email'
+          type='text'
+          value={email}
+          onChange={updateEmail}
+          required
+        />
+        <label id="password_signin_label" htmlFor='password'>Password</label>
+        <input
+          id="password_signin_input"
+          name='password'
+          type='password'
+          value={password}
+          onChange={updatePassword}
+          required
+        />
+        <button id="signin_btn" type='submit'>Sign in</button>
+        <Link to='/' className='demo-link' onClick={demoSubmit}>Demo Snacksy! Click to sign in as a guest user.</Link>
       </form>
-    </>
+    </div>
   );
 };
 
