@@ -62,7 +62,7 @@
     height: 2.5rem;
     border: none;
     border-radius: 10rem;
-    background-color: black;
+    background-color: #222;
     color: white;
 }
 .addToCartbtn:hover {
