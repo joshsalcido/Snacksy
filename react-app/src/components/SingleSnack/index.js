@@ -53,6 +53,7 @@ export default function SingleSnack() {
     }
 
     useEffect(() => {
+        window.scroll(0,0)
         dispatch(thunkGetSingleSnack(snackId))
         if (userId) {
             dispatch(thunkGetCart(userId))

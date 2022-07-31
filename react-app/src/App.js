@@ -14,6 +14,8 @@ import EditSnackForm from './components/EditSnackForm';
 import SearchedSnacks from './components/SearchedSnacks';
 import CategoriesPage from './components/Categories';
 import Cart from './components/Cart/cart';
+import AllSnacksCategory from './components/Categories/allSnacksCategory';
+import Footer from './components/Footer';
 
 
 
@@ -65,6 +67,9 @@ function App() {
         <Route path='/categories/:category' exact={true}>
           <CategoriesPage />
         </Route>
+        <Route path='/category/all' exact={true}>
+          <AllSnacksCategory />
+        </Route>
         <Route path='/cart/:userId'>
           <Cart />
         </Route>
@@ -72,6 +77,7 @@ function App() {
           <h1>Page not found.</h1>
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

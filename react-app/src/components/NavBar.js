@@ -71,37 +71,42 @@ const NavBar = () => {
   }
 
   return (
-    <nav >
+    <nav className='nav'>
       <ul className='navbar'>
-        <li>
+        <div className='snacksy-home-bttn'>
           <NavLink to='/' exact={true} activeClassName='active' className='home-title'>
             Snacksy
           </NavLink>
-        </li>
-        <li>
-          <SearchBar className='search-bar' />
-        </li>
-        {sessionUser &&
-          <li id="create-snack-button">
-            <NavLink to="/new-snack">
-              <button className='create-snack-bttn'>
-                <i className="fa-solid fa-store"></i>
-              </button>
-            </NavLink>
-          </li>
-        }
+        </div>
+        <div className='search-bar'>
+          <SearchBar />
+        </div>
         {sessionUser && (
-          <li>
+        <>
+          <div className="create-snack">
+            <NavLink to="/new-snack">
+              <div className='create-snack-dropdown'>
+                <button className='create-snack-bttn'>
+                  <i className="fa-solid fa-store fa-lg"></i>
+                </button>
+                <div className='dropdown-title'>
+                  <p id='drop-down-text'>Create a Snack</p>
+                </div>
+              </div>
+            </NavLink>
+          </div>
+          <div className='shopping-cart'>
             <NavLink to={`/cart/${sessionUser?.id}`}>
-              <Badge color="primary" badgeContent={cartQuantity}>
-                <ShoppingCartIcon />
+              <Badge color="primary" badgeContent={cartQuantity} overlap="rectangular">
+                <ShoppingCartIcon color='action'/>
               </Badge>
             </NavLink>
-          </li>
+          </div>
+        </>
         )}
         {!sessionUser && (
-          <li>
-            <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
+          <div className='signin-navbar'>
+            <button className='signin-button' onClick={openLoginModal}>Sign in</button>
             <Modal isOpen={showLoginForm} style={formStyles}>
               <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
               <LoginForm />
@@ -111,28 +116,13 @@ const NavBar = () => {
               <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
               <SignUpForm setTrigger={setShowSignupForm} />
             </Modal>
-          </li>
+          </div>
         )}
-        {/* <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li> */}
         {sessionUser && (
-          <li>
+          <div className='logout-button'>
             <LogoutButton setTrigger={setShowLoginForm} setTriggerSignup={setShowSignupForm}/>
 
-          </li>
+          </div>
         )}
       </ul>
     </nav>
