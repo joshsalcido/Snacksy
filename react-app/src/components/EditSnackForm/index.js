@@ -83,6 +83,7 @@ export default function EditSnackForm() {
       <>
         <section className='snack-form'>
           <h1 className='snackFormTitle'> Edit your snack </h1>
+          <h5 className='sub-title'>Got some editing to do? Update the photo, price, description, and category as you please!</h5>
           <form className='createSnackForm' onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
               <div className="errorHandling">
@@ -91,9 +92,9 @@ export default function EditSnackForm() {
                 </div>
                 <ul className='errors'>
                   {validationErrors.map((error) => (
-                    <ul key={error} id="error">
+                    <li key={error} id="error">
                     {error}
-                    </ul>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -116,40 +117,47 @@ export default function EditSnackForm() {
             />
             <label>Description:</label>
             <textarea
-
-              className='form-input'
+              id="description-id"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
             />
-            <label>Price:</label>
-            <span className='currency-code'>$</span>
-            <input
-              type="text"
-              className='form-input'
-              value={price}
-              placeholder="22.22"
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-            <label>Category: </label>
-            <select
-              className='form-input'
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
-              <option disabled={true}>--select one--</option>
-              <option>Chips</option>
-              <option>Candy</option>
-              <option>Baked Goods</option>
-              <option>Protein</option>
-              <option>Beverages</option>
-            </select>
-            <button id="snackFormSubmit" type="submit">Edit your Snack</button>
-            <NavLink  to={`/snacks/${snackId}`}>
-              <button>Cancel</button>
-            </NavLink>
+            <div className='div-price-cat'>
+              <div className='price-div'>
+                <label className='price-label'>Price:</label>
+                <span className='currency-code'>$</span>
+                <input
+                  type="text"
+                  className="price-input"
+                  value={price}
+                  placeholder="22.22"
+                  onChange={(e) => setPrice(e.target.value)}
+                  required
+                />
+              </div>
+              <div className='category-div'>
+                <label className='category-label'>Category: </label>
+                <select
+                  className='category-select'
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
+                >
+                  <option disabled={true}>--select one--</option>
+                  <option>Chips</option>
+                  <option>Candy</option>
+                  <option>Baked Goods</option>
+                  <option>Protein</option>
+                  <option>Beverages</option>
+                </select>
+              </div>
+            </div>
+            <div className='submit-cancel-btns'>
+              <button id="snackFormSubmit" type="submit">Update Snack!</button>
+              <NavLink  to={`/snacks/${snackId}`}>
+                <button className='cancel-button'>Cancel</button>
+              </NavLink>
+            </div>
           </form>
         </section>
 

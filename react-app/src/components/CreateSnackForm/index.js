@@ -116,7 +116,6 @@ export default function SnackForm() {
             />
             <label>Description:</label>
             <textarea
-              // className='form-input'
               id="description-id"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
