@@ -108,7 +108,7 @@ const NavBar = () => {
               <button className="register_btn" onClick={openClose}>Register</button>
             </Modal>
             <Modal isOpen={showSignupForm} style={formStyles}>
-            <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
+              <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
               <SignUpForm setTrigger={setShowSignupForm} />
             </Modal>
           </li>

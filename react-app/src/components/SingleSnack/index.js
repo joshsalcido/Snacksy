@@ -92,15 +92,37 @@ export default function SingleSnack() {
     // console.log(strgs)
 
     const formStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
+        overlay: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          minHeight: '100%',
+          padding: '12px',
+          backgroundColor: 'rgba(34, 34, 34, 0.65)'
         },
-    };
+        content: {
+          position: 'relative',
+          margin: 'auto',
+          maxWidth: '384px',
+          width: '100%',
+          top: '40px',
+          left: '40px',
+          right: '40px',
+          bottom: '40px',
+          border: '1px solid #ccc',
+          background: '#fff',
+          overflow: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          borderRadius: '24px',
+          outline: 'none',
+          padding: '18px',
+          overflow: 'visibile'
+        }
+      };
 
     return (
         <>
@@ -130,20 +152,23 @@ export default function SingleSnack() {
                         <option value={5}>5</option>
                     </select> */}
                         {sessionUser && snack && !snacks.includes(JSON.stringify(snack)) && (
-                            <button type="submit">Add to Cart</button>
+                            <button type="submit">Add to cart</button>
                         )}
                     </form>
                     {!sessionUser && (
-                        <button className='nav-buttons' onClick={openLoginModal}>Add to Cart</button>
+                        <>
+                            <button className='nav-buttons' onClick={openLoginModal}>Sign in to add to cart</button>
+                            <Modal isOpen={showLoginForm} style={formStyles}>
+                                <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
+                                <LoginForm />
+                                <button className="register_btn" onClick={openClose}>Register</button>
+                            </Modal>
+                            <Modal isOpen={showSignupForm} style={formStyles}>
+                                <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
+                            <SignUpForm setTrigger={setShowSignupForm} />
+                            </Modal>
+                        </>
                     )}
-                    <Modal isOpen={showLoginForm} style={formStyles}>
-                        <LoginForm />
-                        <button onClick={closeLoginModal}>Cancel</button>
-                        <button onClick={openClose}>Register</button>
-                    </Modal>
-                    <Modal isOpen={showSignupForm} style={formStyles}>
-                        <SignUpForm setTrigger={setShowSignupForm} />
-                    </Modal>
                     {snack && snacks.includes(JSON.stringify(snack)) && (
                         <p>This snack is in your cart!</p>
                     )}
