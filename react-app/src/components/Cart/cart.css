@@ -84,6 +84,7 @@
     position: relative;
     text-align: center;
     width: 100%;
+    margin-top: 20px;
 }
 
 .checkout-form button:hover,
@@ -103,6 +104,12 @@
     list-style: none;
     padding: 10px 12px;
     text-align: center;
+    margin-top: 10px;
+    transition: box-shadow 0.3s;
+}
+
+.remove-cart-button:hover {
+    box-shadow: 0 0 5px 5px rgb(226, 226, 226);
 }
 
 .cart h2 {
@@ -115,9 +122,12 @@
 }
 
 input[type='radio'] {
+    width: 20px;
+    height: 20px;
     float: left;
-    margin-left: -130px;
+    margin-left: -20px;
     accent-color: black;
+    outline: 0;
 }
 
 .empty-msg {
@@ -126,7 +136,7 @@ input[type='radio'] {
     /* border: 1px solid blue; */
     margin-left: 13rem;
     margin-top: 50px;
-    margin-bottom: 350px;
+    margin-bottom: 200px;
 }
 
 .empty-msg h1 {
@@ -153,4 +163,8 @@ input[type='radio'] {
     box-shadow: 2px  2px 8px #888888;
     background-color: rgb(34, 34, 34);
     color: white;
+}
+
+#how_pay {
+    margin-bottom: 20px;
 }

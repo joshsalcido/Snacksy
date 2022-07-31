@@ -26,7 +26,7 @@ const Cart = () => {
                 {cart && !cart.quantity > 0 && (
                     <div className="empty-msg">
                         <h1>Your cart is empty</h1>
-                        <button className="empty-add" onClick={() => history.push('/')}>Add some snacks to fill it up</button>
+                        <button className="empty-add" onClick={() => history.push('/category/all')}>Add some snacks to fill it up</button>
                     </div>
                 )}
                 {cart && cart.quantity > 0 && (
