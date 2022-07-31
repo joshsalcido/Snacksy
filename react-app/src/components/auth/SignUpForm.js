@@ -54,7 +54,7 @@ const SignUpForm = ({setTrigger}) => {
 
   return (
     <div className='register_modal'>
-      <h2 id="create_acc_header">Create your account</h2>
+      <h3 id="create_acc_header">Create your account</h3>
       <p id="registration_is_easy">Registration is easy.</p>
       <form onSubmit={onSignUp}>
         <div className="register_errors">
