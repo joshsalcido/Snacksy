@@ -59,14 +59,14 @@ export default function ReviewForm({setTrigger}){
                 </div>
                 <ul className="errors">
                   {validationErrors.map((error) => (
-                    <ul key={error} id="error">
+                    <li key={error} id="error">
                       {error}
-                    </ul>
+                    </li>
                   ))}
                 </ul>
               </div>
             )}
-            <label>Rating: </label>
+            <label className="review-rating-label">Rating: </label>
             <div className="star-rating-container">
               {[...Array(5)].map((star, index) => {
                 const ratingVal = index + 1;
@@ -96,6 +96,7 @@ export default function ReviewForm({setTrigger}){
               <label> {!rating ? 0 : rating} / 5</label>
               <label>Leave your thoughts: </label>
               <textarea
+                className="review-input"
                 required
                 placeholder="Start typing here..."
                 value={comment}

@@ -63,9 +63,9 @@ export default function EditReviewForm({ setTrigger }) {
               </div>
               <ul className="errors">
                 {validationErrors.map((error) => (
-                  <ul key={error} id="error">
+                  <li key={error} id="error">
                     {error}
-                  </ul>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -98,8 +98,9 @@ export default function EditReviewForm({ setTrigger }) {
               );
             })}
             <label> {!rating ? 0 : rating} / 5</label>
-            <label>Leave your thoughts: </label>
+            <label >Leave your thoughts: </label>
             <textarea
+              className="review-input"
               required
               placeholder={comment}
               value={comment}
