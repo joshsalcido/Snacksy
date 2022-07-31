@@ -104,35 +104,43 @@ export default function SingleSnack() {
 
     return (
         <>
-            <div className='container'>
-                <div className='snackDetails'>
-                    <img src={snack.cover_pic} alt='snackImage'></img>
-                    <h1>{snack.title}</h1>
-                    <h2>{snack.category}</h2>
-                    <h2>${snack.price.toFixed(2)}</h2>
-                    <h3>{snack.description}</h3>
+            <div className='single-snack-container'>
+                <div className='img-div'>
+                    <img className='single-img' src={snack.cover_pic} alt='snackImage'></img>
+                    <div className='snack-info-div'>
+                        <h1 className='single-title' >{snack.title}</h1>
+                        <h2 className='single-cat'>{snack.category}</h2>
+                        <h2 className='single-price'>${snack.price.toFixed(2)}</h2>
+                        <h3 className='single-des'>{snack.description}</h3>
+                        <form onSubmit={handleSubmit}>
+                            {/* <label>Qty</label> */}
+                            {/* <select onChange={(e) => setQuantity(parseInt(e.target.value))}
+                            value={quantity}>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                        </select> */}
+                            {sessionUser && snack && !snacks.includes(JSON.stringify(snack)) && (
+                                <button className='addToCartbtn' type="submit">Add to Cart</button>
+                                )}
+                                {snack && snacks.includes(JSON.stringify(snack)) && (
+                                    <p className='already-in-cart'>This snack is in your cart!</p>
+                                    )}
+                        </form>
+                    </div>
+                </div>
                     {sessionUser && sessionUser.id === snack.user_id &&
                         <>
+                        <div className='edit-delete-div'>
                             <Link to={`/snacks/${snack.id}/edit`}>
-                                <button>Edit  <i className="fa-solid fa-pen-to-square"></i></button>
+                                <button className='edit-single-snack-btn'>Edit  <i className="fa-solid fa-pen-to-square"></i></button>
                             </Link>
-                            <button onClick={onDelete}>Delete  <i className="fa-solid fa-trash-can"></i></button>
+                            <button className='delete-single-snack-btn' onClick={onDelete}>Delete  <i className="fa-solid fa-trash-can"></i></button>
+                        </div>
                         </>
                     }
-                    <form onSubmit={handleSubmit}>
-                        {/* <label>Qty</label> */}
-                        {/* <select onChange={(e) => setQuantity(parseInt(e.target.value))}
-                        value={quantity}>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                    </select> */}
-                        {sessionUser && snack && !snacks.includes(JSON.stringify(snack)) && (
-                            <button type="submit">Add to Cart</button>
-                        )}
-                    </form>
                     {!sessionUser && (
                         <button className='nav-buttons' onClick={openLoginModal}>Add to Cart</button>
                     )}
@@ -144,10 +152,6 @@ export default function SingleSnack() {
                     <Modal isOpen={showSignupForm} style={formStyles}>
                         <SignUpForm setTrigger={setShowSignupForm} />
                     </Modal>
-                    {snack && snacks.includes(JSON.stringify(snack)) && (
-                        <p>This snack is in your cart!</p>
-                    )}
-                </div>
             </div>
             <Reviews />
         </>

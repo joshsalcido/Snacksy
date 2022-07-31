@@ -31,9 +31,12 @@
   align-items: center;
   margin: auto;
 }
-
+.errorTitle {
+  font-family: 'Pt Sans', sans-serif;
+}
 .errors {
   color: red;
+  font-family: 'Pt Sans', sans-serif;
 }
 
 /* Whole Form */
@@ -50,7 +53,9 @@
   padding: 20px 20px 50px 20px;
   display: grid;
   align-items: center;
-  margin: auto
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 600px;
 }
 
 

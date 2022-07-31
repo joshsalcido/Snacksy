@@ -1,6 +1,9 @@
 /* input[type='radio'] {
   display: none;
 } */
+/* .reviewFormContainer {
+
+} */
 .stars{
   display: none;
 }
@@ -12,4 +15,28 @@
 
 .star-rating-container {
   margin-bottom: 10px;
+}
+
+.review-rating-label {
+  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+}
+
+.review-input {
+  resize: none;
+  padding: 10px 13px 10px 10px;
+  font-family: 'Pt Sans', sans-serif;
+  width: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(167, 165, 165);
+}
+
+.reviewSubmit {
+  margin-right: 1.5rem;
+  height: 2rem;
+  width: 10rem;
+  background-color: black;
+  color: white;
+  border-radius: 10rem;
+  border: none;
 }
