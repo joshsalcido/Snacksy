@@ -102,3 +102,23 @@ nav{
   border-radius: 50%;
   transition: .5s;
 }
+
+
+.dropdown-title{
+  position: absolute;
+  right: 130px;
+  color: white;
+  background-color: #222;
+  border-radius: 10px;
+  opacity: 0%;
+  top: 8px;
+  margin-top: 60px;
+}
+
+#drop-down-text{
+  margin: 8px 8px 8px;
+}
+
+.create-snack-bttn:hover + .dropdown-title{
+  opacity: 100%;
+}

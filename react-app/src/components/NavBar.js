@@ -63,9 +63,14 @@ const NavBar = () => {
         <>
           <div className="create-snack">
             <NavLink to="/new-snack">
-              <button className='create-snack-bttn'>
-                <i className="fa-solid fa-store fa-lg"></i>
-              </button>
+              <div className='create-snack-dropdown'>
+                <button className='create-snack-bttn'>
+                  <i className="fa-solid fa-store fa-lg"></i>
+                </button>
+                <div className='dropdown-title'>
+                  <p id='drop-down-text'>Create a Snack</p>
+                </div>
+              </div>
             </NavLink>
           </div>
           <div className='shopping-cart'>
@@ -90,21 +95,6 @@ const NavBar = () => {
             </Modal>
           </div>
         )}
-        {/* <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li> */}
         {sessionUser && (
           <div className='logout-button'>
             <LogoutButton setTrigger={setShowLoginForm} setTriggerSignup={setShowSignupForm}/>
