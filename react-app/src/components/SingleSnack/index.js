@@ -166,7 +166,7 @@ export default function SingleSnack() {
                     }
                     {!sessionUser && (
                         <>
-                            <button className='nav-buttons' onClick={openLoginModal}>Sign in to add to cart</button>
+                            <button className='sign-in-to-addCart' onClick={openLoginModal}>Sign in to Add to cart</button>
                             <Modal isOpen={showLoginForm} style={formStyles}>
                                 <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
                                 <LoginForm />
