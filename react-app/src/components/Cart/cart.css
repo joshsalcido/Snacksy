@@ -123,10 +123,10 @@ input[type='radio'] {
 .empty-msg {
     /* position: absolute; */
     /* left: 45%; */
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin-left: 13rem;
     margin-top: 50px;
-    margin-bottom: 400px;
+    margin-bottom: 350px;
 }
 
 .empty-msg h1 {
