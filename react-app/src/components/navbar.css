@@ -42,15 +42,33 @@ nav{
   margin-left: 5px;
 }
 
-.nav-buttons{
+.signin-button{
   border-radius: 50px;
+  border: none;
+  background-color: white;
+  transition: .5s;
+}
+
+.signin-button:hover{
+  box-shadow: 0 0 5px 5px rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  transition: .5s;
 }
 
 
 .logout-button{
   width: 100px;
   margin: 0 5px;
+  border: none;
+  background-color: white;
+  transition: .5s;
+}
+
+.logout-button:hover{
   border-radius: 50px;
+  transition: .5s;
+  background-color: rgb(226, 226, 226);
+  box-shadow: 0 0 4px 2px rgb(226, 226, 226);
 }
 
 
@@ -58,30 +76,29 @@ nav{
 .shopping-cart {
   margin: 0 5px;
   padding: 10px 10px;
+  transition: .5s;
 }
 
 
 .create-snack-bttn {
   border: none;
   background-color: white;
-  border-radius: 50%;
   padding: 12px 12px;
   margin-left: 5px;
+  color: rgba(0, 0, 0, 0.54);
+  transition: .5s;
 }
 
 .create-snack-bttn:hover{
   box-shadow: 0 0 4px 2px rgb(226, 226, 226);
   background-color: rgb(226, 226, 226);
   border-radius: 50%;
+  transition: .5s;
 }
 
 .shopping-cart:hover{
   box-shadow: 0 0 4px 2px rgb(226, 226, 226);
   background-color: rgb(226, 226, 226);
   border-radius: 50%;
-}
-
-.logout-button:hover{
-  transform: scale(1);
-  box-shadow: 0 0 4px 2px rgb(226, 226, 226);
+  transition: .5s;
 }

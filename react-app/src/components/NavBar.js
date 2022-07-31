@@ -71,7 +71,7 @@ const NavBar = () => {
           <div className='shopping-cart'>
             <NavLink to={`/cart/${sessionUser?.id}`}>
               <Badge color="primary" badgeContent={cartQuantity} overlap="rectangular">
-                <ShoppingCartIcon />
+                <ShoppingCartIcon color='action'/>
               </Badge>
             </NavLink>
           </div>
@@ -79,7 +79,7 @@ const NavBar = () => {
         )}
         {!sessionUser && (
           <div className='signin-navbar'>
-            <button className='nav-buttons' onClick={openLoginModal}>Sign in</button>
+            <button className='signin-button' onClick={openLoginModal}>Sign in</button>
             <Modal isOpen={showLoginForm} style={formStyles}>
               <LoginForm />
               <button onClick={closeLoginModal}>Cancel</button>

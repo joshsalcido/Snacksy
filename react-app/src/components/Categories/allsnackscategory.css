@@ -1,29 +1,24 @@
-.category-container{
+.all-snack-cat-container{
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
+
 }
 
-.category-header{
-  background-color:  #fde7db ;
+.all-snack-cat-header{
   display: flex;
   justify-content: center;
   flex-direction: column;
   border-bottom: 2px solid lightgray;
   text-align: center;
   align-items: center;
+  margin-bottom: 20px;
   width: auto;
-  margin-bottom: 30px;
+  background-color:  #fde7db ;
 }
 
-#category-amount{
-  margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-#category-page-title{
+#all-snack-cat-title{
   text-align: center;
   font-size: 28px;
   font-weight: bold;
@@ -31,7 +26,7 @@
   margin: 25px 0 5px;
 }
 
-#category-page-link{
+#all-snack-home-link {
   font-size: 20px;
   font-weight: bold;
   opacity: 70%;
@@ -42,56 +37,66 @@
   width: 400px;
 }
 
-#category-page-return{
+#all-snack-return-link{
   margin-top: 150px;
 }
 
-#category-page-link:hover{
+#total-snacks{
+  margin: 10px 0;
+  font-size: 17px;
+  opacity: 70%;
+  font-weight: bold;
+}
+
+#all-snack-home-link:hover{
   opacity: 50%;
 }
 
-.category-snack-rows{
+
+.all-snack-cat-row{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.category-snack-card-container{
-  margin: 5px 10px;
+.all-snack-cat-card{
+  margin: 10px 10px;
   text-align: center;
-  border-radius: 30px;
+  border-radius: 10px;
   transition: .5s;
   width: 300px;
   border: 1px solid lightgray;
 }
 
-.category-snack-link{
+#all-snack-cat-link{
   text-decoration: none;
 }
 
-.category-snack-link > p {
-  text-align: left;
+
+#all-snack-cat-img{
+  width: 200px;
+  height: 200px;
+  padding-top: 10px ;
+  border-radius: 20px;
+
+}
+
+#all-snack-cat-card-title{
   color: black;
-  margin-left: 10px;
+  text-align: left;
+  margin-left: 20px;
+  text-overflow: ellipsis;
+  width: auto;
 }
 
-#category-snack-img {
-  width: 300px;
-  height: 300px;
-  border-radius: 30px;
-}
-
-#category-snack-title{
-  margin-left: 30px;
-}
-
-#category-snack-price{
-  margin-left: 30px;
-  margin-bottom: 20px;
+#all-snack-cat-price{
+  color: black;
+  text-align: left;
+  margin-left: 20px;
 }
 
 
-.category-snack-card-container:hover{
+.all-snack-cat-card:hover{
   box-shadow: 0 0 10px 10px lightgray;
   transition: .5s;
 }

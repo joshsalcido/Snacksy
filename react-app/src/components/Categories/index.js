@@ -16,19 +16,25 @@ function CategoriesPage() {
   },[dispatch, category])
 
   return (
-    <div>
+    <div className='category-container' >
+      <div className='category-header'>
+        <p id='category-page-title'>{category}</p>
+        <p id='category-amount'>{snacks.length} snacks</p>
+      </div>
+      <div className='category-snack-rows'>
         {snacks && snacks.map(snack => (
-            <div key={snack.id}>
-                <Link className="category-snack"to={`/snacks/${snack.id}`}>
-                  <div className='category-snack-card'>
+            <div className='category-snack-card-container' key={snack.id}>
+                <Link className="category-snack-link"to={`/snacks/${snack.id}`}>
                     <img id="category-snack-img" src={snack.cover_pic} alt="snackImg"></img>
-                    <p>{snack.title}</p>
-                    <p >$ {snack.price.toFixed(2)}</p>
-                    <p>{snack.description}</p>
-                  </div>
+                    <p id='category-snack-title'>{snack.title}</p>
+                    <p id='category-snack-price'>$ {snack.price.toFixed(2)}</p>
                 </Link>
             </div>
         ))}
+      </div>
+      <div id='category-page-return'>
+        <Link id='category-page-link' to='/'><i className="fa-solid fa-left-long"></i> {'back home'}</Link>
+      </div>
     </div>
   )
 }

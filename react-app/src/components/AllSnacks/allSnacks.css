@@ -13,15 +13,35 @@
   transition: .5s;
 }
 
-#snackcard-header{
-  margin: 50px 0 0 60px;
-}
-
 .snacks-home-container {
-  margin: 5px 20px 50px 20px;
+  margin: 80px 20px 50px 20px;
   display: flex;
   flex-direction: column;
 }
+
+.snack-container-header{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 80px 40px 0;
+  text-decoration: none;
+}
+
+#snackcard-header{
+  font-size: 20px;
+}
+
+.snackcard-link:hover{
+  opacity: 55%;
+}
+
+
+#allsnacks-link{
+  text-decoration: none;
+  border-bottom: 1px  solid rgb(75, 74, 74);
+  color: rgb(75, 74, 74);
+}
+
 
 
 .home-page-title{
@@ -81,7 +101,7 @@
 }
 
 .snack-card:hover{
-  box-shadow: 0 0 5px 2px lightgray;
+  box-shadow: 0 0 6px 6px lightgray;
   transition: .5s;
 }
 
@@ -93,7 +113,7 @@
   left: 0;
   right: 0;
   padding: 0px;
-  z-index: 3;
+  z-index: 2;
   transition: .5s;
 }
 
@@ -104,7 +124,6 @@
 .categories {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   justify-content: center;
   padding: 0;
 
@@ -134,7 +153,8 @@
 }
 
 .category-list:hover{
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
+  transform: .5s;
 }
 
 .category-link > img:hover{
@@ -150,13 +170,16 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  margin-top: 120px;
+  margin: 80px 0 0;
   background-color:  #fde7db ;
   padding-bottom: 100px;
+  margin-bottom: -150px;
 }
 
 .why-snacksy{
   font-size: 30px;
+  font-weight: bold;
+  opacity: 80%;
 }
 
 .bio-content{
@@ -173,6 +196,8 @@
 .bio-header{
   font-size: 26px;
   font-weight: bold;
+  margin-bottom: 20px;
+  opacity: 79%;
 }
 
 .bio-text{
