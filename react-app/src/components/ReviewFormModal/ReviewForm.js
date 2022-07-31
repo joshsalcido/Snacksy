@@ -68,33 +68,35 @@ export default function ReviewForm({setTrigger}){
             )}
             <label className="review-rating-label">Rating: </label>
             <div className="star-rating-container">
-              {[...Array(5)].map((star, index) => {
-                const ratingVal = index + 1;
+              <div id="review_stars">
+                {[...Array(5)].map((star, index) => {
+                  const ratingVal = index + 1;
 
-                return (
-                  <label key={index}>
-                    <input
-                      className='stars'
-                      type="radio"
-                      id="radioBttn"
-                      name="rating"
-                      value={ratingVal}
-                      onClick={() => setRating(ratingVal)}
-                    />
-                    <FaStar
-                      className="star"
-                      color={
-                        ratingVal <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                      }
-                      size={20}
-                      onMouseEnter={() => setHover(ratingVal)}
-                      onMouseLeave={() => setHover(null)}
-                    />
-                  </label>
-                );
-              })}
-              <label> {!rating ? 0 : rating} / 5</label>
-              <label>Leave your thoughts: </label>
+                  return (
+                    <label key={index}>
+                      <input
+                        className='stars'
+                        type="radio"
+                        id="radioBttn"
+                        name="rating"
+                        value={ratingVal}
+                        onClick={() => setRating(ratingVal)}
+                      />
+                      <FaStar
+                        className="star"
+                        color={
+                          ratingVal <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                        }
+                        size={20}
+                        onMouseEnter={() => setHover(ratingVal)}
+                        onMouseLeave={() => setHover(null)}
+                      />
+                    </label>
+                  );
+                })}
+                <label id="zero_five"> {!rating ? 0 : rating} / 5</label>
+              </div>
+              <label id="leave_your_thoughts">Leave your thoughts: </label>
               <textarea
                 className="review-input"
                 required
