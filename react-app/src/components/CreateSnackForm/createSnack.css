@@ -1,29 +1,126 @@
-.currency-code {
-  padding: 1px 5px 1px 5px;
-  color:#999;
-  border: 1px solid rgb(167, 165, 165);
-  border-right: 0;
-  line-height: 1.5;
-  background-color: rgb(216, 215, 215);
 
+/* 'Create a New Snack' Title */
+.snackFormTitle {
+  border: solid black 1px;
+  font-family: sans-serif,Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
+  width: fit-content;
+  padding: 20px 20px 20px 20px;
+  display: grid;
+  align-items: center;
+  margin: auto
 }
 
+/* Whole Form */
+.createSnackForm {
+  border: solid black 1px;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 1000px;
+  /* width: fit-content; */
+  border: 1px solid #f1f1f1;
+  border-radius: 12px;
+  box-shadow: 2px  2px 8px #888888;
+  padding: 20px 20px 50px 20px;
+  display: grid;
+  align-items: center;
+  margin: auto
+}
+
+
+/* The input fields inside the form */
 .form-input {
   border: 1px solid rgb(167, 165, 165);
+  border-radius: 100px;
   font-size: 15px;
   font-family: 'Pt Sans', sans-serif;
+  /* max-width: 1000px;
+  min-width: 410px; */
+  width: auto;
+  height: 30px;
+  padding: 0px 13px;
+  margin: 20px 0;
 }
 
 .form-input:focus{
-  outline: 0;
-}
-
-.price-input {
-  border: 1px solid rgb(167, 165, 165);
-  font-size: 15px;
-  border-left: 0;
+  /* outline: 0; */
+  outline-color: #fc9b6a;
+  /* border-color: #F1641E; */
+  /* box-shadow: 2px  2px 8px #888888; */
 }
 
 .price-input:focus{
   outline: 0;
+}
+
+.price-div {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Specific input price */
+.price-input {
+  border: 1px solid rgb(167, 165, 165);
+  font-size: 15px;
+  border-left: 0;
+  height: 30px;
+  width: 90px;
+  margin-top: 2px;
+  padding-left: 1px;
+  margin-left: -95px;
+  border-radius: 10px;
+  border: none;
+}
+/* Money Symbol $ */
+.currency-code {
+  height: 32px;
+  width: 90px;
+  color:#999;
+  padding: 6px 20px 1px 10px;
+  border: 1px solid rgb(167, 165, 165);
+  border-radius: 10px;
+  /* border-right: 0; */
+  line-height: 1.5;
+  background-color: white;
+}
+
+.price-label {
+  margin: 10px 0px
+}
+
+
+#description-id {
+  resize: none;
+  padding: 10px 13px 10px 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(167, 165, 165);
+}
+
+#description-id:focus{
+  outline-color: #fc9b6a;
+}
+
+.category-div {
+  display:flex;
+  justify-content: flex-start;
+}
+
+.category-select {
+  margin: 10px 0;
+  width: 300px;
+  height: 30px;
+  border: 1px solid rgb(167, 165, 165);
+  border-radius: 10px;
+}
+.category-label {
+  margin: 10px 0px 0px 0px;
+}
+
+/* 'Create' button */
+#snackFormSubmit {
+  width: 120px;
+}
+
+.cancel-button {
+  margin: 10px 0px;
+  width: 120px
 }

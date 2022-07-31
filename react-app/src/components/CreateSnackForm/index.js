@@ -115,37 +115,44 @@ export default function SnackForm() {
             />
             <label>Description:</label>
             <textarea
-              className='form-input'
+              // className='form-input'
+              id="description-id"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
             />
-            <label>Price:</label>
-            <span className='currency-code'>$</span>
-            <input
-              type="text"
-              className='price-input'
-              value={price}
-              placeholder="22.22"
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-            <label>Category: </label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
-              <option disabled={true}>--select one--</option>
-              <option>Chips</option>
-              <option>Candy</option>
-              <option>Baked Goods</option>
-              <option>Protein</option>
-              <option>Beverages</option>
-            </select>
-            <button id="snackFormSubmit" type="submit">Create New Snack</button>
+            <label className='price-label'>Price:</label>
+            <div className='price-div'>
+              <label className='currency-code'>$</label>
+              <input
+                type="text"
+                className="price-input"
+                value={price}
+                placeholder="22.22"
+                maxLength="10"
+                onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+            </div>
+            <div className='category-div'>
+              <label className='category-label'>Category: </label>
+              <select
+                className='category-select'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+              >
+                <option disabled={true}>--select one--</option>
+                <option>Chips</option>
+                <option>Candy</option>
+                <option>Baked Goods</option>
+                <option>Protein</option>
+                <option>Beverages</option>
+              </select>
+            </div>
+            <button id="snackFormSubmit" type="submit">Create Snack!</button>
             <NavLink to={'/'}>
-              <button>Cancel</button>
+              <button className='cancel-button'>Cancel</button>
             </NavLink>
           </form>
         </section>
