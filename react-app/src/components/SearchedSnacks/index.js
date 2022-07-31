@@ -20,15 +20,15 @@ export default function SearchedSnacks() {
         <h2> Sorry no snacks found for "{searchWord}"</h2>
 
       ) :
-        <h2>{snacks.length} result(s) for "{searchWord}"</h2>
+        <h2 id='searched-results'>{snacks.length} result(s) for "{searchWord}"</h2>
       }
       <div className="searched_snacks_container2">
         {snacks && snacks.map(snack => (
             <div className="indv_searched_snack"key={snack.id}>
-                <Link className='search-snacks'to={`/snacks/${snack.id}`}>
-                    <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
-                    <p id="snack_search_title">{snack.title}</p>
-                    <p id='snack-price'>${snack.price.toFixed(2)}</p>
+                <Link className='searched-snacks'to={`/snacks/${snack.id}`}>
+                    <img id="searched-snack-image"src={snack.cover_pic} alt="snackImg"></img>
+                    <p id="searched-snack_search_title">{snack.title}</p>
+                    <p id='searched-snack-price'>${snack.price.toFixed(2)}</p>
                 </Link>
             </div>
         ))}

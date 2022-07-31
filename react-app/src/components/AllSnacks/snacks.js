@@ -74,10 +74,10 @@ const AllSnacks = () => {
                 {snacks && snacks.slice(0,10).map(snack => (
                     <div key={snack.id} className='snack-card'>
                         <Link className="home-page-snack-card"to={`/snacks/${snack.id}`}>
-                            <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
+                            <img id="home-page-snack-image"src={snack.cover_pic} alt="snackImg"></img>
                             {/* <p id='snack-title'>{snack.title}</p> */}
-                            <div className="snack-card-price">
-                                <p id='snack-price'><i className="fa-solid fa-truck-fast"></i>  ${snack.price.toFixed(2)}</p>
+                            <div className="home-page-snack-card-price">
+                                <p id='home-page-snack-price'><i className="fa-solid fa-truck-fast"></i>  ${snack.price.toFixed(2)}</p>
                             </div>
 
                         </Link>

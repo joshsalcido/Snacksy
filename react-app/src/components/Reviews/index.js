@@ -91,7 +91,10 @@ export default function Reviews() {
     return (
         <div className='reviews-container'>
             <h2 className='review-title'>Reviews</h2>
-            {!reviews.length && (
+            {!sessionUser && !reviews.length && (
+                <h3>Looks like there are no reviews... sign in to start us off!</h3>
+            )}
+            {!reviews.length && sessionUser && (
                  <>
                     <h3>Be the first to leave a review</h3>
                  </>
