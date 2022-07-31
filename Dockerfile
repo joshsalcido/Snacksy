@@ -32,4 +32,3 @@ RUN pip install psycopg2
 # closing command to gunicorn app:app
 
 CMD gunicorn app:app
-

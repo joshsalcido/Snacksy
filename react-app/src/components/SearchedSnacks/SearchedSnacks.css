@@ -2,3 +2,44 @@
     text-decoration: none;
     color: black;
 }
+
+.searched_snacks_container {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.searched_snacks_container2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+#snack-image {
+    border-radius: 0px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#snack_search_title {
+    margin-top: 0px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #222
+}
+
+#snack-price {
+    margin-top: -10px;
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #222222
+}
+
+.indv_searched_snack {
+    border: 1px solid lightgray;
+    transition: box-shadow 0.3s;
+}
+
+.indv_searched_snack:hover {
+    box-shadow: 1px 1px 10px lightgray;
+}

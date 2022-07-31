@@ -23,7 +23,6 @@ const AllSnacks = () => {
     }, [dispatch, userId]);
 
     if (!snacks) return null
-    // if (!userId) return null
 
     return (
         <>

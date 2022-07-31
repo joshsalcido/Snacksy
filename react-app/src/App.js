@@ -73,6 +73,9 @@ function App() {
         <Route path='/cart/:userId'>
           <Cart />
         </Route>
+        <Route>
+          <h1>Page not found.</h1>
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

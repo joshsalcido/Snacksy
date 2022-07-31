@@ -77,7 +77,7 @@ export default function Reviews() {
             <>
                 {review ? (
                     <>
-                        <button onClick={oneReview}> Write a review</button>
+                        <button className='write-review-btn' onClick={oneReview}> Write a review</button>
                         <Modal isOpen={showReviewEditForm} style={formStyles}>
                             <EditReviewForm setTrigger={setShowReviewEditForm}/>
                             <button onClick={closeReviewEditForm}>Cancel</button>
@@ -85,10 +85,10 @@ export default function Reviews() {
                     </>
                 ) : (
                     <>
-                        <button onClick={openReviewForm}> Write a review</button>
+                        <button className='write-review-btn' onClick={openReviewForm}> Write a review</button>
                         <Modal isOpen={showReviewForm} style={formStyles}>
                             <ReviewForm setTrigger={setShowReviewForm}/>
-                            <button onClick={closeReviewForm}>Cancel</button>
+                            <button className="cancel-review" onClick={closeReviewForm}>Cancel</button>
                         </Modal>
                     </>
                 )}
@@ -96,7 +96,8 @@ export default function Reviews() {
             )}
             {reviews.map(review => {
                 return (
-                    <div key={review.id}>
+                    <div className='review-container' key={review.id}>
+                        <div className='rating-div'>
                         {review.rating === 1 && (
                             <>
                                 <FaStar color="#222"/>
@@ -143,16 +144,17 @@ export default function Reviews() {
                                 <FaStar color="#222"/>
                             </>
                             )}
-                        <div>{review.comment}</div>
+                        </div>
+                        <div className='review-div'>{review.comment}</div>
                         {/* <img src={`${review.user.profile_pic}`}></img> */}
-                        <div>{review.user.first_name} {review.user.last_name}</div>
+                        <div className='review-user-div'>{review.user.first_name} {review.user.last_name}</div>
                         <div>
                         {sessionUser?.id === review.user_id && (
                             <>
-                                <button onClick={openReviewEditForm}>Edit</button>
+                                <button className='edit-review'  onClick={openReviewEditForm}>Edit Review</button>
                                     <Modal isOpen={showReviewEditForm} style={formStyles}>
                                         <EditReviewForm setTrigger={setShowReviewEditForm}/>
-                                        <button onClick={closeReviewEditForm}>Cancel</button>
+                                        <button className="cancel-review" onClick={closeReviewEditForm}>Cancel</button>
                                     </Modal>
                                 <button className='delete-review-button'
                                     onClick={() => dispatch(thunkDeleteReview(review.id))}>
