@@ -53,17 +53,17 @@ const SignUpForm = ({setTrigger}) => {
   }
 
   return (
-    <>
-      <h2>Create your account</h2>
-      <h3>Registration is easy.</h3>
+    <div className='register_modal'>
+      <h2 id="create_acc_header">Create your account</h2>
+      <p id="registration_is_easy">Registration is easy.</p>
       <form onSubmit={onSignUp}>
-        <div>
+        <div className="register_errors">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
         <div>
-          <label>Email</label>
+          <label>Email Address</label>
           <input
             type='text'
             name='email'
@@ -123,12 +123,9 @@ const SignUpForm = ({setTrigger}) => {
             required
           ></input>
         </div>
-        <button type='submit'>Sign Up</button>
-        {/* <NavLink to={'/'}> */}
-          <button onClick={() => setTrigger(false)}>Cancel</button>
-        {/* </NavLink> */}
+        <button id="register_submit_btn" type='submit'>Register</button>
       </form>
-    </>
+    </div>
   );
 };
 

@@ -48,7 +48,7 @@ const LoginForm = ({ setTrigger }) => {
     <div class="sign_in_modal">
       <h2 id="sign_in_header">Sign in</h2>
       <form className="sign_in_form" onSubmit={onLogin}>
-        <div>
+        <div className="signin_errors">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
