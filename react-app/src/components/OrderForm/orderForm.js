@@ -19,7 +19,7 @@ const OrderForm = ({ total, totalItems }) => {
     return (
         <form className='checkout-form'>
             <div className='cart-summary'>
-                <p>How you'll pay</p>
+                <h2 id="how_pay">Select your payment type:</h2>
                 <div>
                     <div className='payment-select'>
                         <input type='radio' id='cards' name='payment' value='cards' />
