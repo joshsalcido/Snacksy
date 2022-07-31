@@ -4,9 +4,6 @@ import { useHistory } from 'react-router-dom';
 import '../Cart/cart.css'
 
 const OrderForm = ({ total, totalItems }) => {
-
-    const sessionUser = useSelector((state) => state.session?.user);
-
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const history = useHistory()
 
@@ -15,7 +12,6 @@ const OrderForm = ({ total, totalItems }) => {
     const handleOrder = async (e) => {
         e.preventDefault();
         await dispatch(thunkClearCart(cart))
-        await dispatch(thunkGetCart(sessionUser.id))
         history.push('/')
         return alert('Order Placed!')
     }

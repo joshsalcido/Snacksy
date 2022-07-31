@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkClearCart, thunkDeleteFromCart, thunkGetCart } from "../../store/cart";
+import { thunkDeleteFromCart, thunkGetCart } from "../../store/cart";
+import { useHistory } from 'react-router-dom';
 import OrderForm from "../OrderForm/orderForm";
 import './cart.css'
 
 const Cart = () => {
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
-    const snackQ = useSelector(state => state.shoppingCart?.snackQuantity)
-    const snacks = useSelector(state => state.shoppingCart?.allsnacks);
     const userId = useSelector(state => state.session?.user?.id);
-    // const [quantity, setQuantity] = useState(snackQ)
-    // const [snackId, setSnackId] = useState(0)
-    const [showOrderForm, setShowOrderForm] = useState(false)
+    const history = useHistory()
 
     let total = 0
     let totalItems = 0
@@ -29,6 +26,7 @@ const Cart = () => {
                 {cart && !cart.quantity > 0 && (
                     <div className="empty-msg">
                         <h1>Your cart is empty</h1>
+                        <button className="empty-add" onClick={() => history.push('/')}>Add some snacks to fill it up</button>
                     </div>
                 )}
                 {cart && cart.quantity > 0 && (
@@ -56,7 +54,6 @@ const Cart = () => {
             <div className="checkout">
                 {cart && cart.quantity > 0 && (
                     <div className="checkout-form-area">
-                        {/* <button onClick={() => dispatch(thunkClearCart(cart))}>Clear Cart</button> */}
                         <OrderForm total={total} totalItems={totalItems} />
                     </div>
                 )}
