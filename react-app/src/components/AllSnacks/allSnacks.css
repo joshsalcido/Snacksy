@@ -32,14 +32,19 @@
 }
 
 .snackcard-link:hover{
-  opacity: 55%;
+  color: rgb(133, 133, 133);
 }
 
 
 #allsnacks-link{
   text-decoration: none;
-  border-bottom: 1px  solid rgb(75, 74, 74);
-  color: rgb(75, 74, 74);
+  border-bottom: 1px  solid #222;
+  color:#222;
+}
+
+#allsnacks-link:hover{
+  border-bottom:1px solid rgb(133, 133, 133);
+  color: rgb(133, 133, 133);
 }
 
 
@@ -51,9 +56,10 @@
   transition: .5s;
 }
 
-#snack-image {
+#home-page-snack-image {
   width: 200px;
   height: 200px;
+  border-radius: 30px;
 }
 
 
@@ -78,16 +84,12 @@
   color: black;
 }
 
-#snack-image{
-  border-radius: 30px;
-}
-
-.snack-card-price{
+.home-page-snack-card-price{
   display: flex;
 
 }
 
-#snack-price{
+#home-page-snack-price{
   background-color: #9fdda7;
   padding-top: 5px;
   padding-left: 10px;
@@ -179,7 +181,7 @@
 .why-snacksy{
   font-size: 30px;
   font-weight: bold;
-  opacity: 80%;
+  color: #222;
 }
 
 .bio-content{
@@ -197,7 +199,7 @@
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 20px;
-  opacity: 79%;
+  color: #222;
 }
 
 .bio-text{

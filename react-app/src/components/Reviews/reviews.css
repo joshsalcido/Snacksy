@@ -19,6 +19,7 @@
   border-radius: 10rem;
   background-color: black;
   color: white;
+  margin-top: 10px;
 }
 
 .write-review-btn:hover {
@@ -73,9 +74,6 @@
   font-weight: 200;
 }
 
-.rating-div {
-
-}
 
 .review-div {
   font-size: 23px;

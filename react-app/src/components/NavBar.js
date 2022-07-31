@@ -10,6 +10,7 @@ import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SearchBar from './SearchBar';
 import './navbar.css'
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
@@ -34,7 +35,7 @@ const NavBar = () => {
 
   const formStyles = {
     overlay: {
-      position: 'fixed',
+      position: 'absolute',
       top: 0,
       left: 0,
       right: 0,
@@ -42,7 +43,8 @@ const NavBar = () => {
       width: '100%',
       height: '100%',
       minHeight: '100%',
-      padding: '12px',
+      padding: '30px 12px',
+      zIndex: 8,
       backgroundColor: 'rgba(34, 34, 34, 0.65)'
     },
     content: {
@@ -50,7 +52,7 @@ const NavBar = () => {
       margin: 'auto',
       maxWidth: '384px',
       width: '100%',
-      top: '40px',
+      top: '80px',
       left: '40px',
       right: '40px',
       bottom: '40px',
@@ -61,7 +63,8 @@ const NavBar = () => {
       borderRadius: '24px',
       outline: 'none',
       padding: '18px',
-      overflow: 'visibile'
+      overflow: 'visibile',
+      zIndex: 4
     }
   };
 

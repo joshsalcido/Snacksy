@@ -1,4 +1,4 @@
-.search-snacks {
+.searched-snacks {
     text-decoration: none;
     color: black;
 }
@@ -7,37 +7,51 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.searched_snacks_container2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
+#searched-results{
+    text-align: center;
 }
 
-#snack-image {
+.searched_snacks_container2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 10px;
+}
+
+#searched-snack-image {
     border-radius: 0px;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
 }
 
-#snack_search_title {
+#searched-snack_search_title {
     margin-top: 0px;
-    margin-left: 10px;
     font-size: 14px;
+    font-weight: bold;
     color: #222
 }
 
-#snack-price {
-    margin-top: -10px;
-    margin-left: 10px;
+#searched-snack-price {
     font-weight: 700;
     font-size: 16px;
-    color: #222222
+    color: #222222;
+    margin-bottom: 20px;
 }
 
 .indv_searched_snack {
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
     border: 1px solid lightgray;
     transition: box-shadow 0.3s;
+    width: 300px;
+    margin: 10px 5px;
+    text-decoration: none;
 }
 
 .indv_searched_snack:hover {

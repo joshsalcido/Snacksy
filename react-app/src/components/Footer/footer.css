@@ -20,6 +20,7 @@
 #footer-header{
   margin-top: 0;
   font-size: 25px;
+  color: #222;
 }
 
 .footer-content{
@@ -33,14 +34,19 @@
   margin-top: 0;
 }
 
+#dev-links{
+  margin-right: 10px;
+}
+
 #anchor-links{
-  margin: 0 10px;
-  color: black;
-  opacity: 70%;
+  color: #222;
+  transition: .3s;
+  padding: 0;
 }
 
 #anchor-links:hover{
-  opacity: 50%;
+  color: rgb(100, 100, 100);
+  transition: .3s;
 }
 
 #dev-img{

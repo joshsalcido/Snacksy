@@ -22,18 +22,15 @@
   text-align: center;
   font-size: 28px;
   font-weight: bold;
-  opacity: 70%;
   margin: 25px 0 5px;
+  color: #222;
 }
 
 #all-snack-home-link {
   font-size: 20px;
   font-weight: bold;
-  opacity: 70%;
   text-decoration: none;
-  color: black;
-  opacity: 70%;
-  margin-bottom: 10px;
+  color: #222;
   width: 400px;
 }
 
@@ -44,12 +41,12 @@
 #total-snacks{
   margin: 10px 0;
   font-size: 17px;
-  opacity: 70%;
+  color: #222;
   font-weight: bold;
 }
 
 #all-snack-home-link:hover{
-  opacity: 50%;
+  color: rgb(133, 133, 133)
 }
 
 
@@ -82,7 +79,7 @@
 }
 
 #all-snack-cat-card-title{
-  color: black;
+  color: #222;
   text-align: left;
   margin-left: 20px;
   text-overflow: ellipsis;
@@ -93,6 +90,7 @@
   color: black;
   text-align: left;
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 
