@@ -64,7 +64,7 @@ const SearchBar = () => {
             </form>
             {filteredSnacks.length !== 0 && (
                 <div className="snack-result">
-                    {filteredSnacks.map((snack) => {
+                    {filteredSnacks.slice(0, 5).map((snack) => {
                         return (
                             <Link key={snack.id} className="snack-item" to={`/snacks/${snack.id}`} onClick={clearInput}>
                                 <p id='snack-title'>{snack.title}</p>

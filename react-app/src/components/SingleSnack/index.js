@@ -28,8 +28,8 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
-    const [snackies, setSnackies] = useState([])
+    // const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
+    // const [snackies, setSnackies] = useState([])
     // console.log('**CART!!!', cart)
     // console.log("***SNACK", snack)
     let snacks = []
@@ -79,28 +79,50 @@ export default function SingleSnack() {
     if (!snack) return null
 
 
-    function stringify() {
-        if (cart) {
-            cart.snacks.forEach(item => {
-                snacks.push(JSON.stringify(item))
-            })
-            return snacks
-        }
-    }
+    // function stringify() {
+    //     if (cart) {
+    //         cart.snacks.forEach(item => {
+    //             snacks.push(JSON.stringify(item))
+    //         })
+    //         return snacks
+    //     }
+    // }
 
-    const strgs = stringify(cart)
+    // const strgs = stringify(cart)
     // console.log(strgs)
 
     const formStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
+        overlay: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          minHeight: '100%',
+          padding: '12px',
+          backgroundColor: 'rgba(34, 34, 34, 0.65)'
         },
-    };
+        content: {
+          position: 'relative',
+          margin: 'auto',
+          maxWidth: '384px',
+          width: '100%',
+          top: '40px',
+          left: '40px',
+          right: '40px',
+          bottom: '40px',
+          border: '1px solid #ccc',
+          background: '#fff',
+          overflow: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          borderRadius: '24px',
+          outline: 'none',
+          padding: '18px',
+          overflow: 'visibile'
+        }
+      };
 
     return (
         <>
@@ -142,16 +164,19 @@ export default function SingleSnack() {
                         </>
                     }
                     {!sessionUser && (
-                        <button className='nav-buttons' onClick={openLoginModal}>Add to Cart</button>
+                        <>
+                            <button className='nav-buttons' onClick={openLoginModal}>Sign in to add to cart</button>
+                            <Modal isOpen={showLoginForm} style={formStyles}>
+                                <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
+                                <LoginForm />
+                                <button className="register_btn" onClick={openClose}>Register</button>
+                            </Modal>
+                            <Modal isOpen={showSignupForm} style={formStyles}>
+                                <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
+                            <SignUpForm setTrigger={setShowSignupForm} />
+                            </Modal>
+                        </>
                     )}
-                    <Modal isOpen={showLoginForm} style={formStyles}>
-                        <LoginForm />
-                        <button onClick={closeLoginModal}>Cancel</button>
-                        <button onClick={openClose}>Register</button>
-                    </Modal>
-                    <Modal isOpen={showSignupForm} style={formStyles}>
-                        <SignUpForm setTrigger={setShowSignupForm} />
-                    </Modal>
             </div>
             <Reviews />
         </>

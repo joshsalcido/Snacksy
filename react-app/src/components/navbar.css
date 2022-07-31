@@ -19,3 +19,41 @@
   padding-left: 36px;
   font-size: 40px;
 }
+
+.close_login_btn {
+  position: absolute;
+  top: 5px;
+  right: -40px;
+  color: #FFFFFF;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.close_login_btn:hover {
+  background-color: gray;
+  border-radius: 20px;
+}
+
+.register_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #222;
+  background-color: transparent;
+  border: 2px solid #222;
+  border-radius: 20px;
+  padding: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.register_btn:hover {
+  transform: scale(1.05, 1.05);
+}

@@ -15,21 +15,20 @@ export default function SearchedSnacks() {
   },[dispatch, searchWord])
 
   return (
-    <div>
+    <div className="searched_snacks_container">
       {snacks.length === 0 ? (
         <h2> Sorry no snacks found for "{searchWord}"</h2>
 
       ) :
         <h2>{snacks.length} result(s) for "{searchWord}"</h2>
       }
-      <div>
+      <div className="searched_snacks_container2">
         {snacks && snacks.map(snack => (
-            <div key={snack.id}>
+            <div className="indv_searched_snack"key={snack.id}>
                 <Link className='search-snacks'to={`/snacks/${snack.id}`}>
                     <img id="snack-image"src={snack.cover_pic} alt="snackImg"></img>
-                    <p>{snack.title}</p>
-                    <p id='snack-price'>$ {snack.price.toFixed(2)}</p>
-                    <p>{snack.description}</p>
+                    <p id="snack_search_title">{snack.title}</p>
+                    <p id='snack-price'>${snack.price.toFixed(2)}</p>
                 </Link>
             </div>
         ))}
