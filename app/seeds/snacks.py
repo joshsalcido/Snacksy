@@ -40,7 +40,7 @@ def seed_snacks():
 
   arizona_green_tea=Snack(
     user_id=1,
-    cover_pic="https://m.media-amazon.com/images/I/41qizgqH1BL.jpg",
+    cover_pic="https://modernfarmer.com/wp-content/uploads/2019/04/Arizona_Green_Tea_with_Ginseng_and_Honey_23.0_FL_OZ_Can_1400x-1024x1024.jpg",
     title="Arizona Green Tea",
     description="Enjoy our 100% natural AriZona Green Tea iced or served up hot, with just the right amount of ginseng, honey and cane sugar. Reflect on all that goodness, delicious as ever. PREMIUM BREWED GREEN TEA FILTERED WATER, CANE SUGAR, HONEY, NATURAL FLAVOR, ASCORBIC ACID (VITAMIN C), CITRIC ACID, GINSENG EXTRACT.",
     price=0.99,
@@ -128,6 +128,104 @@ def seed_snacks():
     category="Baked Goods"
   )
 
+  sugar_cookie=Snack(
+    user_id=3,
+    cover_pic="https://www.cookingclassy.com/wp-content/uploads/2020/02/soft-sugar-cookies-5.jpg",
+    title="Soft Frosted Sugar Cookies - 10pk",
+    price=3.99,
+    description="Freshness Guaranteed Frosted Sugar Cookies are a classically delicious dessert that is perfect for everyday snacking and parties. These soft sugar cookies are coated in a sweet and irresistible pink frosting that will leave you wanting more. Each bite offers a burst of flavor and the light airy texture of the cookie allows every mouthful to melt in your mouth. The cookies are in a clear container that opens and closes easily ensuring that the cookies stay fresh.",
+    category="Baked Goods"
+  )
+
+  rice_krispy=Snack(
+    user_id=2,
+    cover_pic="https://www.candywarehouse.com/item-images/127476-01_rice-krispies-treats-60-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000",
+    title="Rice Krispies Treat",
+    price=0.99,
+    description="Rice Krispies Treats in original marshmallow squares offer a sweet and exciting way to stock your lunch room or meeting space. Indulge in the sweet taste of nostalgia with these marshmallow snacks. Individually wrapped for easy display and sharing, these treats are a convenient way to enjoy dessert without the need for plates or utensils.",
+    category="Baked Goods"
+  )
+
+  brownie=Snack(
+    user_id=3,
+    cover_pic="https://pics.drugstore.com/prodimg/633309/900.jpg",
+    title="Two Bite Chocolate Brownies",
+    price=6.29,
+    description="These bite-size brownies are baked with Belgian dark chocolate and superior, all-natural ingredients for a taste that is truly divine! Each one is a brownie bite of pure bliss.",
+    category="Baked Goods"
+  )
+
+  trail_mix=Snack(
+    user_id=2,
+    cover_pic="https://m.media-amazon.com/images/I/71gEW5JqHbL._SX679_.jpg",
+    title="Power Up Trail Mix",
+    price=5.28,
+    description="Made from only the finest, quality ingredients, our all natural Protein Packed Fruit & Nut Mix makes a great pre or post- workout snack as well as a delicious part of a daily 'weight smart' diet. Made from only the best, most premium whole nuts, dried fruit and seeds, our delicious trail mix does not contain sulfites, or other preservatives. Our Protein Packed Trail Mix is a unique and satisfying blend of crunchy peanuts, crispy almonds, creamy cashews, tart cherries, tangy raisins, and nutritious pumpkin seeds.",
+    category="Protein"
+  )
+
+  protein_puffs=Snack(
+    user_id=3,
+    cover_pic="https://m.media-amazon.com/images/I/71fdWn56TZL._AC_SX679_.jpg",
+    title="Nacho Cheese Protein Puffs",
+    price=23.74,
+    description="REAL FOOD THAT TASTES GREAT: No longer be forced to resort to protein powder to meet your dietary and sports nutrition goals. One serving includes 21g of protein with 4.2g BCAAs and 4.5g Glutamic Acid. Our puffs are real food with real taste! SNACK SMART: A guilt free, healthy alternative to traditional chips, and crackers. Each Twin Peaks Protein Puff bag is promptly sealed with a tamper proof/stay-fresh seal to ensure product safety and maximum flavor. We care about your body and what you put in it!",
+    category="Protein"
+  )
+
+  kind_bar=Snack(
+    user_id=2,
+    cover_pic="https://m.media-amazon.com/images/I/818vAO69z0L._SX679_.jpg",
+    title="Almond Butter Protein Bar",
+    price=4.79,
+    description="Delicious almond butter protein breakfast bars. Made with real almond butter, 20g of 100% whole grains and 8g of complete protein, it's the perfect part of an on-the-go breakfast.",
+    category="Protein"
+  )
+
+  protein_yogurt=Snack(
+    user_id=3,
+    cover_pic="https://www.instacart.com/image-server/932x932/filters:fill(FFF,true):format(webp)/www.instacart.com/assets/domains/product-image/file/large_7f4f95e9-99d4-43d4-9762-331a1efc375f.jpg",
+    title="Mixed Berry Greek Yogurt",
+    price=3.65,
+    description="Pack of 4: 25 g of protein per cup, 4X more than the leading traditional yogurt. Deliciously creamy yogurt cultured dairy snack with live active yogurt cultures. Single serve snack cup is perfect for breakfast on the go or a high protein snack.",
+    category="Protein"
+  )
+
+  coke=Snack(
+    user_id=2,
+    cover_pic="https://i5.walmartimages.com/asr/9a261ab6-c14f-41b5-9253-7a57a32ddf29.4f27d098d30daba67c363a4dcddad090.jpeg",
+    title="Coca-Cola Classic 8oz Glass Bottles",
+    price=32.99,
+    description="Soda. Pop. Soft drink. Sparkling beverage. Whatever you call it, nothing compares to the refreshing, crisp taste of Coca-Cola Original Taste, the delicious soda you know and love. Enjoy with friends, on the go or with a meal. Whatever the occasion, wherever you are, Coca-Cola Original Taste makes life's special moments a little bit better.Carefully crafted in 1886, its great taste has stood the test of time. Something so delicious, so unique and so familiar, it's what makes you think 'Coca-Cola' whenever you hear 'soft drink.' Between that perfect taste and refreshing fizz, it's sure to give you that 'ahhh' moment whenever you want it. Every sip, every 'ahhh,' every smile—find that feeling with Coca-Cola Original Taste. Best enjoyed ice-cold for maximum refreshment. Grab a Coca-Cola Original Taste, take a sip and find your 'ahhh' moment.Enjoy Coca-Cola Original Taste.",
+    category="Beverage"
+  )
+
+  iced_tea=Snack(
+    user_id=3,
+    cover_pic="https://images-na.ssl-images-amazon.com/images/I/51pHV0UN8YL._SX300_SY300_QL70_FMwebp_.jpg",
+    title="Pure Leaf Iced Tea, Raspberry",
+    price=18.00,
+    description="Brewed from real tea leaves picked at their freshest, never from powder or concentrate. No artificial sweeteners or added color. A bold tart berry flavor meets the smooth character of black tea leaves. 180 calories per bottle. Includes twelve 18.5 ounce bottles.",
+    category="Beverage"
+  )
+
+  red_bull=Snack(
+    user_id=2,
+    cover_pic="https://cdn.abicart.com/shop/ws95/53595/art95/h6647/188496647-origpic-e9fd4e.jpg",
+    title="Red Bull Energy Drink",
+    price=2.00,
+    description="RED BULL GIVES YOU WINGS! Red Bull Energy Drink's special formula contains ingredients of high quality: Caffeine, Taurine, some B-Group Vitamins, Sugars. Vitalizes Body and Mind. One 12 fl oz can of Red Bull Energy Drink contains 114 mg of caffeine, about the same amount as in an equal serving of home-brewed coffee.",
+    category="Beverage"
+  )
+
+  blue_gatorade=Snack(
+    user_id=3,
+    cover_pic="https://m.media-amazon.com/images/I/71MKBkKjgfL._SX569_.jpg",
+    title="Gatorade Thirst Quencher Cool Blue",
+    price=1.59,
+    description="With a legacy over 50 years in the making, it's the most scientifically researched and game-tested way to replace electrolytes lost in sweat. Gatorade hydrates better than water, which is why it's trusted by some of the world's best athletes. When you sweat, you lose more than water - Gatorade contains critical electrolytes to help replace what's lost in sweat. Top off your fuel stores with carbohydrate energy, your body's preferred source of fuel. Tested in the lab and used by the pros. Cool blue flavor. 28 oz bottle.",
+    category="Beverage"
+  )
 
   db.session.add(ruffles)
   db.session.add(sour_patch_kids)
@@ -135,14 +233,25 @@ def seed_snacks():
   db.session.add(rxbar_protein_bar)
   db.session.add(arizona_green_tea)
   db.session.add(hawaiian_chips)
-  db.session.add(jalapeno_chips)
-  db.session.add(pringles)
-  db.session.add(cool_ranch_doritos)
   db.session.add(twix)
   db.session.add(jolly_ranchers)
+  db.session.add(blue_gatorade)
+  db.session.add(cool_ranch_doritos)
+  db.session.add(pringles)
+  db.session.add(coke)
   db.session.add(red_vines)
+  db.session.add(jalapeno_chips)
+  db.session.add(brownie)
   db.session.add(mm)
+  db.session.add(trail_mix)
+  db.session.add(red_bull)
+  db.session.add(iced_tea)
+  db.session.add(rice_krispy)
   db.session.add(cinnamon_roll)
+  db.session.add(kind_bar)
+  db.session.add(sugar_cookie)
+  db.session.add(protein_puffs)
+  db.session.add(protein_yogurt)
 
 
   db.session.commit()
