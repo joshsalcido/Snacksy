@@ -10,6 +10,7 @@ export default function AllSnacksCategory() {
   const allSnacks = useSelector(state => Object.values(state.allSnacks));
 
   useEffect(() => {
+    window.scroll(0, 0)
     dispatch(thunkGetAllSnacks())
   }, [dispatch])
 

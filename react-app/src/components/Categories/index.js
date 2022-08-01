@@ -12,6 +12,7 @@ function CategoriesPage() {
   const snacks = useSelector(state => Object.values(state.allSnacks));
 
   useEffect(() => {
+    window.scroll(0, 0)
     dispatch(thunkGetCategory(category))
   },[dispatch, category])
 
