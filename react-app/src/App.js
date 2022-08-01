@@ -16,6 +16,7 @@ import CategoriesPage from './components/Categories';
 import Cart from './components/Cart/cart';
 import AllSnacksCategory from './components/Categories/allSnacksCategory';
 import Footer from './components/Footer';
+import { thunkGetAllSnacks } from './store/snacks';
 
 
 
@@ -28,6 +29,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
+      await dispatch(thunkGetAllSnacks());
       await dispatch(authenticate());
       setLoaded(true);
     })();

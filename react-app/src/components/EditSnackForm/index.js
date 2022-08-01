@@ -9,7 +9,6 @@ export default function EditSnackForm() {
   const dispatch = useDispatch()
   const { snackId } = useParams()
 
-
   const sessionUser = useSelector((state) => state.session.user);
   const snack = useSelector((state) => state.allSnacks[snackId]);
 
@@ -78,6 +77,7 @@ export default function EditSnackForm() {
     setValidationErrors([]);
   }
 
+  if(!snack) return null
 
   return (
       <>
@@ -128,7 +128,7 @@ export default function EditSnackForm() {
                 <span className='currency-code'>$</span>
                 <input
                   type="text"
-                  className="price-input"
+                  className="create-snack-price-input"
                   value={price}
                   placeholder="22.22"
                   onChange={(e) => setPrice(e.target.value)}
