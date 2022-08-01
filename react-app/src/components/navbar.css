@@ -110,10 +110,9 @@ nav{
   color: white;
   background-color: #222;
   border-radius: 10px;
-  opacity: 0%;
+  visibility: hidden;
   top: 8px;
   margin-top: 60px;
-  transition: .5s;
 }
 
 #drop-down-text{
@@ -121,8 +120,9 @@ nav{
 }
 
 .create-snack-bttn:hover + .dropdown-title{
-  transition: .5s;
-  opacity: 100%;
+  visibility: visible;
+  background-color: #222;
+  transition: .3s;
 }
 
 .close_login_btn {

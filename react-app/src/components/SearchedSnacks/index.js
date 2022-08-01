@@ -17,7 +17,10 @@ export default function SearchedSnacks() {
   return (
     <div className="searched_snacks_container">
       {snacks.length === 0 ? (
-        <h2> Sorry no snacks found for "{searchWord}"</h2>
+      <div className='no-results-search'>
+        <h2 > Sorry no snacks found for "{searchWord}"</h2>
+        <img id='no-results-gif'src='https://c.tenor.com/-sXUFC3XJrwAAAAM/crying-milkandmocha.gif'></img>
+      </div>
 
       ) :
         <h2 id='searched-results'>{snacks.length} result(s) for "{searchWord}"</h2>
