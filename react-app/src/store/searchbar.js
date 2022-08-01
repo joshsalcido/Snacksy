@@ -12,7 +12,7 @@ export const actionSearchAllSnacks = (snacks) => {
 
 
 export const thunkSearchAllSnacks = () => async dispatch => {
-  const response = await fetch(`/api/snacks`)
+  const response = await fetch(`/api/snacks/`)
 
   if (response.ok) {
       const data = await response.json();
