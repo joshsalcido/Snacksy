@@ -9,6 +9,7 @@
     margin-top: 50px;
 }
 
+
 .cart p {
     font-size: 18px;
 }
@@ -27,6 +28,7 @@
 .snack-display {
     display: flex;
     flex-direction: row;
+    margin-right: 50px;
 }
 
 .snack-display img {

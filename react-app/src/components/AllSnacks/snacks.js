@@ -9,6 +9,7 @@ import "./allSnacks.css"
 const AllSnacks = () => {
     const allSnacks = useSelector(state => Object.values(state.allSnacks));
     const userId = useSelector((state) => state.session?.user?.id)
+    const sessionUser = useSelector((state) => state.session.user);
 
     const snacks = allSnacks.reverse()
 
@@ -26,9 +27,15 @@ const AllSnacks = () => {
 
     return (
         <>
-            <div id='background-color'>
-                <p className="home-page-title">Discover tasty snacks from sellers nationwide</p>
-            </div>
+            {!sessionUser ? (
+                <div id='background-color'>
+                    <p className="home-page-title">Discover tasty snacks from sellers nationwide</p>
+                </div>
+            ) : (
+                <div id='background-color'>
+                    <p className="home-page-title">Welcome {sessionUser.username} !</p>
+                </div>
+            )}
             <div className="categories-container" >
                 <ul className="categories">
                     <li className="category-list">
