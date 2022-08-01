@@ -6,6 +6,13 @@ Snacksy is a clone of the popular ecommerce website, Etsy. On Snacksy, users can
 
 [Live Link to Snacksy](https://snacksy.herokuapp.com/)
 
+![image](https://user-images.githubusercontent.com/95194326/182079091-ed570dae-7390-4118-9fef-8be0ce32090f.png)
+
+![image](https://user-images.githubusercontent.com/95194326/182079179-b0f3c448-2a59-4cc9-89ba-5910a5f478f4.png)
+
+![image](https://user-images.githubusercontent.com/95194326/182079252-03edfed9-d284-4b15-876f-3e2276914fd2.png)
+
+
 ## Instructions on how to install and run Snacksy
 After cloning Snacksy into your desired directory:
 * In the root directory, run 'pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt' to install dependencies
