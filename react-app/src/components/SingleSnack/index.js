@@ -28,13 +28,7 @@ export default function SingleSnack() {
     const snack = useSelector((state) => state.allSnacks[snackId]);
     const cart = useSelector(state => Object.values(state.shoppingCart)[0]);
     const userId = useSelector((state) => state.session?.user?.id);
-    // const allsnacks = useSelector(state => state.shoppingCart.allsnacks);
-    // const [snackies, setSnackies] = useState([])
-    // console.log('**CART!!!', cart)
-    // console.log("***SNACK", snack)
-    let snacks = []
-    // console.log("***QUANTITY", quantity)
-
+    let snackies = []
 
 
     async function handleSubmit(e) {
@@ -48,12 +42,10 @@ export default function SingleSnack() {
             }
             return alert("Snack already in cart!")
         }
-
-
     }
 
     useEffect(() => {
-        window.scroll(0,0)
+        window.scroll(0, 0)
         dispatch(thunkGetSingleSnack(snackId))
         if (userId) {
             dispatch(thunkGetCart(userId))
@@ -80,50 +72,47 @@ export default function SingleSnack() {
     if (!snack) return null
 
 
-    // function stringify() {
-    //     if (cart) {
-    //         cart.snacks.forEach(item => {
-    //             snacks.push(JSON.stringify(item))
-    //         })
-    //         return snacks
-    //     }
-    // }
-
-    // const strgs = stringify(cart)
-    // console.log(strgs)
+    function stringify() {
+        if (cart) {
+            cart.snacks.forEach(item => {
+                snackies.push(JSON.stringify(item))
+            })
+            return snackies
+        }
+    }
 
     const formStyles = {
         overlay: {
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100%',
-          height: '100%',
-          minHeight: '100%',
-          padding: '12px',
-          backgroundColor: 'rgba(34, 34, 34, 0.65)'
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            minHeight: '100%',
+            padding: '12px',
+            backgroundColor: 'rgba(34, 34, 34, 0.65)'
         },
         content: {
-          position: 'relative',
-          margin: 'auto',
-          maxWidth: '384px',
-          width: '100%',
-          top: '40px',
-          left: '40px',
-          right: '40px',
-          bottom: '40px',
-          border: '1px solid #ccc',
-          background: '#fff',
-          overflow: 'auto',
-          WebkitOverflowScrolling: 'touch',
-          borderRadius: '24px',
-          outline: 'none',
-          padding: '18px',
-          overflow: 'visibile'
+            position: 'relative',
+            margin: 'auto',
+            maxWidth: '384px',
+            width: '100%',
+            top: '40px',
+            left: '40px',
+            right: '40px',
+            bottom: '40px',
+            border: '1px solid #ccc',
+            background: '#fff',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '24px',
+            outline: 'none',
+            padding: '18px',
+            overflow: 'visibile'
         }
-      };
+    };
 
     return (
         <>
@@ -136,48 +125,39 @@ export default function SingleSnack() {
                         <h2 className='single-price'>${snack.price.toFixed(2)}</h2>
                         <h3 className='single-des'>{snack.description}</h3>
                         <form onSubmit={handleSubmit}>
-                            {/* <label>Qty</label> */}
-                            {/* <select onChange={(e) => setQuantity(parseInt(e.target.value))}
-                            value={quantity}>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select> */}
-                            {sessionUser && snack && !snacks.includes(JSON.stringify(snack)) && (
+                            {sessionUser && cart && !stringify(cart.snacks).includes(JSON.stringify(snack)) && (
                                 <button className='addToCartbtn' type="submit">Add to Cart</button>
-                                )}
-                                {snack && snacks.includes(JSON.stringify(snack)) && (
-                                    <p className='already-in-cart'>This snack is in your cart!</p>
-                                    )}
+                            )}
+                            {cart && cart.snacks && stringify(cart.snacks).includes(JSON.stringify(snack)) && (
+                                <p className='already-in-cart'>This snack is in your cart!</p>
+                            )}
                         </form>
                     </div>
                 </div>
-                    {sessionUser && sessionUser.id === snack.user_id &&
-                        <>
+                {sessionUser && sessionUser.id === snack.user_id &&
+                    <>
                         <div className='edit-delete-div'>
                             <Link to={`/snacks/${snack.id}/edit`}>
                                 <button className='edit-single-snack-btn'>Edit  <i className="fa-solid fa-pen-to-square"></i></button>
                             </Link>
                             <button className='delete-single-snack-btn' onClick={onDelete}>Delete  <i className="fa-solid fa-trash-can"></i></button>
                         </div>
-                        </>
-                    }
-                    {!sessionUser && (
-                        <>
-                            <button className='sign-in-to-addCart' onClick={openLoginModal}>Sign in to Add to cart</button>
-                            <Modal isOpen={showLoginForm} style={formStyles}>
-                                <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
-                                <LoginForm />
-                                <button className="register_btn" onClick={openClose}>Register</button>
-                            </Modal>
-                            <Modal isOpen={showSignupForm} style={formStyles}>
-                                <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
+                    </>
+                }
+                {!sessionUser && (
+                    <>
+                        <button className='sign-in-to-addCart' onClick={openLoginModal}>Sign in to Add to cart</button>
+                        <Modal isOpen={showLoginForm} style={formStyles}>
+                            <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
+                            <LoginForm />
+                            <button className="register_btn" onClick={openClose}>Register</button>
+                        </Modal>
+                        <Modal isOpen={showSignupForm} style={formStyles}>
+                            <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
                             <SignUpForm setTrigger={setShowSignupForm} />
-                            </Modal>
-                        </>
-                    )}
+                        </Modal>
+                    </>
+                )}
             </div>
             <Reviews />
         </>
