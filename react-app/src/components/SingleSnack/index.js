@@ -132,6 +132,22 @@ export default function SingleSnack() {
                                 <p className='already-in-cart'>This snack is in your cart!</p>
                             )}
                         </form>
+                        <div>
+                            {!sessionUser && (
+                                <>
+                                    <button className='sign-in-to-addCart' onClick={openLoginModal}>Sign in to Add to cart</button>
+                                    <Modal isOpen={showLoginForm} style={formStyles}>
+                                        <button className="close_login_btn" onClick={() => setShowLoginForm(false)}>X</button>
+                                        <LoginForm />
+                                        <button className="register_btn" onClick={openClose}>Register</button>
+                                    </Modal>
+                                    <Modal isOpen={showSignupForm} style={formStyles}>
+                                        <button className="close_login_btn" onClick={() => setShowSignupForm(false)}>X</button>
+                                        <SignUpForm setTrigger={setShowSignupForm} />
+                                    </Modal>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
                 {sessionUser && sessionUser.id === snack.user_id &&
@@ -144,7 +160,7 @@ export default function SingleSnack() {
                         </div>
                     </>
                 }
-                {!sessionUser && (
+                {/* {!sessionUser && (
                     <>
                         <button className='sign-in-to-addCart' onClick={openLoginModal}>Sign in to Add to cart</button>
                         <Modal isOpen={showLoginForm} style={formStyles}>
@@ -157,7 +173,7 @@ export default function SingleSnack() {
                             <SignUpForm setTrigger={setShowSignupForm} />
                         </Modal>
                     </>
-                )}
+                )} */}
             </div>
             <Reviews />
         </>

@@ -56,7 +56,7 @@ const AllSnacks = () => {
                         </Link>
                     </li>
                     <li className="category-list">
-                        <Link to="/categories/Beverage" className="category-link">
+                        <Link to="/categories/Beverages" className="category-link">
                             <img  alt='cat-button' className="category-button"src="https://i.etsystatic.com/11465033/r/il/6007c8/3808870767/il_1140xN.3808870767_29ot.jpg" />
                             <p id='category-bttn-name'>Beverages</p>
                         </Link>

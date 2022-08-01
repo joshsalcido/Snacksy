@@ -31,8 +31,8 @@ export default function EditSnackForm() {
       errors.push("Title must be at least 3 characters");
     if (title.length > 100)
       errors.push("Title length cannot exceed 100 characters")
-    if (description.length > 500)
-      errors.push("Description length cannot exceed 500 characters")
+    if (description.length > 2000)
+      errors.push("Description length cannot exceed 2000 characters")
     if (description.length < 5)
       errors.push("Decription length must be at least 5 characters")
     let priceRegex = /^[0-9]+(\.[0-9][0-9])?$/;

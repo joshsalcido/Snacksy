@@ -3,6 +3,9 @@
   margin-right: 0;
   margin-left: 0;
 }
+html{
+  overflow-x: hidden;
+}
 
 .footer{
   margin-top: 130px;

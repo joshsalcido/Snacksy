@@ -13,7 +13,7 @@ const OrderForm = ({ total, totalItems }) => {
         e.preventDefault();
         await dispatch(thunkClearCart(cart))
         history.push('/')
-        return alert('Order Placed!')
+        return alert('Order Placed! Thank you for shopping on Snacksy')
     }
 
     return (

@@ -5,7 +5,7 @@
 .cart {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-top: 50px;
 }
 
@@ -131,13 +131,21 @@ input[type='radio'] {
     outline: 0;
 }
 
+.empty-cart-container{
+    display: flex;
+    justify-content: center;
+    height: auto;
+
+}
+
 .empty-msg {
-    /* position: absolute; */
-    /* left: 45%; */
-    /* border: 1px solid blue; */
-    margin-left: 13rem;
-    margin-top: 50px;
-    margin-bottom: 200px;
+    text-align: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .empty-msg h1 {
@@ -157,8 +165,7 @@ input[type='radio'] {
     list-style: none;
     padding: 10px 12px;
     text-align: center;
-    margin-left: 25px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .empty-add:hover {
