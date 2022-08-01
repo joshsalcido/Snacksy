@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkClearCart, thunkGetCart } from '../../store/cart';
+import { thunkClearCart } from '../../store/cart';
 import { useHistory } from 'react-router-dom';
 import '../Cart/cart.css'
 
@@ -22,7 +22,7 @@ const OrderForm = ({ total, totalItems }) => {
                 <h2 id="how_pay">Select your payment type:</h2>
                 <div>
                     <div className='payment-select'>
-                        <input type='radio' id='cards' name='payment' value='cards' />
+                        <input type='radio' id='cards' name='payment' value='cards' defaultChecked/>
                         <label htmlFor='cards'>
                             <i className="fa-brands fa-cc-visa" />
                             <i className="fa-brands fa-cc-mastercard" />
