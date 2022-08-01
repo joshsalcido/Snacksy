@@ -1,11 +1,29 @@
-<h1>Welcome to Snacksy!</h1>
+<div align='center'>
+  <img src="https://i.postimg.cc/LsXWGHRg/Screen-Shot-2022-07-31-at-8-30-46-PM.png"></img>
+  <h3> 
+    Developers: Mineh Gharabegi, Amy Lopez, Josh Salcido, and Michael Dasch 
+  </h3>
+  <p align='center'>
+    ·
+    <a href="https://snacksy.herokuapp.com/">
+      Snacksy
+    </a>
+    ·
+  </p>
+  <p align="center">Project Advisor: Brad Simpson</p>
+  <p align='center'>
+    Explore the docs to see how to get 
+    <a href="https://github.com/joshsalcido/Snacksy/wiki">started</a>
+    --->
+  </p>
+  <h1>Welcome to Snacksy!</h1>
+  
+</div>
 
-<img src="https://i.postimg.cc/LsXWGHRg/Screen-Shot-2022-07-31-at-8-30-46-PM.png"></img>
+Snacksy is a clone of the popular ecommerce website, [Etsy](https://www.etsy.com/). On Snacksy, users can sign in or register, browse a variety of snacks, create snacks if they wish to sell items on Snacksy, add their favorite snacks to their cart and make an order, and also read and leave reviews for snacks.
 
-Snacksy is a clone of the popular ecommerce website, Etsy. On Snacksy, users can sign in or register, browse a variety of snacks, create snacks if they wish to sell items on Snacksy, add their favorite snacks to their cart and make an order, and also read and leave reviews for snacks.
 
-[Live Link to Snacksy](https://snacksy.herokuapp.com/)
-
+## Screenshots from live site
 ![image](https://user-images.githubusercontent.com/95194326/182079091-ed570dae-7390-4118-9fef-8be0ce32090f.png)
 
 ![image](https://user-images.githubusercontent.com/95194326/182079179-b0f3c448-2a59-4cc9-89ba-5910a5f478f4.png)
@@ -27,13 +45,7 @@ After cloning Snacksy into your desired directory:
 > * In another terminal, cd into the frontend directory 'react-app' and run the command 'npm start'
 > * With both terminals running, navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Snacksy!
 
-## View Snacksy's:
-* [Feature List](https://github.com/joshsalcido/Snacksy/wiki/MVP-Feature-List)
-* [React Components List](https://github.com/joshsalcido/Snacksy/wiki/React-Components)
-* [Database Schema](https://github.com/joshsalcido/Snacksy/wiki/Database-Schema)
-* [Frontend Routes](https://github.com/joshsalcido/Snacksy/wiki/Frontend-Routes)
-* [API Routes](https://github.com/joshsalcido/Snacksy/wiki/API-Routes)
-* [Redux Store Shape](https://github.com/joshsalcido/Snacksy/wiki/State-Shape)
+
 
 
 ## Technologies
@@ -75,6 +87,8 @@ Snacksy was built using the following technologies:
 * Pressing enter after typing key words inside the search bar will navigate users to a page that displays all snack items that match their search. 
 
 ## Technical Details
+***Shopping Cart***:
+
 The implementation of Snacksy's shopping cart was done by implementing a join table in which a many-to-many relationship between shopping carts and snacks was created. Adding to and deleting items from a shopping cart was then done through adding and deleting rows in the join table and accessing the snacks through the shopping cart's to_dict method:
 ```
   @cart_routes.route('/<id>', methods=['POST'])
@@ -101,6 +115,39 @@ The implementation of Snacksy's shopping cart was done by implementing a join ta
             'cart_quantity': len(self.cart_items)
         }
 ```
+***Search Bar***:
+
+Creating a search bar was something that was an extremly new concept to the development team but was a fun task to take on. Users have the ability to search for a specific snack in our database or just to get back a list of results that matches anything that they search. Unfortunately we dont have all the snacks in our database but for this being our first searh bar, we are happy with the way things turned out. 
+
+```
+const handleFilter = (e) => {
+        const searchWord = e.target.value;
+        setWordEntry(searchWord);
+        const newFilter = snacks.filter((value) => {
+            return value.title.toLowerCase().includes(searchWord.toLowerCase());
+        });
+
+        if (searchWord === "") {
+            setFilteredSnacks([])
+        } else {
+            setFilteredSnacks(newFilter)
+        }
+    }
+```
+```
+{filteredSnacks.length !== 0 && (
+                <div className="snack-result">
+                    {filteredSnacks.slice(0, 5).map((snack) => {
+                        return (
+                            <Link key={snack.id} className="snack-item" to={`/snacks/${snack.id}`} onClick={clearInput}>
+                                <p id='snack-title'>{snack.title}</p>
+                            </Link>
+                        )
+                    })}
+                </div>
+            )}
+```
+
 
 ## Future Improvements
 * User profile page that displays a user's account information and any snacks they have posted to sell on Snacksy.
