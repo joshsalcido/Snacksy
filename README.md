@@ -22,7 +22,7 @@ After cloning Snacksy into your desired directory:
 
 ## View Snacksy's:
 * [Feature List](https://github.com/joshsalcido/Snacksy/wiki/MVP-Feature-List)
-* [React Components List]
+* [React Components List](https://github.com/joshsalcido/Snacksy/wiki/React-Components)
 * [Database Schema](https://github.com/joshsalcido/Snacksy/wiki/Database-Schema)
 * [Frontend Routes](https://github.com/joshsalcido/Snacksy/wiki/Frontend-Routes)
 * [API Routes](https://github.com/joshsalcido/Snacksy/wiki/API-Routes)
